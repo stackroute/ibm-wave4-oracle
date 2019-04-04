@@ -19,48 +19,47 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/api/v2")
+@RequestMapping(value = "/api/v1")
 public class ExtractController {
 
     @Autowired
     private StanfordCoreNLP stanfordCoreNLP;
-
-    @PostMapping
-    @RequestMapping(value = "/concepts")
-    public HashSet<?> extract(@RequestBody String input) throws IOException {
-
-//
-//        TypeReference<List<ConceptData>> typeReference = new TypeReference<List<ConceptData>>() {
-//        };
-//        ObjectMapper mapper = new ObjectMapper();
-//        ///InputStream inputStream = new FileInputStream(new File("/extract-intent-service/src/json/concepts.json"));
-//        RestTemplate restTemplate = new RestTemplate();
-//        String correctedQuery = restTemplate.getForObject("http://localhost:8082/api/v1/concepts/" + , String.class);
-//
-//
-//        List<ConceptData> list = mapper.readValue(inputStream, typeReference);
+    ConceptData conceptData;
 
 
+
+    @GetMapping(value = "/concepts/{input}")
+    public HashSet<?> extract(@PathVariable("input") String input) throws IOException {
+        RestTemplate restTemplate = new RestTemplate();
+        String neoConcept = restTemplate.getForObject("http://localhost:8082/api/v1/concepts/", String.class);
 
         CoreDocument coreDocument = new CoreDocument(input);
         stanfordCoreNLP.annotate(coreDocument);
         List<CoreLabel> coreLabelList = coreDocument.tokens();
+
+        CoreDocument coreDocumentNeo = new CoreDocument(neoConcept);
+        stanfordCoreNLP.annotate(coreDocumentNeo);
+        List<CoreLabel> list = coreDocumentNeo.tokens();
+
         HashSet hashSet = new HashSet();
-//        for (int i = 0; i < coreLabelList.size(); i++) {
-//            String pos = coreLabelList.get(i).get(CoreAnnotations.PartOfSpeechAnnotation.class);
-//            String output = coreLabelList.get(i).lemma().toLowerCase();
-//            if (pos.equals("NN") || pos.equals("NNP")) {
-//
-//                for (int j = 0; j < list.size(); j++) {
-//
-//                    if (output.equals(list.get(j).getConcept())) {
-//                        hashSet.add(output);
-//                    }
-//
-//                }
-//
-//            }
-//        }
+
+
+        for (int i = 0; i < coreLabelList.size(); i++) {
+            String pos = coreLabelList.get(i).get(CoreAnnotations.PartOfSpeechAnnotation.class);
+            String output = coreLabelList.get(i).lemma().toLowerCase();
+
+            if (pos.equals("NN") || pos.equals("NNP")) {
+
+                for (int j = 0; j < list.size(); j++) {
+
+                    String concept = list.get(j).lemma().toLowerCase();
+                    if (output.equals(concept)) {
+                        hashSet.add(output);
+                    }
+                }
+            }
+        }
+
         return hashSet;
     }
 }
