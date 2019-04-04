@@ -1,7 +1,9 @@
 package com.stackroute.botservice.config;
 
-import com.stackroute.botservice.domain.Same;
-import com.stackroute.botservice.service.SameQueryServiceImpl;
+import com.stackroute.botservice.domain.Query;
+import com.stackroute.botservice.domain.Status;
+import com.stackroute.botservice.domain.UserQuery;
+import com.stackroute.botservice.service.QueryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -21,19 +23,22 @@ import java.nio.file.Paths;
 @Component
 class StartupSeedData implements ApplicationListener<ContextRefreshedEvent> {
 
-    private SameQueryServiceImpl sameQueryServiceImpl;
+    private QueryServiceImpl queryServiceImpl;
 
     @Autowired
-    public StartupSeedData(SameQueryServiceImpl sameQueryServiceImpl){
-        this.sameQueryServiceImpl = sameQueryServiceImpl;
+    public StartupSeedData(QueryServiceImpl queryServiceImpl){
+        this.queryServiceImpl = queryServiceImpl;
     }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
 
-        Same sameQandA = new Same();
+        UserQuery userQuery = new UserQuery();
+        Query query = new Query();
+
         String line = "";
         Path filePath = Paths.get("data.csv");
+
 
         try (BufferedReader br = new BufferedReader(new FileReader(new File(filePath.toUri()).getAbsolutePath()))) {
 
@@ -42,19 +47,22 @@ class StartupSeedData implements ApplicationListener<ContextRefreshedEvent> {
                 // use comma as separator
                 String[] quesAndAns = line.split(",");
 
-                // initializing the "Same" object
-                sameQandA.setId(quesAndAns[0]);
-                sameQandA.setQuestion(quesAndAns[1]);
+                // initializing "Query" and "UserQuery" objects
+                query.setId(quesAndAns[0]);
+                query.setConcept(quesAndAns[1]);
+                query.setQuestion(quesAndAns[2]);
 
                 StringBuilder answer = new StringBuilder();
-                for(int i = 2; i < quesAndAns.length ;i++){
+                for(int i = 3; i < quesAndAns.length ;i++){
                     answer.append(quesAndAns[i]);
                 }
+                query.setAnswer(answer.toString());
 
-                sameQandA.setAnswer(answer.toString());
+                userQuery.setQuery(query);
+                userQuery.setStatus(new Status(true,true));
 
                 // saving initialized object into mongodb
-                sameQueryServiceImpl.saveSameQuery(sameQandA);
+                queryServiceImpl.saveQuery(userQuery);
             }
 
         } catch (IOException e) {

@@ -36,6 +36,7 @@
         <module>user-service</module>
 	    <module>queryautocorrector-service</module>
         <module>graphquery</module>
+        <module>extract-intent-service</module>
     </modules>
 
 

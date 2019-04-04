@@ -21,13 +21,16 @@ public class BotController {
 
     KafkaTemplate<Object, Object> kafkaTemplate;
     private QueryServiceImpl queryService;
+
     public BotController() {
     }
+
     @Autowired
     public BotController(KafkaTemplate<Object, Object> kafkaTemplate, QueryServiceImpl queryService) {
         this.kafkaTemplate = kafkaTemplate;
         this.queryService = queryService;
     }
+
     @PostMapping("/send/query")
     public ResponseEntity<?> sendNewQuery(@RequestBody UserQuery userQuery) {
         // Getting the query from UserQuery object
