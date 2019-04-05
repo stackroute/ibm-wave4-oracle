@@ -1,7 +1,7 @@
 package com.stackroute.botservice.service;
 
-import com.stackroute.botservice.domain.UserQuery;
+import com.stackroute.botservice.domain.QueryAnsListWithConcept;
 
 public interface QueryService {
-    UserQuery saveQuery(UserQuery userQuery);
+    QueryAnsListWithConcept saveQuery(QueryAnsListWithConcept queryAnsListWithConcept);
 }

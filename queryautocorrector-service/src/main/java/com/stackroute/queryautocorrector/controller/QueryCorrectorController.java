@@ -11,8 +11,8 @@ import java.io.IOException;
 @RequestMapping("/api/v1")
 public class QueryCorrectorController {
 
-    @GetMapping("/getCorrectedQuery/{query}")
-    public String getCorrectedQuery(@PathVariable("query") String query) throws IOException {
+    @GetMapping("/getCorrectedQuery/{queryAnswer}")
+    public String getCorrectedQuery(@PathVariable("queryAnswer") String query) throws IOException {
         String correctedQuery = QueryAutoCorrector.correctQuery(query);
         return correctedQuery;
     }

@@ -27,8 +27,8 @@ public class GraphQueryServiceImpl implements GraphQueryService {
                 returns the set of answers for that particular question and concept
              */
         @Override
-        public Iterable<Answer> solution(String concept, String question) {
-            return queryRepository.solution(concept, question);
+        public Iterable<Questions> solution(String concept) {
+            return queryRepository.solution(concept);
         }
 
         /*

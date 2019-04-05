@@ -13,7 +13,7 @@ public interface QueryRepository extends Neo4jRepository<Questions, Long> {
      Displays the set of questions and corresponding answers for that questions
      */
     @Query("match (c:Concept{name:({concept})})<-[:QUESTION_OF]-(q:Questions{name:({question})})<-[:ANSWER_OF]-(a:Answer) return a,q")
-    Iterable<Answer> solution(String concept, String question);
+    Iterable<Questions> solution(String concept);
 
     /*
         creates nodes for question and answer and also creates relationships

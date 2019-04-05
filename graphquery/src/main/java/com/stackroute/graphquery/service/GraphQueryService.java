@@ -12,7 +12,7 @@ public interface GraphQueryService {
         This method takes concept and question through rest call and
         returns the set of answers for that particular question and concept
      */
-    Iterable<Answer> solution(String concept, String question);
+    Iterable<Questions> solution(String concept);
 
     /*
         This method displays all set of question and answer
