@@ -55,7 +55,6 @@ public class ManualController {
         return responseEntity;
 
     }
-
     //Delete Request
 
     @PostMapping("/question")
@@ -71,7 +70,7 @@ public class ManualController {
         //Delete that quedstion from Consumer side
         manualService.deleteQuestion(query.getId());
 
-        return new ResponseEntity<String>("Query Deleted Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<String >("Quey Deleted Successfully", HttpStatus.CREATED);
     }
 
 }

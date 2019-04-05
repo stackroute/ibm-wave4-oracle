@@ -51,7 +51,7 @@ public class BotController {
         userQuery.getStatus().setAnswered(true);
         userQuery.getQuery().setAnswer("I will tell you later or ask Aman Patla");
 
-        return new ResponseEntity<UserQuery>(userQuery, HttpStatus.CREATED);
+        return new ResponseEntity<UserQuery>(userQuery, HttpStatus.OK);
 
     }
 }
