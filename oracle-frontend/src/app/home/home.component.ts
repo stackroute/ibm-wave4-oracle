@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LoginAuthenticationService} from "../login-authentication.service";
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   title = "Oracle IT helpDesk";
-  constructor() { }
+  constructor(private authService:LoginAuthenticationService) {
+  }
 
   ngOnInit() {
+    this.authService.isLoggedIn();
   }
 
 }

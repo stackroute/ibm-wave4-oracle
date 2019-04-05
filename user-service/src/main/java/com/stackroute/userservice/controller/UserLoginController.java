@@ -30,9 +30,10 @@ public class UserLoginController {
             return new ResponseEntity<List<User>>(users, HttpStatus.OK);
     }
 
+
     /*It will display only the users*/
     @GetMapping(value = "/user")
-    @PreAuthorize("hasRole('USER')")
+
     public ResponseEntity<User> getUser(Principal principal)
     {
       User user1= userService.getUserByEmail(principal.getName());

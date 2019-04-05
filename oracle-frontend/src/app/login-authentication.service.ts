@@ -7,6 +7,7 @@ import { Observable, Subject } from "rxjs";
 export class LoginAuthenticationService {
   constructor() {}
   private subject = new Subject<any>();
+
   isLoggedIn() {
     if (localStorage.getItem("currentUser")) {
       this.subject.next({ status: true });

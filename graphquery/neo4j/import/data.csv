@@ -1,0 +1,6 @@
+id,name,questionparentid,answer,answerparentid,concept
+D:1,update,C:2,solution,D:1,Chrome
+D:2,start/stop,C:5,solution,D:2,Mongo
+D:3,upgrade,C:9,solution,D:3,Nodejs
+D:4,permission denied,C:10,solution,D:4,Angular
+D:5,disconnect issue,C:0,solution,D:5,VirtualLab

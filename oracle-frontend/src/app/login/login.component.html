@@ -1,56 +1,57 @@
-<h1 style="text-align:center">Login Here..</h1>
-<form #userForm="ngForm">
-  <div class="container" style="width:30%">
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input
-        type="email"
-        #emailref="ngModel"
-        class="form-control"
-        id="email"
-        [(ngModel)]="user.email"
-        name="email"
-        placeholder="email"
-        required
-      />
-      <div
-        *ngIf="emailref.errors && (emailref.touched || emailref.dirty)"
-        class="alert alert-danger"
-      >
-        <div *ngIf="emailref.errors.required">
-          Email required.
+<div class="container  mt-4 d-flex justify-content-around align-items-center">
+  <div
+    class="dropdown col-sm-10 col-md-7 d-flex flex-column shadow border border-primary justify-content-around align-items-center p-2"
+    style="border-radius: 20px;min-width: 340px">
+    <h3 style="text-align:center">Login Here</h3>
+    <div class="dropdown-divider"></div>
+    <form #userForm="ngForm" class="container w-75 shadow-sm p-1 rounded" (ngSubmit)="loginUser(user)">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          #emailref="ngModel"
+          class="form-control"
+          id="email"
+          [(ngModel)]="user.email"
+          name="email"
+          placeholder="email@example.com"
+          required
+          pattern="[A-Za-z][A-Za-z0-9_]*@.*\.[A-Za-z]{2,}"
+        />
+        <div [hidden]="emailref.valid || emailref.pristine"
+             class="text-danger">
+          Email is invalid
         </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input
-        type="password"
-        #pwd="ngModel"
-        class="form-control"
-        id="password"
-        [(ngModel)]="user.password"
-        name="password"
-        placeholder="password"
-        required
-      />
-      <div
-        *ngIf="pwd.errors && (pwd.touched || pwd.dirty)"
-        class="alert alert-danger"
-      >
-        <div *ngIf="pwd.errors.required">
-          Password required.
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          #pwd="ngModel"
+          class="form-control"
+          id="password"
+          [(ngModel)]="user.password"
+          name="password"
+          placeholder="Password"
+          minlength="6"
+          required
+        />
+        <div [hidden]="pwd.valid || pwd.pristine"
+             class="text-danger">
+          Password is required.(minimum length is 6.)
         </div>
       </div>
-    </div>
-    <button
-      type="button"
-      class="btn btn-success"
-      [disabled]="userForm.invalid"
-      (click)="loginUser(user)"
-    >
-      Login
-    </button>
-    <div class="form-group"></div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="userForm.invalid"
+      >
+        Sign in
+      </button>
+      <div class="form-group"></div>
+    </form>
+    <div class="dropdown-divider"></div>
+    <a class="nav-link" routerLink="/signup">New around here? Sign up</a>
+    <a class="nav-link " href="#">Forgot password?</a>
   </div>
-</form>
+</div>

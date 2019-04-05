@@ -15,7 +15,6 @@ public class Query {
 
     @Id
     private String id;
-    private String concept;
     private String question;
     private String answer;
 }

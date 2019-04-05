@@ -3,9 +3,10 @@
   background-color: whitesmoke;
 } */
 #main {
-  background-image: url(../../assets/federico-beccari-62960-unsplash.jpg);
+  background-image: url(../../assets/federico-beccari-62960-unsplash.jpg );
   background-size: cover;
-
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .ng-valid[required],

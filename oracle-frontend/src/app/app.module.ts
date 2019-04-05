@@ -5,7 +5,6 @@ import { FormsModule } from "@angular/forms";
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { SendqueryComponent } from "./sendquery/sendquery.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { HomeComponent } from "./home/home.component";
 import { SignupComponent } from "./signup/signup.component";
@@ -14,21 +13,24 @@ import { HttpClientModule } from "@angular/common/http";
 import { UserService } from "./user.service";
 import { AuthGuard } from "./auth.guard";
 import { ChatBotHomepageComponent } from "./chat-bot-homepage/chat-bot-homepage.component";
-import { MatButtonModule, MatSidenavModule } from "@angular/material";
+import {MatButtonModule, MatDividerModule, MatSidenavModule, MatTabsModule} from "@angular/material";
 import { UserdashboardComponent } from "./userdashboard/userdashboard.component";
 import { AdmindashboardComponent } from "./admindashboard/admindashboard.component";
+import { ProfileComponent } from './profile/profile.component';
+import { AllUsersProfileComponent } from './all-users-profile/all-users-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SendqueryComponent,
     DashboardComponent,
     HomeComponent,
     SignupComponent,
     LoginComponent,
     ChatBotHomepageComponent,
     UserdashboardComponent,
-    AdmindashboardComponent
+    AdmindashboardComponent,
+    ProfileComponent,
+    AllUsersProfileComponent
   ],
 
   imports: [
@@ -39,7 +41,9 @@ import { AdmindashboardComponent } from "./admindashboard/admindashboard.compone
     HttpClientModule,
     DragDropModule,
     MatSidenavModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDividerModule,
+    MatTabsModule
   ],
   providers: [UserService, AuthGuard],
   bootstrap: [AppComponent]
