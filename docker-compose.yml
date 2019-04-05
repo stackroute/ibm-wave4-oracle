@@ -11,7 +11,8 @@ services:
     network_mode: "host"
     hostname: 127.0.0.1
     volumes:
-      - '/home/mysql/data:/data'
+      - /home/mongo/data:/var/lib/mongo
+
 
   mysql:
     image: mysql:5.7
@@ -27,6 +28,7 @@ services:
       - 3306:3306
     volumes:
       - var/lib/mysql
+
 
   neo4j:
     image: neo4j:3.5.3
@@ -167,9 +169,9 @@ services:
       - bot-service
       - eureka-server
 
-  graphqueryservice:
-    build: graphqueryservice/
-    image: graphqueryservice
+  graphquery:
+    build: graphquery/
+    image: graphquery
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -177,3 +179,12 @@ services:
       - 8082:8082
     depends_on:
       - neo4j
+
+  extract-intent-service:
+    build: extract-intent-service/
+    image: extract-intent-service
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8383:8383

@@ -15,7 +15,7 @@ export class SignupComponent implements OnInit {
     private userService: UserService,
     private authService: LoginAuthenticationService
   ) {
-    this.authService.isLoggedIn();
+
   }
   ngOnInit() {}
   saveUser(user: any, userForm: any) {

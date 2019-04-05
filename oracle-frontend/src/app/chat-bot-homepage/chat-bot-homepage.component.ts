@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import {ItChatServiceService} from "../it-chat-service.service";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import {MatSidenavModule} from "@angular/material";
+
 
 interface Status {
   accepted: boolean;

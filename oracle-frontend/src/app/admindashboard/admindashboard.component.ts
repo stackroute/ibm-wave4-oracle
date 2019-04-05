@@ -8,20 +8,15 @@ import { LoginAuthenticationService } from "../login-authentication.service";
   styleUrls: ["./admindashboard.component.css"]
 })
 export class AdmindashboardComponent implements OnInit {
-  public loginuser: any = {};
-  public users: any = [];
 
   constructor(
     private authService: LoginAuthenticationService,
     private userService: UserService
   ) {
-    this.authService.isLoggedIn();
-    this.loginuser = JSON.parse(localStorage.getItem("currentUser"));
+
+  }
+  ngOnInit(): void {
   }
 
-  ngOnInit() {
-    this.userService.getAllUsers(this.loginuser.token).subscribe(users => {
-      this.users = users;
-    });
-  }
+
 }

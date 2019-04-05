@@ -7,6 +7,8 @@ import { UserdashboardComponent } from "./userdashboard/userdashboard.component"
 import { AdmindashboardComponent } from "./admindashboard/admindashboard.component";
 import { AuthGuard } from "./auth.guard";
 import { ChatBotHomepageComponent } from "./chat-bot-homepage/chat-bot-homepage.component";
+import {ProfileComponent} from "./profile/profile.component";
+import {AllUsersProfileComponent} from "./all-users-profile/all-users-profile.component";
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -16,8 +18,18 @@ const routes: Routes = [
   {
     path: "admindashboard",
     component: AdmindashboardComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    children:[
+      {
+        path:"profile",component:UserdashboardComponent
+      },
+      {
+        path:"users",component:AllUsersProfileComponent
+      }
+
+    ]
   },
+  {path:"profile",component:ProfileComponent},
   { path: "userdashboard", component: UserdashboardComponent },
   { path: "**", pathMatch: "full", redirectTo: "home" }
 ];

@@ -1,18 +1,24 @@
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>FirstName</th>
-      <th>LastName</th>
-      <th>Email</th>
-      <th>Role</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{{ user.firstName }}</td>
-      <td>{{ user.lastName }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.role }}</td>
-    </tr>
-  </tbody>
-</table>
+
+<div class="container" style="border-radius: 10%;">
+
+    <div class="card m-2 border-primary w-100" style=" min-height: 30rem;" >
+      <div class="card-body shadow d-flex flex-column justify-content-center align-items-center w-100"
+      >
+        <p class="card-title text-center border-bottom font-weight-bolder">Personal information</p>
+        <div class="d-flex justify-content-around  flex-wrap w-100">
+        <img src="../../assets/profile.jpg" class="card-img img-thumbnail border-primary rounded-circle col-sm-10 col-md-4" alt="..." style="height: 15rem;">
+
+        <div class="p-2 mt-1 bg-light col-sm-12 col-md-7 " style="border-radius: 10%;">
+          <p class="d-flex border-bottom"><span
+            class="col-4 text-justify text-center">{{user.firstName}}</span>
+          <span
+            class="col-4 text-justify text-center">{{ user.lastName}}</span></p>
+          <p class="d-flex border-bottom"><span class="col-4 text-justify text-center">e-mail</span><span
+            class="col-8 text-justify text-center">{{ user.email }}</span></p>
+          <p class="d-flex border-bottom"><span class="col-4 text-justify text-center">Role</span><span
+            class="col-8 text-justify text-center">{{ user.role }}</span></p>
+        </div>
+        </div>
+      </div>
+    </div>
+</div>

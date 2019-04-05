@@ -3,20 +3,18 @@ package com.stackroute.botservice.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserQuery {
 
-    private Query query;
-    private Status status;
+    @Id
+    private String id;
+    private String concept;
+    private List<Query> query;
 
-    @Override
-    public String toString() {
-        return "UserQuery{" +
-                "query=" + query +
-                ", status=" + status +
-                '}';
-    }
 }

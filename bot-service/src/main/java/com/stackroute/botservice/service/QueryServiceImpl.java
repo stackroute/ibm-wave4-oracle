@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class QueryServiceImpl{
+public class QueryServiceImpl implements QueryService {
 
 
     private QueryRespository queryRespository;
@@ -16,10 +16,10 @@ public class QueryServiceImpl{
         this.queryRespository = queryRespository;
     }
 
+    //this method add query to mongo database
+    @Override
     public UserQuery saveQuery(UserQuery userQuery) {
-        UserQuery userQuery1;
-        userQuery1 = (UserQuery) queryRespository.save(userQuery);
-       return userQuery1;
+        return queryRespository.save(userQuery);
     }
 
 }
