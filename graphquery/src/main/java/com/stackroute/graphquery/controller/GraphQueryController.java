@@ -14,11 +14,9 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/api/v1")
 public class GraphQueryController {
 
-   /* RestTemplate restTemplate = new RestTemplate();
-    String result = restTemplate.getForObject("url", String.class, vars);
-*/
-
     private GraphQueryService graphQueryService;
+
+    private Questions questions;
 
     @Autowired
     public GraphQueryController(GraphQueryService graphQueryService) {
@@ -48,6 +46,11 @@ public class GraphQueryController {
 
     @GetMapping("/answer/{concept}/{question}")
     public ResponseEntity<Iterable<Answer>> getSolution(@PathVariable String concept, @PathVariable String question) {
+
+      /*  RestTemplate restTemplate = new RestTemplate();
+        String concept = restTemplate.getForObject("http://localhost:8595/api/v1/" + questions.getName(), String.class);
+        String question = restTemplate.getForObject(""+questions.getConcept(),String.class);
+*/
         return new ResponseEntity<>(graphQueryService.solution(concept, question), HttpStatus.FOUND);
     }
 
