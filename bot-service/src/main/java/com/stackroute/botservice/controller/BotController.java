@@ -13,6 +13,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /* Created on : 27/03/2019 by gopal */
@@ -44,15 +45,14 @@ public class BotController {
 
         String concepts = restTemplate.getForObject("http://localhost:8383/api/v1/concepts/" + question, String.class);
 
-        List<Query> solution = restTemplate.getForObject("http://localhost:8082/api/v1/answer/" + concepts , List.class);
-
-
+        //List<Query> solution = restTemplate.getForObject("http://localhost:8082/api/v1/answer/" + concepts , List.class);
         UserQuery userQuery= new UserQuery();
 
-        userQuery.setConcept(concepts);
 
+        userQuery.setConcept(concepts);
         System.out.println(concepts);
 
+        userQuery = queryService.saveQuery(userQuery);
         return new ResponseEntity<UserQuery>(userQuery, HttpStatus.CREATED);
 
     }
