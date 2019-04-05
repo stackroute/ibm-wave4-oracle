@@ -9,13 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.FORBIDDEN)
 public class UnauthorizedException extends  RuntimeException{
 
-    protected static MessageSourceAccessor message=  SpringSecurityMessageSource.getAccessor();
 
-    public UnauthorizedException()
-    {
-        super(message.getMessage("AbstractAccessDecisionManager.accessDenied", "Access Denied"));
-
-    }
 
     public UnauthorizedException(String message)
     {

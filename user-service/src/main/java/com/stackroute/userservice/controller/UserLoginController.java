@@ -33,7 +33,6 @@ public class UserLoginController {
 
     /*It will display only the users*/
     @GetMapping(value = "/user")
-
     public ResponseEntity<User> getUser(Principal principal)
     {
       User user1= userService.getUserByEmail(principal.getName());

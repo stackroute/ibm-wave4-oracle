@@ -10,7 +10,7 @@ import { LoginAuthenticationService } from "../login-authentication.service";
 })
 export class LoginComponent implements OnInit {
   public user: any = {};
-  public loginSucessMsg: any;
+
 
   constructor(
     private userService: UserService,
@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl("/profile");
 
       }
-    });
+    },
+      (error) => console.log(error));
   }
 }

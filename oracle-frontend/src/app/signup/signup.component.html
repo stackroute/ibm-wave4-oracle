@@ -1,24 +1,27 @@
-  <form #userForm="ngForm" *ngIf="!registerSucessMsg">
-    <div class="container pt-3" style="width:40%">
+<div class="container my-2 col-6">
+  <form #userForm="ngForm" *ngIf="!registered" class="shadow my-2 w-100 border border-primary " style="border-radius:5%; " >
+    <div class="container py-3 w-75" >
       <h1 class="pb-2" style="text-align:center">Create an Account</h1>
       <p>Please fill in this form to create an account.</p>
-      <hr />
+      <hr/>
       <div class="form-group">
         <label for="firstName">FirstName</label>
         <input
           type="text"
           #fname="ngModel"
-          pattern="^[a-zA-Z]*[a-zA-Z0-9]{5,15}$"
+          matInput
+          pattern="[a-zA-Z]{3,15}"
           [class.is-invalid]="fname.invalid && fname.touched"
           class="form-control"
           id="firstName"
           [(ngModel)]="user.firstName"
           name="firstName"
-          placeholder="Enter your firstname"
+          placeholder="enter your first name"
           required
         />
+
         <div *ngIf="fname.errors?.pattern" class="alert alert-danger">
-          Firstname must be atleast 5 character .
+          Firstname must be atleast 3 character .
         </div>
       </div>
       <div class="form-group">
@@ -26,7 +29,7 @@
         <input
           type="text"
           #lname="ngModel"
-          pattern="^[a-zA-Z]*[a-zA-Z0-9]{3,15}$"
+          pattern="[a-zA-Z]{3,15}"
           [class.is-invalid]="lname.invalid && lname.touched"
           class="form-control"
           id="lastName"
@@ -53,21 +56,14 @@
           placeholder="Enter your password"
           required
         />
-        <div
-          *ngIf="pwd.errors && (pwd.touched || pwd.dirty)"
-          class="alert alert-danger"
-        >
-          <div *ngIf="pwd.errors.required">
-            Password required.
-          </div>
-
-          <div *ngIf="pwd.errors.pattern">
-            <small>
-              Password should be alphanumeric with capital and small letters and
-              atleast 6 character.</small
-            >
-          </div>
+        <div *ngIf="pwd.errors">
+          <small>
+            Password should be alphanumeric with capital and small letters and
+            atleast 6 character.
+          </small
+          >
         </div>
+
       </div>
 
       <div class="form-group">
@@ -81,25 +77,15 @@
           id="confirmpassword"
           [(ngModel)]="user.cnfpassword"
           name="confirmpassword"
-          placeholder="Confirm your password"
+          placeholder="confirm your password"
           required
         />
 
-        <div
-          *ngIf="
-            confirmpassword.invalid &&
-            (confirmpassword.dirty || confirmpassword.touched)
-          "
-          class="alert alert-danger"
-        >
-          <div *ngIf="confirmpassword.errors.required">
-            Confirm password is required.
-          </div>
 
-          <div *ngIf="confirmpassword.errors.pattern">
-            Password & Confirm Password does not match.
-          </div>
+        <div *ngIf="confirmpassword.errors  ">
+          Password & Confirm Password does not match.
         </div>
+
       </div>
       <div class="form-group">
         <label for="email">Email</label>
@@ -115,33 +101,14 @@
           required
         />
 
-        <div
-          *ngIf="emailref.errors && (emailref.touched || emailref.dirty)"
-          class="alert alert-danger"
-        >
-          <div *ngIf="emailref.errors.required">
-            Email required.
-          </div>
 
-          <div [hidden]="!emailref.errors?.pattern">
-            Invalid pattern, must conatin _@_._
-          </div>
+        <div [hidden]="!emailref.errors?.pattern">
+          Invalid pattern, must conatin _@_._
         </div>
+
       </div>
 
-      <div class="form-group">
-        <label for="role">Role</label>
-        <select
-          class="form-control"
-          id="firstName"
-          [(ngModel)]="user.role"
-          name="role"
-        >
-          <option value="">Select Role</option>
-          <option value="ADMIN">Admin</option>
-          <option value="USER">user</option>
-        </select>
-      </div>
+
       <div class="form-group">
         <button
           type="button"
@@ -153,14 +120,15 @@
         </button>
       </div>
       <p class="text-center text-muted">
-        Already have an account? <a href="login">Login</a>.
+        Already have an account? <a routerLink="/login">Login</a>.
       </p>
     </div>
   </form>
-<div class="row d-flex justify-content-center" *ngIf="registerSucessMsg">
-  <div class="col-lg-6">
-    <h4 class="alert alert-success text-center">
-      {{ registerSucessMsg }}
-    </h4>
+  <div class="row d-flex justify-content-center" *ngIf="registered">
+    <div class="col-lg-6">
+      <h4 class="alert alert-success text-center">
+        {{ registerSucessMsg }}
+      </h4>Now you can<a routerLink="/login"><button class="btn btn-link">Login</button></a>
+    </div>
   </div>
 </div>

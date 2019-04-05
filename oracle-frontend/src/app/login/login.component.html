@@ -1,10 +1,15 @@
 <div class="container  mt-4 d-flex justify-content-around align-items-center">
   <div
     class="dropdown col-sm-10 col-md-7 d-flex flex-column shadow border border-primary justify-content-around align-items-center p-2"
-    style="border-radius: 20px;min-width: 340px">
+    style="border-radius: 20px;min-width: 340px"
+  >
     <h3 style="text-align:center">Login Here</h3>
     <div class="dropdown-divider"></div>
-    <form #userForm="ngForm" class="container w-75 shadow-sm p-1 rounded" (ngSubmit)="loginUser(user)">
+    <form
+      #userForm="ngForm"
+      class="container w-75 shadow-sm p-1 rounded"
+      (ngSubmit)="loginUser(user)"
+    >
       <div class="form-group">
         <label for="email">Email</label>
         <input
@@ -18,8 +23,7 @@
           required
           pattern="[A-Za-z][A-Za-z0-9_]*@.*\.[A-Za-z]{2,}"
         />
-        <div [hidden]="emailref.valid || emailref.pristine"
-             class="text-danger">
+        <div [hidden]="emailref.valid || emailref.pristine" class="text-danger">
           Email is invalid
         </div>
       </div>
@@ -36,8 +40,7 @@
           minlength="6"
           required
         />
-        <div [hidden]="pwd.valid || pwd.pristine"
-             class="text-danger">
+        <div [hidden]="pwd.valid || pwd.pristine" class="text-danger">
           Password is required.(minimum length is 6.)
         </div>
       </div>
