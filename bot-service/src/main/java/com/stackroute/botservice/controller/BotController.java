@@ -45,6 +45,7 @@ public class BotController {
         String concepts = restTemplate.getForObject("http://localhost:8383/api/v1/concepts/" + questionQuery.getQuestion(), String.class);
 
         // Modifying the query field with corrected query
+        System.out.println(concepts);
         questionQuery.setConcept(concepts);
         questionQuery.setQuestion(correctedQuery);
         userQuery.setQuery(questionQuery);

@@ -29,7 +29,7 @@ public class ExtractController {
 
 
     @GetMapping(value = "/concepts/{input}")
-    public HashSet<?> extract(@PathVariable("input") String input) throws IOException {
+    public String extract(@PathVariable("input") String input) throws IOException {
         RestTemplate restTemplate = new RestTemplate();
         String neoConcept = restTemplate.getForObject("http://localhost:8082/api/v1/concepts/", String.class);
 
@@ -54,12 +54,13 @@ public class ExtractController {
 
                     String concept = list.get(j).lemma().toLowerCase();
                     if (output.equals(concept)) {
-                        hashSet.add(output);
+                        return output;
                     }
                 }
             }
         }
 
-        return hashSet;
+        return null;
+
     }
 }
