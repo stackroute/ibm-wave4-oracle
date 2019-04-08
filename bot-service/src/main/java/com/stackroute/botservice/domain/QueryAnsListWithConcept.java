@@ -10,11 +10,11 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserQuery {
+public class QueryAnsListWithConcept {
 
     @Id
     private String id;
     private String concept;
-    private List<Query> query;
+    private List<QueryAnswer> queryAnswer;
 
 }

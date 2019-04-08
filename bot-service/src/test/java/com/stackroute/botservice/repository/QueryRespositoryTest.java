@@ -1,7 +1,7 @@
 //package com.stackroute.botservice.repository;
 //
-//import com.stackroute.botservice.domain.Query;
-//import com.stackroute.botservice.domain.UserQuery;
+//import com.stackroute.botservice.domain.QueryAnswer;
+//import com.stackroute.botservice.domain.QueryAnsListWithConcept;
 //import org.junit.After;
 //import org.junit.Assert;
 //import org.junit.Before;
@@ -21,12 +21,12 @@
 //
 //    @Autowired
 //    private QueryRespository queryRespository;
-//    private UserQuery userQuery;
-//    private Query query;
+//    private QueryAnsListWithConcept userQuery;
+//    private QueryAnswer queryAnswer;
 //
 //    @Before
 //    public void setUp() {
-//        query.setId("101");
+//        queryAnswer.setId("101");
 //
 //    }
 //
@@ -40,16 +40,16 @@
 //    @Test
 //    public void testSaveUser() {
 //        queryRespository.save(userQuery);
-//        UserQuery fetchUser = queryRespository.findById(userQuery.getQuery().getId()).get();
-//        Assert.assertEquals("101", fetchUser.getQuery().getId());
+//        QueryAnsListWithConcept fetchUser = queryRespository.findById(userQuery.getQueryAnswer().getId()).get();
+//        Assert.assertEquals("101", fetchUser.getQueryAnswer().getId());
 //
 //    }
 //
 //    @Test
 //    public void testSaveUserFailure() {
-//        UserQuery testUser = new UserQuery();
+//        QueryAnsListWithConcept testUser = new QueryAnsListWithConcept();
 //        queryRespository.save(testUser);
-//        UserQuery fetchUser = queryRespository.findById(userQuery.getQuery().getId()).get();
+//        QueryAnsListWithConcept fetchUser = queryRespository.findById(userQuery.getQueryAnswer().getId()).get();
 //        Assert.assertNotSame(testUser, fetchUser);
 //    }
 //
