@@ -22,11 +22,12 @@ public class UserRegistrationController {
     @PostMapping("/saveUser")
     public ResponseEntity<?> registration(@RequestBody User user)
     {
-              User user1 = userService.save(user);
-              if (user1!=null)
-              {
-                  return new ResponseEntity<>(new Response("user is successfully added"), HttpStatus.OK);
-              }
-              return null;
+        user.setRole("USER");
+        if (userService.getUserByEmail(user.getEmail())==null) {
+            User dbUser = userService.save(user);
+            return new ResponseEntity<Response>(new Response(dbUser.getEmail()+" is registered successfully."), HttpStatus.OK);
+        }else {
+            return new ResponseEntity<Response>(new Response("this email is already registered."), HttpStatus.CONFLICT);
+        }
     }
 }

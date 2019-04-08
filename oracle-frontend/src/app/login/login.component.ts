@@ -10,6 +10,7 @@ import { LoginAuthenticationService } from "../login-authentication.service";
 })
 export class LoginComponent implements OnInit {
   public user: any = {};
+  msg:string=null;
 
 
   constructor(
@@ -27,10 +28,13 @@ export class LoginComponent implements OnInit {
       if (response) {
         localStorage.setItem("currentUser", JSON.stringify(response));
         this.authService.isLoggedIn();
+        this.msg=null;
         this.router.navigateByUrl("/profile");
 
       }
     },
-      (error) => console.log(error));
+      (error) => {
+      this.msg=error.error.message;
+    });
   }
 }
