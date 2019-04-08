@@ -1,7 +1,7 @@
 package com.stackroute.userservice.service;
 
 import com.stackroute.userservice.security.JwtUserFactory;
-import com.stackroute.userservice.model.User;
+import com.stackroute.userservice.domain.User;
 import com.stackroute.userservice.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

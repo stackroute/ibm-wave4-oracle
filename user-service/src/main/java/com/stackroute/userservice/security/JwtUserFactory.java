@@ -1,7 +1,6 @@
 package com.stackroute.userservice.security;
 
-import com.stackroute.userservice.model.User;
-import com.stackroute.userservice.security.JwtUser;
+import com.stackroute.userservice.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
