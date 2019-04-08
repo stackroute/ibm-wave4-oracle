@@ -1,6 +1,8 @@
-import { Component, OnInit } from "@angular/core";
-import { UserService } from "../user.service";
-import { LoginAuthenticationService } from "../login-authentication.service";
+import {Component, OnInit} from "@angular/core";
+import {UserService} from "../user.service";
+import {LoginAuthenticationService} from "../login-authentication.service";
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {register} from "ts-node";
 
 @Component({
   selector: "app-signup",
@@ -8,8 +10,10 @@ import { LoginAuthenticationService } from "../login-authentication.service";
   styleUrls: ["./signup.component.css"]
 })
 export class SignupComponent implements OnInit {
-  public user: any = {};
-  public registerSucessMsg: any;
+  user: any = {};
+  registerSuccessMsg: any = "";
+  registered: boolean = false;
+  alreadyRegistered: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -17,17 +21,25 @@ export class SignupComponent implements OnInit {
   ) {
 
   }
-  ngOnInit() {}
+
+  ngOnInit() {
+  }
+
   saveUser(user: any, userForm: any) {
     user.enable = true;
+    user.role = "USER";
     this.userService.saveUser(user).subscribe(response => {
-      if (response) {
-        console.log(response);
-        this.registerSucessMsg = "Successfully Registered";
-        userForm.reset();
-      } else {
-        this.registerSucessMsg = "sorry something went wrong";
+      console.log(response);
+      this.alreadyRegistered = false;
+      this.registered = true;
+      this.registerSuccessMsg = response.message;
+      userForm.reset();
+    },
+      (error)=>{
+        this.registered = false;
+        this.alreadyRegistered=true;
+        this.registerSuccessMsg=error.error.message;
       }
-    });
+    );
   }
 }

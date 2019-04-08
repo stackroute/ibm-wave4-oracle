@@ -1,10 +1,12 @@
 package com.stackroute.userservice.controller;
 
+import com.stackroute.userservice.domain.Response;
 import com.stackroute.userservice.exception.UnauthorizedException;
 import com.stackroute.userservice.domain.UserDTO;
-import com.stackroute.userservice.model.User;
+import com.stackroute.userservice.domain.User;
 import com.stackroute.userservice.security.JwtTokenUtil;
 import com.stackroute.userservice.security.JwtUser;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -42,12 +44,13 @@ public class AuthenticationController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             final String token = jwtTokenUtil.generateToken(userDetails);
             response.setHeader("token", token);
-            return new ResponseEntity<>(new UserDTO(userDetails.getUser(), token), HttpStatus.OK);
+
+            return new ResponseEntity<UserDTO>(new UserDTO(userDetails.getUser(), token), HttpStatus.OK);
+
         }
         catch (Exception e)
         {
-            throw new UnauthorizedException(e.getMessage());
+            return new ResponseEntity<Response>(new Response("email id or password is wrong."), HttpStatus.CONFLICT);
         }
-
     }
 }
