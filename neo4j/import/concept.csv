@@ -1,11 +1,12 @@
 id,name,parentid,parentname,type,relation
-C:0,VirtualLab,0,0,domain,0
-C:1,Intellij,C:0,VirtualLab,concept,concept
-C:2,Chrome,C:0,VirtualLab,concept,concept
-C:3,VS Code,C:0,VirtualLab,concept,concept
-C:5,Mongo,C:0,VirtualLab,concept,concept
-C:6,Java,C:0,VirtualLab,concept,concept
-C:7,Sql,C:0,VirtualLab,concept,concept
-C:8,Maven,C:0,VirtualLab,concept,concept
-C:9,Nodejs,C:0,VirtualLab,concept,concept
-C:10,Angular,C:0,VirtualLab,concept,concept
+c:0,virtuallab,0,0,domain,0
+c:1,intellij,c:0,virtuallab,concept,concept
+c:2,chrome,c:0,virtuallab,concept,concept
+c:3,vs code,c:0,virtuallab,concept,concept
+c:5,mongo,c:0,virtuallab,concept,concept
+c:6,java,c:0,virtuallab,concept,concept
+c:7,sql,c:0,virtuallab,concept,concept
+c:8,maven,c:0,virtuallab,concept,concept
+c:9,nodejs,c:0,virtuallab,concept,concept
+c:10,angular,c:0,virtuallab,concept,concept
+c:11,docker,c:0,virtuallab,concept,concept
