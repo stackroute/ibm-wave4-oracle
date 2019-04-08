@@ -1,6 +1,5 @@
 package com.stackroute.graphquery.service;
 
-import com.stackroute.graphquery.domain.Answer;
 import com.stackroute.graphquery.domain.Concept;
 import com.stackroute.graphquery.domain.Questions;
 import com.stackroute.graphquery.repository.ConceptRepository;
@@ -9,34 +8,30 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @NoArgsConstructor
 public class GraphQueryServiceImpl implements GraphQueryService {
 
-    private ConceptRepository conceptRepository;
     private QueryRepository queryRepository;
+    private ConceptRepository conceptRepository;
 
     @Autowired
-    public GraphQueryServiceImpl(ConceptRepository conceptRepository, QueryRepository queryRepository) {
-        this.conceptRepository = conceptRepository;
+    public GraphQueryServiceImpl(QueryRepository queryRepository, ConceptRepository conceptRepository) {
         this.queryRepository = queryRepository;
+        this.conceptRepository = conceptRepository;
     }
 
     /*
-                This method takes concept and question through rest call and
-                returns the set of answers for that particular question and concept
-             */
+      This method takes concept and question through rest call and
+      returns the set of answers for that particular question and concept
+     */
         @Override
-        public Iterable<Answer> solution(String concept, String question) {
-            return queryRepository.solution(concept, question);
-        }
+        public List<Questions> solution(String concept) {
+            System.out.println(queryRepository.findByConcept(concept));
+            return (List<Questions>)queryRepository.findByConcept(concept);
 
-        /*
-            This method displays all set of question and answer
-         */
-        @Override
-        public Iterable<Questions> getAll() {
-            return queryRepository.findAll();
         }
 
         /*
@@ -45,7 +40,7 @@ public class GraphQueryServiceImpl implements GraphQueryService {
             and also this entire set is attached to particular concept
          */
         @Override
-        public Iterable<Questions> createNodesAndRelationships(String concept, String question, String answer) {
+        public List<Questions> createNodesAndRelationships(String concept, String question, String answer) {
             return queryRepository.createNodesAndRelationships(concept, question, answer);
         }
 

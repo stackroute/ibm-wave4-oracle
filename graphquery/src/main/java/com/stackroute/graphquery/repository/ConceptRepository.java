@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ConceptRepository extends Neo4jRepository<Concept, Long> {
+
 }
