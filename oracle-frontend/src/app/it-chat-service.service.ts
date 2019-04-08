@@ -9,11 +9,13 @@ export class ItChatServiceService {
   constructor(private http: HttpClient) {}
   //get chat response
   private options = {
-    headers: new HttpHeaders().set("Content-Type", "application/json").append("Access-Control-Allow-Origin","*")
+    headers: new HttpHeaders()
+      .set("Content-Type", "application/json")
+      .append("Access-Control-Allow-Origin", "*")
   };
   savedQuery(queryAnswer) {
     return this.http.post(
-      "http://localhost:8090/api/v1/send/queryAnswer",
+      "http://localhost:8090/api/v1/send",
       queryAnswer,
       this.options
     );
