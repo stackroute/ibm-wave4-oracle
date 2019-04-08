@@ -17,6 +17,7 @@
         <relativePath/> <!--lookup parent from repository -->
     </parent>
 
+
     <properties>
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <jaxb.version>2.3.0</jaxb.version>
@@ -35,7 +36,7 @@
         <module>bot-service</module>
         <module>user-service</module>
         <module>queryautocorrector-service</module>
-        <module>graphquery</module>
+        <module>graph-query-service</module>
         <module>extract-intent-service</module>
     </modules>
 

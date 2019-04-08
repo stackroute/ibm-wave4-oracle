@@ -170,9 +170,9 @@ services:
       - bot-service
       - eureka-server
 
-  graphquery:
-    build: graphquery/
-    image: graphquery
+  graph-query-service:
+    build: graph-query-service/
+    image: graph-query-service
     restart: always
     network_mode: "host"
     hostname: localhost
