@@ -36,35 +36,26 @@ public class BotController {
 
     }
 
-    @PostMapping("/send/queryAnswer")
+    @PostMapping("/send")
     public ResponseEntity<?> sendNewQuery(@RequestBody SendQuery sendQuery) {
         String question= sendQuery.getQueryAnswer().getQuestion();
         RestTemplate restTemplate = new RestTemplate();
         String correctedQuery = restTemplate.getForObject("http://localhost:8595/api/v1/getCorrectedQuery/" + question, String.class);
-        String concepts = restTemplate.getForObject("http://localhost:8383/api/v1/concepts/" + question, String.class);
-       // List<QueryAnswer> solution = restTemplate.getForObject("http://localhost:8082/api/v1/answer/" + concepts , List.class);
+        String concepts = restTemplate.getForObject("http://localhost:8383/api/v1/concepts/" + correctedQuery, String.class);
+        List<QueryAnswer> solution = restTemplate.getForObject("http://localhost:8082/api/v1/answer/" + concepts , List.class);
+
         QueryAnsListWithConcept queryAnsListWithConcept = new QueryAnsListWithConcept();
+
         queryAnsListWithConcept.setConcept(concepts);
-        List <QueryAnswer>  demo= new ArrayList<QueryAnswer>();
-
-        demo.add(new QueryAnswer("",question,"this is demo answer"));
-
-        queryAnsListWithConcept.setQueryAnswer(demo);
+        queryAnsListWithConcept.setQueryAnswer(solution);
 
         QuestionDTO questionDTO = new QuestionDTO();
         questionDTO.setConcept(concepts);
-        questionDTO.setQuestion(question);
+        questionDTO.setQuestion(correctedQuery);
         kafkaTemplate.send("new_query", questionDTO);
+
+        // Saving it in mongodb
         queryAnsListWithConcept = queryService.saveQuery(queryAnsListWithConcept);
         return new ResponseEntity<QueryAnsListWithConcept>(queryAnsListWithConcept, HttpStatus.CREATED);
     }
 }
-
-// Saving it in mongodb
-
-//userQuery = queryService.saveQuery(userQuery);
-
-// Sending it to manual-answer service in case not answered
-// kafkaTemplate.send("new_query", userQuery.getQueryAnswer());
-
-// Default answer for now
