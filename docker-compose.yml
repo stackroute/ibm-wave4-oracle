@@ -14,21 +14,21 @@ services:
       - /home/mongo/data:/var/lib/mongo
 
 
-#  mysql:
-#    image: mysql:5.7
-#    restart: always
-#    container_name: mysql
-#    network_mode: "host"
-#    hostname: localhost
-#    environment:
-#      MYSQL_ROOT_PASSWORD: root123
-#      MYSQL_DATABASE: userDB
-#      MYSQL_PASSWORD: root123
-#    ports:
-#      - 3306:3306
-#    volumes:
-#      - var/lib/mysql
-#
+  mysql:
+    image: mysql:5.7
+    restart: always
+    container_name: mysql
+    network_mode: "host"
+    hostname: localhost
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: userDB
+      MYSQL_PASSWORD: root123
+    ports:
+      - 3306:3306
+    volumes:
+      - var/lib/mysql
+
 
   neo4j:
     image: neo4j:3.5.3
@@ -54,26 +54,27 @@ services:
     hostname: localhost
     ports:
       - 8761:8761
-#
-#  config-service:
-#    build: config-server/
-#    restart: always
-#    network_mode: "host"
-#    image: demo-config-service
-#    hostname: localhost
-#    ports:
-#      - 8888:8888
-#
-#  zuul-apigateway:
-#    build: zuul-api/
-#    depends_on:
-#      - config-service
-#      - eureka-server
-#    restart: always
-#    network_mode: "host"
-#    hostname: localhost
-#    ports:
-#      - 8080:8080
+
+  config-service:
+    build: config-server/
+    restart: always
+    network_mode: "host"
+    image: demo-config-service
+    hostname: localhost
+    ports:
+      - 8888:8888
+
+  zuul-apigateway:
+    build: zuul-api/
+    depends_on:
+      - config-service
+      - eureka-server
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8080:8080
+
   zookeeper:
     container_name: zookeeper
     image: zookeeper:latest
@@ -122,19 +123,19 @@ services:
     depends_on:
       - mongo
       - kafka
-#      - eureka-server
+      - eureka-server
 
 
-#  user-service:
-#    build: user-service/
-#    restart: always
-#    network_mode: "host"
-#    image: user-service
-#    hostname: localhost
-#    ports:
-#      - 8081:8081
-#    depends_on:
-#      - mysql
+  user-service:
+    build: user-service/
+    restart: always
+    network_mode: "host"
+    image: user-service
+    hostname: localhost
+    ports:
+      - 8081:8081
+    depends_on:
+      - mysql
 
   oraclefrontend:
     build: oracle-frontend/
