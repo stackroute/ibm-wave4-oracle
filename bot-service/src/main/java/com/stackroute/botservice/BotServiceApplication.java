@@ -10,6 +10,5 @@ public class BotServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BotServiceApplication.class, args);
-
 	}
 }

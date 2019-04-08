@@ -27,7 +27,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - var/lib/mysql
+      - /DB/mysql:/var/lib/mysql
 
 
   neo4j:
