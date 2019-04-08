@@ -45,14 +45,16 @@ public class BotController {
        // List<QueryAnswer> solution = restTemplate.getForObject("http://localhost:8082/api/v1/answer/" + concepts , List.class);
         QueryAnsListWithConcept queryAnsListWithConcept = new QueryAnsListWithConcept();
         queryAnsListWithConcept.setConcept(concepts);
+        List <QueryAnswer>  demo= new ArrayList<QueryAnswer>();
+
+        demo.add(new QueryAnswer("",question,"this is demo answer"));
+
+        queryAnsListWithConcept.setQueryAnswer(demo);
 
         QuestionDTO questionDTO = new QuestionDTO();
         questionDTO.setConcept(concepts);
         questionDTO.setQuestion(question);
-
-        System.out.println("+++++++++++++++++++"+question.toString());
         kafkaTemplate.send("new_query", questionDTO);
-        System.out.println("------------------"+queryAnsListWithConcept.toString());
         queryAnsListWithConcept = queryService.saveQuery(queryAnsListWithConcept);
         return new ResponseEntity<QueryAnsListWithConcept>(queryAnsListWithConcept, HttpStatus.CREATED);
     }
