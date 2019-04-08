@@ -72,6 +72,7 @@ services:
     hostname: localhost
     ports:
       - 8080:8080
+
   zookeeper:
     container_name: zookeeper
     image: zookeeper:latest
@@ -167,9 +168,9 @@ services:
       - bot-service
       - eureka-server
 
-  graphquery:
-    build: graphquery/
-    image: graphquery
+  graph-query-service:
+    build: graph-query-service/
+    image: graph-query-service
     restart: always
     network_mode: "host"
     hostname: localhost
