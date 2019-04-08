@@ -29,9 +29,7 @@ public class GraphQueryServiceImpl implements GraphQueryService {
      */
         @Override
         public List<Questions> solution(String concept) {
-            System.out.println(queryRepository.findByConcept(concept));
-            return (List<Questions>)queryRepository.findByConcept(concept);
-
+            return queryRepository.findByConcept(concept);
         }
 
         /*

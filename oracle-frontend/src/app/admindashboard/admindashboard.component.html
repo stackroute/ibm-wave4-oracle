@@ -1,18 +1,12 @@
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>FirstName</th>
-      <th>LastName</th>
-      <th>Email</th>
-      <th>Role</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of users">
-      <td>{{ user.firstName }}</td>
-      <td>{{ user.lastName }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.role }}</td>
-    </tr>
-  </tbody>
-</table>
+
+<mat-tab-group>
+  <mat-tab label="Your profile">
+    <app-userdashboard></app-userdashboard>
+  </mat-tab>
+  <mat-tab label="All User's profile">
+    <app-all-users-profile></app-all-users-profile>
+  </mat-tab>
+  <mat-tab label="Work Dashboard">
+
+  </mat-tab>
+</mat-tab-group>

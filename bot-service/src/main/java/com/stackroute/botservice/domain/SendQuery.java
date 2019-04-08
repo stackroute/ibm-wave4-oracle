@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Status {
-    private boolean isAccepted;
-    private boolean isAnswered;
+public class SendQuery {
+
+    private QueryAnswer queryAnswer;
+    private Status status;
+
 }

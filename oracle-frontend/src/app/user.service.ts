@@ -15,6 +15,7 @@ export class UserService {
   constructor(private http: HttpClient) {
     this.http = http;
   }
+
   saveUser(user: any): Observable<any> {
     const headers = new HttpHeaders({ "Access-Control-Allow-Orgin": "*" });
     return this.http.post(this.savedLink, user, {
@@ -34,11 +35,5 @@ export class UserService {
   getUser(token: any): Observable<any> {
     const headers = new HttpHeaders({ Authorization: "Bearer " + token });
     return this.http.get(this.singleUserLink, { headers: headers });
-  }
-  savedQuery(query: any): Observable<any> {
-    const headers = new HttpHeaders({ "Access-Control-Allow-Orgin": "*" });
-    return this.http.post("http://localhost:8090/api/v1/send/query", query, {
-      headers: headers
-    });
   }
 }

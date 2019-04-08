@@ -11,8 +11,8 @@ export class ItChatServiceService {
   constructor(private http:HttpClient) { }
   //get chat response
   private options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
-  savedQuery(query){
+  savedQuery(queryAnswer){
 
-    return this.http.post("http://localhost:8090/api/v1/send/query",query,this.options);
+    return this.http.post("http://localhost:8090/api/v1/send/queryAnswer",queryAnswer,this.options);
   }
 }
