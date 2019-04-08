@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Status {
-    private boolean isAccepted;
-    private boolean isAnswered;
+    private boolean accepted;
+    private boolean answered;
 }
