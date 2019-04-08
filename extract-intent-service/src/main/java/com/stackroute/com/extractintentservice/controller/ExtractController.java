@@ -27,10 +27,12 @@ public class ExtractController {
     ConceptData conceptData;
 
 
+
     @GetMapping(value = "/concepts/{input}")
     public String extract(@PathVariable("input") String input) throws IOException {
         RestTemplate restTemplate = new RestTemplate();
         String neoConcept = restTemplate.getForObject("http://localhost:8082/api/v1/concepts/", String.class);
+
         CoreDocument coreDocument = new CoreDocument(input);
         stanfordCoreNLP.annotate(coreDocument);
         List<CoreLabel> coreLabelList = coreDocument.tokens();
@@ -40,6 +42,7 @@ public class ExtractController {
         List<CoreLabel> list = coreDocumentNeo.tokens();
 
         HashSet hashSet = new HashSet();
+
 
         for (int i = 0; i < coreLabelList.size(); i++) {
             String pos = coreLabelList.get(i).get(CoreAnnotations.PartOfSpeechAnnotation.class);
@@ -56,6 +59,8 @@ public class ExtractController {
                 }
             }
         }
+
         return null;
+
     }
 }
