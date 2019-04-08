@@ -1,11 +1,12 @@
 package com.stackroute.botservice.controller;
 
 
-import com.stackroute.botservice.domain.Query;
+import com.stackroute.botservice.domain.QueryAnsListWithConcept;
+import com.stackroute.botservice.domain.QueryAnswer;
+import com.stackroute.botservice.domain.QuestionDTO;
 import com.stackroute.botservice.domain.SendQuery;
-import com.stackroute.botservice.domain.UserQuery;
+import com.stackroute.botservice.service.QueryService;
 import com.stackroute.botservice.service.QueryServiceImpl;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /* Created on : 27/03/2019 by gopal */
@@ -22,39 +24,37 @@ import java.util.List;
 @RequestMapping("/api/v1")
 public class BotController {
 
-    KafkaTemplate<Object, Object> kafkaTemplate;
-    private QueryServiceImpl queryService;
+    private KafkaTemplate<Object, Object> kafkaTemplate;
+    private QueryService queryService;
 
-    public BotController() {
-    }
+
 
     @Autowired
-    public BotController(KafkaTemplate<Object, Object> kafkaTemplate, QueryServiceImpl queryService) {
+    public BotController(KafkaTemplate<Object, Object> kafkaTemplate, QueryService queryService) {
         this.kafkaTemplate = kafkaTemplate;
         this.queryService = queryService;
+
     }
 
-    @PostMapping("/send/query")
+    @PostMapping("/send/queryAnswer")
     public ResponseEntity<?> sendNewQuery(@RequestBody SendQuery sendQuery) {
-
-        String question= sendQuery.getQuery().getQuestion();
+        String question= sendQuery.getQueryAnswer().getQuestion();
         RestTemplate restTemplate = new RestTemplate();
-       // String correctedQuery = restTemplate.getForObject("http://localhost:8595/api/v1/getCorrectedQuery/" + question, String.class);
-
-
+        String correctedQuery = restTemplate.getForObject("http://localhost:8595/api/v1/getCorrectedQuery/" + question, String.class);
         String concepts = restTemplate.getForObject("http://localhost:8383/api/v1/concepts/" + question, String.class);
+       // List<QueryAnswer> solution = restTemplate.getForObject("http://localhost:8082/api/v1/answer/" + concepts , List.class);
+        QueryAnsListWithConcept queryAnsListWithConcept = new QueryAnsListWithConcept();
+        queryAnsListWithConcept.setConcept(concepts);
 
-        List<Query> solution = restTemplate.getForObject("http://localhost:8082/api/v1/answer/" + concepts , List.class);
+        QuestionDTO questionDTO = new QuestionDTO();
+        questionDTO.setConcept(concepts);
+        questionDTO.setQuestion(question);
 
-
-        UserQuery userQuery= new UserQuery();
-
-        userQuery.setConcept(concepts);
-
-        System.out.println(concepts);
-
-        return new ResponseEntity<UserQuery>(userQuery, HttpStatus.CREATED);
-
+        System.out.println("+++++++++++++++++++"+question.toString());
+        kafkaTemplate.send("new_query", questionDTO);
+        System.out.println("------------------"+queryAnsListWithConcept.toString());
+        queryAnsListWithConcept = queryService.saveQuery(queryAnsListWithConcept);
+        return new ResponseEntity<QueryAnsListWithConcept>(queryAnsListWithConcept, HttpStatus.CREATED);
     }
 }
 
@@ -63,6 +63,6 @@ public class BotController {
 //userQuery = queryService.saveQuery(userQuery);
 
 // Sending it to manual-answer service in case not answered
-// kafkaTemplate.send("new_query", userQuery.getQuery());
+// kafkaTemplate.send("new_query", userQuery.getQueryAnswer());
 
 // Default answer for now

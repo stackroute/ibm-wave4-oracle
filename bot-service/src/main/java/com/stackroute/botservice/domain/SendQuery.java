@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SendQuery {
 
-    private Query query;
+    private QueryAnswer queryAnswer;
     private Status status;
 
 }
