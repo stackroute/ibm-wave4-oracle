@@ -11,7 +11,8 @@ services:
     network_mode: "host"
     hostname: 127.0.0.1
     volumes:
-      - '/home/mysql/data:/data'
+      - /home/mongo/data:/var/lib/mongo
+
 
   mysql:
     image: mysql:5.7
