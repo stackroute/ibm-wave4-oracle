@@ -1,6 +1,6 @@
 package com.stackroute.userservice.service;
 
-import com.stackroute.userservice.model.User;
+import com.stackroute.userservice.domain.User;
 
 import java.util.List;
 

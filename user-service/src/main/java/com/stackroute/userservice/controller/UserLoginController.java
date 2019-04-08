@@ -1,7 +1,7 @@
 package com.stackroute.userservice.controller;
 
 
-import com.stackroute.userservice.model.User;
+import com.stackroute.userservice.domain.User;
 import com.stackroute.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
