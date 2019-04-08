@@ -1,6 +1,8 @@
 package com.stackroute.manualservice.service;
 
 import com.stackroute.manualservice.domain.Query;
+import com.stackroute.manualservice.domain.QuestionDTO;
+import com.stackroute.manualservice.domain.UserQuery;
 import com.stackroute.manualservice.exception.QueryAlreadyExistException;
 import com.stackroute.manualservice.exception.QueryNotFoundException;
 
@@ -9,20 +11,20 @@ import java.util.List;
 public interface ManualService {
 
     //Save user
-    public Query saveQuestion(Query query);
+    public UserQuery saveToDataBase(QuestionDTO questionDTO);
 
     //get List of Question
-    public List<Query> getListOfQuestions();
+    public List<UserQuery> getListOfQuestions();
 
 
     //Update Query
-    public Query updateQuestion(Query query) throws QueryNotFoundException;
+    public UserQuery updateQuestion(Query query,String concept) throws QueryNotFoundException;
 
     //Delete Query
-    public Query deleteQuestion(String queryId);
+    public UserQuery deleteQuestion(Query query,String concept) throws QueryNotFoundException;
 
 
     //Get Query by Topic name
 
-    public List<Query> getQuestionsByTopicName(String name);
+    public UserQuery getQuestionsByTopicName(String name);
 }

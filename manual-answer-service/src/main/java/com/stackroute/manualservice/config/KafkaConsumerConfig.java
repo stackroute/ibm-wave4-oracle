@@ -1,6 +1,7 @@
 package com.stackroute.manualservice.config;
 
 import com.stackroute.manualservice.domain.Query;
+import com.stackroute.manualservice.domain.QuestionDTO;
 import com.stackroute.manualservice.service.ManualServiceImpl;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.slf4j.Logger;
@@ -55,11 +56,10 @@ public class KafkaConsumerConfig {
 
 
     @KafkaListener(id = "queryGroup", topics = "new_query")
-    public void listen(Query query) {
+    public void listen(QuestionDTO questionDTO) {
 
-        logger.info("Received: " + query);
-
-        manualService.saveQuestion(query);
+        logger.info("Received: " + questionDTO);
+        manualService.saveToDataBase(questionDTO);
 
     }
 
