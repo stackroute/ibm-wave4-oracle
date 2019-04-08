@@ -1,7 +1,7 @@
 //package com.stackroute.botservice.controller;
 //
-//import com.stackroute.botservice.domain.Query;
-//import com.stackroute.botservice.domain.UserQuery;
+//import com.stackroute.botservice.domain.QueryAnswer;
+//import com.stackroute.botservice.domain.QueryAnsListWithConcept;
 //import com.stackroute.botservice.service.QueryServiceImpl;
 //import org.junit.Before;
 //import org.junit.Test;
@@ -31,7 +31,7 @@
 //
 //    @Autowired
 //    private MockMvc mockMvc;
-//    private UserQuery userQuery;
+//    private QueryAnsListWithConcept userQuery;
 //    @MockBean
 //    private QueryServiceImpl queryService;
 //    @InjectMocks
@@ -41,14 +41,14 @@
 //    public void setUp() {
 //        MockitoAnnotations.initMocks(this);
 //        mockMvc = MockMvcBuilders.standaloneSetup().build();
-//        userQuery = new UserQuery();
-//        Query query = new Query();
-//        query.setQuestion("this is my question");
-////        query.setAnswer("this is my answer");
+//        userQuery = new QueryAnsListWithConcept();
+//        QueryAnswer queryAnswer = new QueryAnswer();
+//        queryAnswer.setQuestion("this is my question");
+////        queryAnswer.setAnswer("this is my answer");
 ////        Status status = new Status();
 ////        status.setAnswered(true);
 ////        status.setAccepted(true);
-////        userQuery.setQuery(query);
+////        userQuery.setQueryAnswer(queryAnswer);
 ////        userQuery.setStatus(status);
 //
 //    }
@@ -56,7 +56,7 @@
 //    @Test
 //    public void sendNewQueryTest() throws Exception {
 //        when(queryService.saveQuery(any())).thenReturn(userQuery);
-//        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/send/query")
+//        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/send/queryAnswer")
 //                .contentType(MediaType.APPLICATION_JSON).content(asJsonString(userQuery)))
 //                .andExpect(MockMvcResultMatchers.status().isCreated())
 //                .andDo(MockMvcResultHandlers.print());

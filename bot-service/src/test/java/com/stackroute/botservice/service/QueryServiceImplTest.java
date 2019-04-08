@@ -1,8 +1,8 @@
 //package com.stackroute.botservice.service;
 //
 //
-//import com.stackroute.botservice.domain.Query;
-//import com.stackroute.botservice.domain.UserQuery;
+//import com.stackroute.botservice.domain.QueryAnswer;
+//import com.stackroute.botservice.domain.QueryAnsListWithConcept;
 //import com.stackroute.botservice.repository.QueryRespository;
 //import org.junit.After;
 //import org.junit.Assert;
@@ -21,7 +21,7 @@
 //public class QueryServiceImplTest {
 //
 //
-//    private UserQuery userQuery;
+//    private QueryAnsListWithConcept userQuery;
 //    @Mock
 //    private QueryRespository queryRespository;
 //
@@ -32,9 +32,9 @@
 //    @Before
 //    public void setUp() throws Exception {
 //        MockitoAnnotations.initMocks(this);
-//        userQuery = new UserQuery();
-//        Query query = new Query();
-//        userQuery.setQuery(query);
+//        userQuery = new QueryAnsListWithConcept();
+//        QueryAnswer queryAnswer = new QueryAnswer();
+//        userQuery.setQueryAnswer(queryAnswer);
 //    }
 //
 //    @After
@@ -43,8 +43,8 @@
 //
 //    @Test
 //    public void savedatatest() {
-//        when(queryRespository.save((UserQuery) any())).thenReturn(userQuery);
-//        UserQuery savedUser = queryService.saveQuery(userQuery);
+//        when(queryRespository.save((QueryAnsListWithConcept) any())).thenReturn(userQuery);
+//        QueryAnsListWithConcept savedUser = queryService.saveQuery(userQuery);
 //        Assert.assertEquals(userQuery, savedUser);
 //    }
 //

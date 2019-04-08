@@ -35,7 +35,7 @@
                   *ngIf="!item.status.answered"
                   style="padding:.8rem 1.1rem; border-radius:9.1rem; min-width:70px;"
                 >
-                  {{ item.query.question }}
+                  {{ item.queryAnswer.question }}
                 </p>
 
                 <p
@@ -43,7 +43,7 @@
                   *ngIf="item.status.answered"
                   style="padding:.8rem 1.1rem; border-radius:9.1rem; min-width:70px; margin-right: 25%;"
                 >
-                  {{ item.query.answer }}
+                  {{ item.queryAnswer.answer }}
                 </p>
               </div>
             </div>
@@ -57,11 +57,11 @@
           <input
             type="text"
             class="form-control"
-            placeholder="any query ?"
+            placeholder="any queryAnswer ?"
             style="width: 86%;"
             #text="ngModel"
-            [(ngModel)]="query.question"
-            name="query"
+            [(ngModel)]="queryAnswer.question"
+            name="queryAnswer"
             required
           />
           <button

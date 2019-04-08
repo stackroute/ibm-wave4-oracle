@@ -12,7 +12,7 @@ interface Query {
   answer: string;
 }
 interface UserQuery {
-  query: Query;
+  queryAnswer: Query;
   status: Status;
 }
 
@@ -24,7 +24,7 @@ interface UserQuery {
 export class ChatBotHomepageComponent implements OnInit {
   constructor(private chatService: ItChatServiceService) {}
 
-  query: Query = {
+  queryAnswer: Query = {
     question: "",
     answer: ""
   };
@@ -45,7 +45,7 @@ export class ChatBotHomepageComponent implements OnInit {
 
   }
   onSubmit(value) {
-    let jsonQuery = JSON.stringify({ query: this.query, status: this.status });
+    let jsonQuery = JSON.stringify({ queryAnswer: this.queryAnswer, status: this.status });
     console.log("submitted" + jsonQuery);
     this.queryList.push(JSON.parse(jsonQuery));
     this.chatService.savedQuery(jsonQuery).subscribe(value1 => {

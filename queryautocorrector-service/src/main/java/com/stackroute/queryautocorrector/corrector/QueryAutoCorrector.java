@@ -11,7 +11,7 @@ import java.util.List;
 
 public class QueryAutoCorrector {
 
-    /* This method returns corrected query after removing any spelling errors */
+    /* This method returns corrected queryAnswer after removing any spelling errors */
 
     public static String correctQuery(String query) throws IOException {
 
@@ -22,14 +22,14 @@ public class QueryAutoCorrector {
         String correctedQuery = query;
 
         for (RuleMatch match : matches) {
-            /* Getting incorrect word from the query */
+            /* Getting incorrect word from the queryAnswer */
             String incorrectWord = query.substring(match.getFromPos(),match.getToPos());
 
             if(!match.getSuggestedReplacements().isEmpty()){
                 /* Getting the first correct word suggestion from list */
                 String correctedWord = match.getSuggestedReplacements().get(0);
 
-                /* Auto correcting the query word by word */
+                /* Auto correcting the queryAnswer word by word */
                 if (match.getFromPos() == 0)
                     correctedQuery = correctedQuery.replaceFirst(incorrectWord,correctedWord);
                 else if (match.getToPos() == query.length())
