@@ -10,7 +10,8 @@ import { LoginAuthenticationService } from "../login-authentication.service";
 })
 export class LoginComponent implements OnInit {
   public user: any = {};
-  public loginSucessMsg: any;
+  msg:string=null;
+
 
   constructor(
     private userService: UserService,
@@ -27,9 +28,13 @@ export class LoginComponent implements OnInit {
       if (response) {
         localStorage.setItem("currentUser", JSON.stringify(response));
         this.authService.isLoggedIn();
+        this.msg=null;
         this.router.navigateByUrl("/profile");
 
       }
+    },
+      (error) => {
+      this.msg=error.error.message;
     });
   }
 }

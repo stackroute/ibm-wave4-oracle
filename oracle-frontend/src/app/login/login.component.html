@@ -1,16 +1,22 @@
 <div class="container  mt-4 d-flex justify-content-around align-items-center">
   <div
-    class="dropdown col-sm-10 col-md-7 d-flex flex-column shadow border border-primary justify-content-around align-items-center p-2"
-    style="border-radius: 20px;min-width: 340px">
+    class="dropdown col-sm-10 col-md-7 d-flex flex-column shadow justify-content-around align-items-center p-2"
+    style="border-radius: 20px;min-width: 340px"
+  >
     <h3 style="text-align:center">Login Here</h3>
-    <div class="dropdown-divider"></div>
-    <form #userForm="ngForm" class="container w-75 shadow-sm p-1 rounded" (ngSubmit)="loginUser(user)">
+    <p class="text-danger text-center" *ngIf="msg">{{msg}}</p>
+    <form
+      #userForm="ngForm"
+      class="container w-75 shadow-sm p-3 rounded"
+      (ngSubmit)="loginUser(user)"
+    >
+
       <div class="form-group">
         <label for="email">Email</label>
         <input
           type="email"
           #emailref="ngModel"
-          class="form-control"
+          class="form-control col-10"
           id="email"
           [(ngModel)]="user.email"
           name="email"
@@ -18,8 +24,7 @@
           required
           pattern="[A-Za-z][A-Za-z0-9_]*@.*\.[A-Za-z]{2,}"
         />
-        <div [hidden]="emailref.valid || emailref.pristine"
-             class="text-danger">
+        <div [hidden]="emailref.valid || emailref.pristine" class="text-danger">
           Email is invalid
         </div>
       </div>
@@ -28,7 +33,7 @@
         <input
           type="password"
           #pwd="ngModel"
-          class="form-control"
+          class="form-control col-10"
           id="password"
           [(ngModel)]="user.password"
           name="password"
@@ -36,8 +41,7 @@
           minlength="6"
           required
         />
-        <div [hidden]="pwd.valid || pwd.pristine"
-             class="text-danger">
+        <div [hidden]="pwd.valid || pwd.pristine" class="text-danger">
           Password is required.(minimum length is 6.)
         </div>
       </div>
@@ -52,6 +56,5 @@
     </form>
     <div class="dropdown-divider"></div>
     <a class="nav-link" routerLink="/signup">New around here? Sign up</a>
-    <a class="nav-link " href="#">Forgot password?</a>
   </div>
 </div>
