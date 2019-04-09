@@ -1,4 +1,4 @@
-version: '2'
+version: '2.4'
 
 services:
   mongo:
@@ -12,6 +12,10 @@ services:
     hostname: 127.0.0.1
     volumes:
       - /home/mongo/data:/var/lib/mongo
+    mem_limit: 50m
+    mem_reservation: 20m
+
+
 
   mysql:
     image: mysql:5.7
@@ -27,7 +31,8 @@ services:
       - 3306:3306
     volumes:
       - /DB/mysql:/var/lib/mysql
-
+    mem_limit: 50m
+    mem_reservation: 20m
 
 
   neo4j:
@@ -46,6 +51,11 @@ services:
       - ./neo4j/import:/import
     environment:
       - NEO4J_AUTH=neo4j/1234
+    mem_limit: 100m
+    mem_reservation: 50m
+
+
+
 
   eureka-server:
     build: eureka-server/
@@ -54,6 +64,10 @@ services:
     hostname: localhost
     ports:
       - 8761:8761
+    mem_limit: 100m
+    mem_reservation: 50m
+
+
 
   config-service:
     build: config-server/
@@ -63,6 +77,9 @@ services:
     hostname: localhost
     ports:
       - 8888:8888
+    mem_limit: 100m
+    mem_reservation: 50m
+
 
   zuul-apigateway:
     build: zuul-api/
@@ -74,6 +91,9 @@ services:
     hostname: localhost
     ports:
       - 8080:8080
+    mem_limit: 100m
+    mem_reservation: 50m
+
 
   zookeeper:
     container_name: zookeeper
@@ -88,13 +108,16 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000000000
+    mem_limit: 100m
+    mem_reservation: 50m
+
+
 
 
   kafka:
     container_name: kafka
     image: wurstmeister/kafka:latest
     restart: always
-    mem_limit: 2000000000
     ports:
       - 9092:9092
     expose:
@@ -110,19 +133,25 @@ services:
       KAFKA_MESSAGE_MAX_BYTES: 1000000000
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
+    mem_limit: 100m
+    mem_reservation: 20m
 
-#  manual-answer:
-#    build: manual-answer-service/
-#    restart: always
-#    network_mode: "host"
-#    image: manual-answer-service
-#    hostname: localhost
-#    ports:
-#      - 8091:8091
-#    depends_on:
-#      - mongo
-#      - kafka
-#      - eureka-server
+
+  manual-answer:
+    build: manual-answer-service/
+    restart: always
+    network_mode: "host"
+    image: manual-answer-service
+    hostname: localhost
+    ports:
+      - 8091:8091
+    depends_on:
+      - mongo
+      - kafka
+      - eureka-server
+    mem_limit: 200m
+    mem_reservation: 100m
+
 
 
   user-service:
@@ -135,16 +164,21 @@ services:
       - 8081:8081
     depends_on:
       - mysql
+      - eureka-server
+    mem_limit: 200m
+    mem_reservation: 50m
 
-  oraclefrontend:
-    build: oracle-frontend/
-    image: oracle-frontend:latest
-    container_name: oracle-frontend
-    network_mode: "host"
-    hostname: localhost
-    ports:
-      - 4200:4200
-    restart: always
+
+
+  #  oraclefrontend:
+#    build: oracle-frontend/
+#    image: oracle-frontend:latest
+#    container_name: oracle-frontend
+#    network_mode: "host"
+#    hostname: localhost
+#    ports:
+#      - 4200:4200
+#    restart: always
 
   bot-service:
     build: bot-service/
@@ -157,6 +191,12 @@ services:
       - kafka
       - zookeeper
       - mongo
+      - eureka-server
+      - config-service
+    mem_limit: 300m
+    mem_reservation: 100m
+
+
 
   queryautocorrector-service:
     build: queryautocorrector-service/
@@ -168,6 +208,10 @@ services:
     depends_on:
       - bot-service
       - eureka-server
+    mem_limit: 200m
+    mem_reservation: 50m
+
+
 
   graph-query-service:
     build: graph-query-service/
@@ -179,6 +223,11 @@ services:
       - 8082:8082
     depends_on:
       - neo4j
+    mem_limit: 200m
+    mem_reservation: 50m
+
+
+
 
   extract-intent-service:
     build: extract-intent-service/
@@ -188,3 +237,7 @@ services:
     hostname: localhost
     ports:
       - 8383:8383
+    mem_limit: 200m
+    mem_reservation: 50m
+
+

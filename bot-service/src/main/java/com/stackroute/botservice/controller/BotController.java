@@ -27,8 +27,6 @@ public class BotController {
     private KafkaTemplate<Object, Object> kafkaTemplate;
     private QueryService queryService;
 
-
-
     @Autowired
     public BotController(KafkaTemplate<Object, Object> kafkaTemplate, QueryService queryService) {
         this.kafkaTemplate = kafkaTemplate;
@@ -38,25 +36,39 @@ public class BotController {
 
     @PostMapping("/send")
     public ResponseEntity<?> sendNewQuery(@RequestBody SendQuery sendQuery) {
-        String question= sendQuery.getQueryAnswer().getQuestion();
+        String question = sendQuery.getQueryAnswer().getQuestion();
         RestTemplate restTemplate = new RestTemplate();
         String correctedQuery = restTemplate.getForObject("http://localhost:8595/api/v1/getCorrectedQuery/" + question, String.class);
         String concepts = restTemplate.getForObject("http://localhost:8383/api/v1/concepts/" + correctedQuery, String.class);
-        List<QueryAnswer> solution = restTemplate.getForObject("http://localhost:8082/api/v1/answer/" + concepts , List.class);
 
-        QueryAnsListWithConcept queryAnsListWithConcept = new QueryAnsListWithConcept();
+        ResponseEntity<?> responseEntity = null;
+        System.out.println("Query : "+correctedQuery);
+        System.out.println("Concept : "+concepts);
 
-        queryAnsListWithConcept.setConcept(concepts);
-        queryAnsListWithConcept.setQueryAnswer(solution);
+        String answer = queryService.getAnswerOfSimilarQuestion(concepts, correctedQuery);
+        if (answer != null) {
+            responseEntity = new ResponseEntity<String>(answer, HttpStatus.OK);
+        }
+        if (answer == null){
+            List<QueryAnswer> solution = restTemplate.getForObject("http://localhost:8082/api/v1/answer/" + concepts, List.class);
+            System.out.println("Question/Answer List");
 
+            System.out.println("=================="+solution);
+
+            responseEntity = new ResponseEntity<List<QueryAnswer>>(solution, HttpStatus.OK);
+        }
         QuestionDTO questionDTO = new QuestionDTO();
+
         questionDTO.setConcept(concepts);
         questionDTO.setQuestion(correctedQuery);
         kafkaTemplate.send("new_query", questionDTO);
+        System.out.println("===================="+questionDTO);
+        //responseEntity = new ResponseEntity<String>("Sent to Manual Answer Service",HttpStatus.CREATED);
 
-        // Saving it in mongodb
-        queryAnsListWithConcept = queryService.saveQuery(queryAnsListWithConcept);
-        return new ResponseEntity<QueryAnsListWithConcept>(queryAnsListWithConcept, HttpStatus.CREATED);
-
+        return responseEntity;
     }
 }
+
+
+
+

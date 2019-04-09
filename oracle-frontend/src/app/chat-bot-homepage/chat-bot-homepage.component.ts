@@ -50,10 +50,9 @@ export class ChatBotHomepageComponent implements OnInit {
     this.queryList.push(JSON.parse(jsonQuery));
     this.chatService.savedQuery(jsonQuery).subscribe(value1 => {
       console.log(value1);
-
-      this.queryList.push(value1);
+      // this.queryList.push(value1);
     });
-    console.log(this.queryList);
+    // console.log(this.queryList);
 
     value.reset();
   }
