@@ -98,6 +98,8 @@ public class QueryServiceImpl implements QueryService {
             }
         }
 
+        queryRespository.save(queryAnsListWithConcept);
+
         return queryAnsListWithConcept;
     }
 
