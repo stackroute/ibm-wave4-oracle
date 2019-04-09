@@ -12,9 +12,8 @@ services:
     hostname: 127.0.0.1
     volumes:
       - /home/mongo/data:/var/lib/mongo
-    mem_limit: 50m
-    mem_reservation: 20m
-
+    mem_limit: 100m
+    mem_reservation: 100m
 
 
   mysql:
@@ -31,8 +30,8 @@ services:
       - 3306:3306
     volumes:
       - /DB/mysql:/var/lib/mysql
-    mem_limit: 50m
-    mem_reservation: 20m
+    mem_limit: 100m
+    mem_reservation: 100m
 
 
   neo4j:
@@ -52,7 +51,7 @@ services:
     environment:
       - NEO4J_AUTH=neo4j/1234
     mem_limit: 100m
-    mem_reservation: 50m
+    mem_reservation: 100m
 
 
 
@@ -65,7 +64,7 @@ services:
     ports:
       - 8761:8761
     mem_limit: 100m
-    mem_reservation: 50m
+    mem_reservation: 100m
 
 
 
@@ -78,7 +77,7 @@ services:
     ports:
       - 8888:8888
     mem_limit: 100m
-    mem_reservation: 50m
+    mem_reservation: 100m
 
 
   zuul-apigateway:
@@ -92,7 +91,7 @@ services:
     ports:
       - 8080:8080
     mem_limit: 100m
-    mem_reservation: 50m
+    mem_reservation: 100m
 
 
   zookeeper:
@@ -109,7 +108,7 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000000000
     mem_limit: 100m
-    mem_reservation: 50m
+    mem_reservation: 100m
 
 
 
@@ -133,8 +132,8 @@ services:
       KAFKA_MESSAGE_MAX_BYTES: 1000000000
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
-    mem_limit: 100m
-    mem_reservation: 20m
+    mem_limit: 200m
+    mem_reservation: 200m
 
 
 
@@ -150,8 +149,8 @@ services:
       - mongo
       - kafka
       - eureka-server
-    mem_limit: 200m
-    mem_reservation: 100m
+    mem_limit: 300m
+    mem_reservation: 300m
 
 
 
@@ -169,7 +168,7 @@ services:
       - mysql
       - eureka-server
     mem_limit: 200m
-    mem_reservation: 50m
+    mem_reservation: 200m
 
 
 
@@ -197,7 +196,7 @@ services:
       - eureka-server
       - config-service
     mem_limit: 300m
-    mem_reservation: 100m
+    mem_reservation: 200m
 
 
 
@@ -211,8 +210,8 @@ services:
     depends_on:
       - bot-service
       - eureka-server
-    mem_limit: 200m
-    mem_reservation: 50m
+    mem_limit: 300m
+
 
 
 
@@ -227,7 +226,7 @@ services:
     depends_on:
       - neo4j
     mem_limit: 200m
-    mem_reservation: 50m
+    mem_reservation: 200m
 
 
 
@@ -240,7 +239,7 @@ services:
     hostname: localhost
     ports:
       - 8383:8383
-    mem_limit: 200m
-    mem_reservation: 50m
+
+
 
 
