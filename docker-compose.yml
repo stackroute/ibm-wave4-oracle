@@ -149,8 +149,8 @@ services:
       - mongo
       - kafka
       - eureka-server
-    mem_limit: 200m
-    mem_reservation: 100m
+#    mem_limit: 200m
+#    mem_reservation: 100m
 
 
 
@@ -193,8 +193,8 @@ services:
       - mongo
       - eureka-server
       - config-service
-    mem_limit: 300m
-    mem_reservation: 100m
+#    mem_limit: 300m
+#    mem_reservation: 100m
 
 
 
