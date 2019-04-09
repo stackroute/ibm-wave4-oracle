@@ -17,5 +17,4 @@ public class QuestionDTO {
     private String concept;
     private String question;
     private String answer;
-
 }

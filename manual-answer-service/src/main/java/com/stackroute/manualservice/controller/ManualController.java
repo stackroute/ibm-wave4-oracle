@@ -69,6 +69,8 @@ public class ManualController {
         // send data back to the bot service
         kafkaTemplate.send("update_query", updateQuestion);
 
+
+
         //Delete that quedstion from Consumer side
 
         manualService.deleteQuestion(query,concept);

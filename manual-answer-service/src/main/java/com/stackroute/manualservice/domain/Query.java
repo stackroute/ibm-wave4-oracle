@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 public class Query {
 
-    @Id
+
     private String id;
     private String question;
     private String answer;

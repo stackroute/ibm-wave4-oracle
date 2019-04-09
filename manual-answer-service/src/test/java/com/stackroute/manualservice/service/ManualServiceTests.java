@@ -38,7 +38,6 @@ public class ManualServiceTests {
         MockitoAnnotations.initMocks(this);
         query = new Query();
         query.setQuestion("abcd");
-        query.setId("1");
         query.setAnswer("kjsfdjefj");
         queryList.add(query);
         userQuery = new UserQuery();

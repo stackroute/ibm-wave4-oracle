@@ -28,41 +28,31 @@ public class ManualServiceImpl implements ManualService {
         this.manualRepository = manualRepository;
     }
 
-    // Implemeneting Methods
-
-    //1. Save user met2hod
-
-//    @Override
-//    public Query saveQuestion(Query query) {
-//        logger.info("Save User:" + query);
-//
-//        Query saveQuery = manualRepository.save(query);
-//        return query;
-//
-//    }
-
 
     //Save to the data base
-
+    @Override
     public UserQuery saveToDataBase(QuestionDTO questionDTO) {
 
         UserQuery userQuery = getQuestionsByTopicName(questionDTO.getConcept());
         Query query = new Query();
-        query.setId(questionDTO.getId());
         query.setQuestion(questionDTO.getQuestion());
 
         //if no Document with concept is present
-        if (userQuery == null){
-        List<Query> queryList = new ArrayList<Query>();
-        queryList.add(query);
-        userQuery.setQuery(queryList);
-         return manualRepository.save(userQuery);
+        if (userQuery == null) {
+            userQuery = new UserQuery();
+            query.setId("1");
+            userQuery.setConcept(questionDTO.getConcept());
+            List<Query> queryList = new ArrayList<Query>();
+            queryList.add(query);
+            userQuery.setQuery(queryList);
+            return manualRepository.save(userQuery);
         }
 
         //if document with the DTO is Present
 
         else {
             List<Query> queryList = userQuery.getQuery();
+            query.setId(String.valueOf(queryList.size() + 1));
             queryList.add(query);
             userQuery.setQuery(queryList);
             return manualRepository.save(userQuery);
@@ -83,28 +73,27 @@ public class ManualServiceImpl implements ManualService {
     //3. Update Question
 
     @Override
-    public UserQuery updateQuestion(Query query,String concept) throws QueryNotFoundException {
+    public UserQuery updateQuestion(Query query, String concept) throws QueryNotFoundException {
 
         UserQuery userQuery = getQuestionsByTopicName(concept);
 
         //if user query is null
 
-        if(userQuery != null){
+        if (userQuery != null) {
             boolean isQuestionFound = false;
             List<Query> queryList = userQuery.getQuery();
             for (Query item : queryList) {
-                if(item.getId()  == query.getId()){
+                if (item.getId().equals(query.getId())) {
                     item.setAnswer(query.getAnswer());
                     isQuestionFound = true;
                 }
             }
 
             //check is question found or not
-            if(isQuestionFound){
+            if (isQuestionFound) {
                 userQuery.setQuery(queryList);
-               return manualRepository.save(userQuery);
-            }
-            else {
+                return manualRepository.save(userQuery);
+            } else {
                 throw new QueryNotFoundException("Question not found with this id");
             }
 
@@ -121,29 +110,29 @@ public class ManualServiceImpl implements ManualService {
     // 4. Delete The user Question
 
     @Override
-    public UserQuery deleteQuestion(Query query,String concept) throws QueryNotFoundException{
+    public UserQuery deleteQuestion(Query query, String concept) throws QueryNotFoundException {
 
         UserQuery userQuery = getQuestionsByTopicName(concept);
 
         //if user query is null
 
-        if(userQuery != null){
+        if (userQuery != null) {
             boolean isQuestionFound = false;
+
             List<Query> queryList = userQuery.getQuery();
             for (Query item : queryList) {
-                if(item.getId()  == query.getId()){
-                    item.setAnswer(query.getQuestion());
+                System.out.println(item);
+                if (item.getId().equals(query.getId())) {
                     isQuestionFound = true;
                 }
             }
 
             //check is question found or not
-            if(isQuestionFound){
+            if (isQuestionFound) {
                 queryList.remove(query);
                 userQuery.setQuery(queryList);
-               return manualRepository.save(userQuery);
-            }
-            else {
+                return manualRepository.save(userQuery);
+            } else {
                 throw new QueryNotFoundException("Question not found with this id");
             }
 
@@ -161,8 +150,8 @@ public class ManualServiceImpl implements ManualService {
     @Override
     public UserQuery getQuestionsByTopicName(String topic_name) {
 
-        UserQuery queryList = (UserQuery) manualRepository.searchByTopicName(topic_name);
-        return queryList;
+        UserQuery userQuery = (UserQuery) manualRepository.searchByTopicName(topic_name);
+        return userQuery;
     }
 
 }
