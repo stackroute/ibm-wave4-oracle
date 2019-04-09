@@ -41,14 +41,16 @@ public class BotController {
         System.out.println("Query : "+correctedQuery);
         System.out.println("Concept : "+concepts);
 
-        List<SendQuery> response=new ArrayList<>();
+        List<SendQuery> response = null;
         String answer = queryService.getAnswerOfSimilarQuestion(concepts, correctedQuery);
         if (answer != null) {
+            response = new ArrayList<>();
             sendQuery.setQueryAnswer(new QueryAnswer("",question,answer));
             sendQuery.getStatus().setAnswered(true);
             response.add(sendQuery);
         }
         if (answer == null){
+            response = new ArrayList<>();
             List<QueryAnswer> solution = restTemplate.getForObject("http://localhost:8082/api/v1/answer/" + concepts, List.class);
 
             for(QueryAnswer query:solution){
