@@ -1,10 +1,7 @@
 package com.stackroute.botservice.controller;
 
 
-import com.stackroute.botservice.domain.QueryAnsListWithConcept;
-import com.stackroute.botservice.domain.QueryAnswer;
-import com.stackroute.botservice.domain.QuestionDTO;
-import com.stackroute.botservice.domain.SendQuery;
+import com.stackroute.botservice.domain.*;
 import com.stackroute.botservice.service.QueryService;
 import com.stackroute.botservice.service.QueryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,31 +38,30 @@ public class BotController {
         String correctedQuery = restTemplate.getForObject("http://localhost:8595/api/v1/getCorrectedQuery/" + question, String.class);
         String concepts = restTemplate.getForObject("http://localhost:8383/api/v1/concepts/" + correctedQuery, String.class);
 
-        ResponseEntity<?> responseEntity = null;
         System.out.println("Query : "+correctedQuery);
         System.out.println("Concept : "+concepts);
 
+        List<SendQuery> response=new ArrayList<>();
         String answer = queryService.getAnswerOfSimilarQuestion(concepts, correctedQuery);
         if (answer != null) {
-            responseEntity = new ResponseEntity<String>(answer, HttpStatus.OK);
+            sendQuery.setQueryAnswer(new QueryAnswer("",question,answer));
+            sendQuery.getStatus().setAnswered(true);
+            response.add(sendQuery);
         }
         if (answer == null){
             List<QueryAnswer> solution = restTemplate.getForObject("http://localhost:8082/api/v1/answer/" + concepts, List.class);
-            System.out.println("Question/Answer List");
 
-            System.out.println("=================="+solution);
-
-            responseEntity = new ResponseEntity<List<QueryAnswer>>(solution, HttpStatus.OK);
+            for(QueryAnswer query:solution){
+                response.add(new SendQuery(query,new Status(false,true)));
+            }
         }
         QuestionDTO questionDTO = new QuestionDTO();
-
         questionDTO.setConcept(concepts);
         questionDTO.setQuestion(correctedQuery);
         kafkaTemplate.send("new_query", questionDTO);
         System.out.println("===================="+questionDTO);
         //responseEntity = new ResponseEntity<String>("Sent to Manual Answer Service",HttpStatus.CREATED);
-
-        return responseEntity;
+        return new ResponseEntity<List<SendQuery>>(response,HttpStatus.OK);
     }
 }
 
