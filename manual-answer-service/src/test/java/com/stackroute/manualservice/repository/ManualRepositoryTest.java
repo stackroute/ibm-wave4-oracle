@@ -2,6 +2,7 @@ package com.stackroute.manualservice.repository;
 
 import com.netflix.discovery.converters.Auto;
 import com.stackroute.manualservice.domain.Query;
+import com.stackroute.manualservice.domain.UserQuery;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +14,8 @@ import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @DataMongoTest
 public class ManualRepositoryTest {
@@ -20,28 +23,38 @@ public class ManualRepositoryTest {
     @Autowired
     private ManualRepository manualRepository;
 
+    private List<Query> queryList = null;
+    private UserQuery userQuery;
 
     private Query query;
 
     @Before
     public void setUp(){
-      query = new Query();
-      query.setQuestion("abcd");
-      query.setId("2");
-      query.setAnswer("answer");
+        query = new Query();
+        query.setQuestion("abcd");
+        query.setId("1");
+        query.setAnswer("kjsfdjefj");
+        queryList.add(query);
+        userQuery = new UserQuery();
+        userQuery.setQuery(queryList);
+        userQuery.setConcept("concept");
+        userQuery.setId("we");
     }
+
 
     @Test
     public void saveQuerySuccess(){
 
-       Query savedQuery =  manualRepository.save(query);
-        Assert.assertEquals("answer",savedQuery.getAnswer());
+       UserQuery savedQuery = manualRepository.save(userQuery);
+       Assert.assertNotNull(savedQuery);
+
     }
     @Test
     public void saveQueryFailure(){
 
-        Query savedQuery =  manualRepository.save(query);
-        Assert.assertNotEquals("question",savedQuery.getAnswer());
+        UserQuery savedQuery =  manualRepository.save(userQuery);
+        Assert.assertTrue(savedQuery != null);
+       // Assert.assertNotEquals("question",savedQuery.getAnswer());
     }
 
 }

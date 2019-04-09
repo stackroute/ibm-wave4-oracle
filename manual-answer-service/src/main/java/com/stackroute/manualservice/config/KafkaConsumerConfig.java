@@ -1,6 +1,8 @@
 package com.stackroute.manualservice.config;
 
 import com.stackroute.manualservice.domain.Query;
+import com.stackroute.manualservice.domain.QuestionDTO;
+import com.stackroute.manualservice.service.ManualService;
 import com.stackroute.manualservice.service.ManualServiceImpl;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.slf4j.Logger;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.ConcurrentKafkaListenerContainerFactoryConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
@@ -19,6 +22,7 @@ import org.springframework.kafka.support.converter.RecordMessageConverter;
 import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 
 @Configuration
+@EnableKafka
 public class KafkaConsumerConfig {
 
     private ManualServiceImpl manualService;
@@ -55,20 +59,17 @@ public class KafkaConsumerConfig {
 
 
     @KafkaListener(id = "queryGroup", topics = "new_query")
-    public void listen(Query query) {
+    public void listen(QuestionDTO questionDTO) {
 
-        logger.info("Received: " + query);
+        logger.info("Received: " + questionDTO);
 
-        manualService.saveQuestion(query);
+        System.out.println(manualService.getClass());
+
+        manualService.saveToDataBase(questionDTO);
 
     }
 
 
-    @KafkaListener(id = "dltGroup", topics = "topic1.DLT")
-    public void dltListen(String in) {
-
-        logger.info("Received from DLT: " + in);
-    }
 
     @Bean
     public NewTopic topic() {
@@ -76,9 +77,5 @@ public class KafkaConsumerConfig {
         return new NewTopic("new_query", 1, (short) 1);
     }
 
-    @Bean
-    public NewTopic dlt() {
 
-        return new NewTopic("topic1.DLT", 1, (short) 1);
-    }
 }
