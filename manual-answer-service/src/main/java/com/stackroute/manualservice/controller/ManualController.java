@@ -1,9 +1,11 @@
 package com.stackroute.manualservice.controller;
 
 import com.stackroute.manualservice.domain.Query;
+import com.stackroute.manualservice.domain.UserQuery;
 import com.stackroute.manualservice.exception.QueryNotFoundException;
 import com.stackroute.manualservice.service.ManualService;
 import com.stackroute.manualservice.service.ManualServiceImpl;
+import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,42 +38,44 @@ public class ManualController {
     // Get  Request for getting all the questions
 
     @GetMapping("/questions")
-    public ResponseEntity<List<Query>> getAllQuestions() {
+    public ResponseEntity<List<UserQuery>> getAllQuestions() {
 
-        List<Query> questionList = manualService.getListOfQuestions();
+        List<UserQuery> questionList = manualService.getListOfQuestions();
 
-        return new ResponseEntity<List<Query>>(questionList, HttpStatus.OK);
+        return new ResponseEntity<List<UserQuery>>(questionList, HttpStatus.OK);
 
     }
 
     //Get Question by Topic Name
 
     @GetMapping("/question/{topic_name}")
-    public ResponseEntity<List<Query>> getByTopicName(@PathVariable("topic_name") String topic_name) throws QueryNotFoundException {
+    public ResponseEntity<UserQuery>getByTopicName(@PathVariable("topic_name") String topic_name) throws QueryNotFoundException {
         ResponseEntity responseEntity;
 
-        List<Query> queryList = manualService.getQuestionsByTopicName(topic_name);
-        responseEntity = new ResponseEntity<List<Query>>(queryList, HttpStatus.ACCEPTED);
+        UserQuery queryList = manualService.getQuestionsByTopicName(topic_name);
+        responseEntity = new ResponseEntity<UserQuery>(queryList, HttpStatus.ACCEPTED);
         return responseEntity;
 
     }
-
     //Delete Request
 
-    @PostMapping("/question")
-    public ResponseEntity<String> updateQuestion(@RequestBody Query query) throws QueryNotFoundException {
+    @PostMapping("/question/{concept}")
+    public ResponseEntity<String> updateQuestion(@RequestBody Query query,@PathVariable("concept") String concept) throws QueryNotFoundException {
 
-        Query updateQuestion = manualService.updateQuestion(query);
+        UserQuery updateQuestion = manualService.updateQuestion(query,concept);
 
         logger.info("Updated Questions:" + updateQuestion);
 
         // send data back to the bot service
         kafkaTemplate.send("update_query", updateQuestion);
 
-        //Delete that quedstion from Consumer side
-        manualService.deleteQuestion(query.getId());
 
-        return new ResponseEntity<String>("Query Deleted Successfully", HttpStatus.CREATED);
+
+        //Delete that quedstion from Consumer side
+
+        manualService.deleteQuestion(query,concept);
+
+        return new ResponseEntity<String >("Quey Deleted Successfully", HttpStatus.CREATED);
     }
 
 }

@@ -136,7 +136,6 @@ services:
     mem_reservation: 200m
 
 
-
   manual-answer:
     build: manual-answer-service/
     restart: always
@@ -151,8 +150,6 @@ services:
       - eureka-server
     mem_limit: 300m
     mem_reservation: 300m
-
-
 
 
 
