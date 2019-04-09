@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.neo4j.ogm.annotation.GeneratedValue;
-import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.springframework.data.neo4j.annotation.QueryResult;
 
@@ -17,14 +15,7 @@ import org.springframework.data.neo4j.annotation.QueryResult;
 @Builder
 @QueryResult
 public class Questions {
-
-    @Id
-    @GeneratedValue
-    private Long graphId;
-
     private String name;
-    private String concept;
-
 
     /*
         This annotation creates the relationship as ANSWER_OF

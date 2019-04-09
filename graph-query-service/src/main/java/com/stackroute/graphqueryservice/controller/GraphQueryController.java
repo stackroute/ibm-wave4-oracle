@@ -1,6 +1,7 @@
 package com.stackroute.graphqueryservice.controller;
 
 
+import com.stackroute.graphqueryservice.domain.Answer;
 import com.stackroute.graphqueryservice.domain.Concept;
 import com.stackroute.graphqueryservice.domain.Questions;
 import com.stackroute.graphqueryservice.service.GraphQueryService;
@@ -17,7 +18,8 @@ public class GraphQueryController {
 
     private GraphQueryService graphQueryService;
 
-    private Questions questions;
+    private Questions question;
+    private Answer answer;
 
     @Autowired
     public GraphQueryController(GraphQueryService graphQueryService) {
