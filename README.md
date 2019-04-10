@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/stackroute/ibm-wave4-oracle.svg?branch=v1.0.0)](https://travis-ci.org/stackroute/ibm-wave4-oracle)
+[![Build Status](https://travis-ci.org/stackroute/ibm-wave4-oracle.svg?branch=v1.0.)](https://travis-ci.org/stackroute/ibm-wave4-oracle)
 [![codecov](https://codecov.io/gh/stackroute/ibm-wave4-oracle/branch/v1.0.0/graph/badge.svg)](https://codecov.io/gh/stackroute/ibm-wave4-oracle)
 ![](https://img.shields.io/codecov/c/github/stackroute/ibm-wave4-oracle/v1.0.0.svg?style=flat)
 
