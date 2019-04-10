@@ -9,11 +9,13 @@ import { AuthGuard } from "./auth.guard";
 import { ChatBotHomepageComponent } from "./chat-bot-homepage/chat-bot-homepage.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {AllUsersProfileComponent} from "./all-users-profile/all-users-profile.component";
+import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "signup", component: SignupComponent },
   { path: "login", component: LoginComponent },
+  { path: "manual", component: ManualAnswerComponent },
   { path: "chatbot", component: ChatBotHomepageComponent },
   {
     path: "admindashboard",

@@ -12,9 +12,8 @@ services:
     hostname: 127.0.0.1
     volumes:
       - /home/mongo/data:/var/lib/mongo
-    mem_limit: 100m
-    mem_reservation: 100m
-
+#    mem_limit: 100m
+#    mem_reservation: 100m
 
   mysql:
     image: mysql:5.7
@@ -30,8 +29,8 @@ services:
       - 3306:3306
     volumes:
       - /DB/mysql:/var/lib/mysql
-    mem_limit: 100m
-    mem_reservation: 100m
+#    mem_limit: 100m
+#    mem_reservation: 100m
 
 
   neo4j:
@@ -50,8 +49,8 @@ services:
       - ./neo4j/import:/import
     environment:
       - NEO4J_AUTH=neo4j/1234
-    mem_limit: 100m
-    mem_reservation: 100m
+#    mem_limit: 100m
+#    mem_reservation: 100m
 
 
 
@@ -63,8 +62,8 @@ services:
     hostname: localhost
     ports:
       - 8761:8761
-    mem_limit: 100m
-    mem_reservation: 100m
+#    mem_limit: 100m
+#    mem_reservation: 100m
 
 
 
@@ -76,8 +75,8 @@ services:
     hostname: localhost
     ports:
       - 8888:8888
-    mem_limit: 100m
-    mem_reservation: 100m
+#    mem_limit: 100m
+#    mem_reservation: 100m
 
 
   zuul-apigateway:
@@ -90,8 +89,8 @@ services:
     hostname: localhost
     ports:
       - 8080:8080
-    mem_limit: 100m
-    mem_reservation: 100m
+#    mem_limit: 100m
+#    mem_reservation: 100m
 
 
   zookeeper:
@@ -107,8 +106,8 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000000000
-    mem_limit: 100m
-    mem_reservation: 100m
+#    mem_limit: 100m
+#    mem_reservation: 100m
 
 
 
@@ -169,15 +168,15 @@ services:
 
 
 
-  #  oraclefrontend:
-#    build: oracle-frontend/
-#    image: oracle-frontend:latest
-#    container_name: oracle-frontend
-#    network_mode: "host"
-#    hostname: localhost
-#    ports:
-#      - 4200:4200
-#    restart: always
+oraclefrontend:
+    build: oracle-frontend/
+    image: oracle-frontend:latest
+    container_name: oracle-frontend
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 4200:4200
+    restart: always
 
   bot-service:
     build: bot-service/
@@ -192,13 +191,9 @@ services:
       - mongo
       - eureka-server
       - config-service
-<<<<<<< HEAD
-#    mem_limit: 300m
-#    mem_reservation: 100m
-=======
     mem_limit: 300m
     mem_reservation: 200m
->>>>>>> 6a634570d2c32686e5b69f86ab67f797dbf018a3
+
 
 
 
@@ -212,9 +207,6 @@ services:
     depends_on:
       - bot-service
       - eureka-server
-    mem_limit: 300m
-
-
 
 
   graph-query-service:

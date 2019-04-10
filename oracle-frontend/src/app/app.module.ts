@@ -18,6 +18,7 @@ import { UserdashboardComponent } from "./userdashboard/userdashboard.component"
 import { AdmindashboardComponent } from "./admindashboard/admindashboard.component";
 import { ProfileComponent } from './profile/profile.component';
 import { AllUsersProfileComponent } from './all-users-profile/all-users-profile.component';
+import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AllUsersProfileComponent } from './all-users-profile/all-users-profile.
     UserdashboardComponent,
     AdmindashboardComponent,
     ProfileComponent,
-    AllUsersProfileComponent
+    AllUsersProfileComponent,
+    ManualAnswerComponent
   ],
 
   imports: [
