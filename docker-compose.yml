@@ -14,6 +14,7 @@ services:
       mem_limit: 100m
       mem_reservation: 100m
 
+
   mysql:
     image: mysql:5.7
     restart: always
@@ -28,8 +29,8 @@ services:
       - 3306:3306
     volumes:
       - /DB/mysql:/var/lib/mysql
-      mem_limit: 100m
-      mem_reservation: 100m
+    mem_limit: 100m
+    mem_reservation: 100m
 
   neo4j:
     image: neo4j:3.5.3
@@ -47,8 +48,8 @@ services:
       - ./neo4j/import:/import
     environment:
       - NEO4J_AUTH=neo4j/1234
-  #    mem_limit: 100m
-  #    mem_reservation: 100m
+    mem_limit: 100m
+    mem_reservation: 100m
 
   eureka-server:
     build: eureka-server/
@@ -57,8 +58,8 @@ services:
     hostname: localhost
     ports:
       - 8761:8761
-  #    mem_limit: 100m
-  #    mem_reservation: 100m
+    mem_limit: 100m
+    mem_reservation: 100m
 
   config-service:
     build: config-server/
@@ -68,8 +69,8 @@ services:
     hostname: localhost
     ports:
       - 8888:8888
-  #    mem_limit: 100m
-  #    mem_reservation: 100m
+    mem_limit: 100m
+    mem_reservation: 100m
 
   zuul-apigateway:
     build: zuul-api/
@@ -81,8 +82,8 @@ services:
     hostname: localhost
     ports:
       - 8080:8080
-  #    mem_limit: 100m
-  #    mem_reservation: 100m
+    mem_limit: 100m
+    mem_reservation: 100m
 
   zookeeper:
     container_name: zookeeper
@@ -97,8 +98,8 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000000000
-  #    mem_limit: 100m
-  #    mem_reservation: 100m
+      mem_limit: 100m
+      mem_reservation: 100m
 
   kafka:
     container_name: kafka
