@@ -12,21 +12,21 @@ services:
     hostname: 127.0.0.1
     volumes:
       - /home/mongo/data:/var/lib/mongo
-
-  mysql:
-    image: mysql:5.7
-    restart: always
-    container_name: mysql
-    network_mode: "host"
-    hostname: localhost
-    environment:
-      MYSQL_ROOT_PASSWORD: root123
-      MYSQL_DATABASE: userDB
-      MYSQL_PASSWORD: root123
-    ports:
-      - 3306:3306
-    volumes:
-      - /DB/mysql:/var/lib/mysql
+#
+#  mysql:
+#    image: mysql:5.7
+#    restart: always
+#    container_name: mysql
+#    network_mode: "host"
+#    hostname: localhost
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root123
+#      MYSQL_DATABASE: userDB
+#      MYSQL_PASSWORD: root123
+#    ports:
+#      - 3306:3306
+#    volumes:
+#      - /DB/mysql:/var/lib/mysql
 
 
 
@@ -122,18 +122,18 @@ services:
       - mongo
       - kafka
       - eureka-server
-
-
-  user-service:
-    build: user-service/
-    restart: always
-    network_mode: "host"
-    image: user-service
-    hostname: localhost
-    ports:
-      - 8081:8081
-    depends_on:
-      - mysql
+#
+#
+#  user-service:
+#    build: user-service/
+#    restart: always
+#    network_mode: "host"
+#    image: user-service
+#    hostname: localhost
+#    ports:
+#      - 8081:8081
+#    depends_on:
+#      - mysql
 
   oraclefrontend:
     build: oracle-frontend/
