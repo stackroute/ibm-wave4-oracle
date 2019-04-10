@@ -8,12 +8,11 @@ import lombok.NoArgsConstructor;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.springframework.data.neo4j.annotation.QueryResult;
 
+
 @NodeEntity(label = "Questions") //This annotation creates the node with label name as Questions
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@QueryResult
 public class Questions {
     private String name;
 
@@ -23,7 +22,7 @@ public class Questions {
         the direction of relationship as INCOMING
 
      */
-   /* @Relationship(type = "ANSWER_OF", direction = "INCOMING")
+  /*  @Relationship(type = "ANSWER_OF", direction = "INCOMING")
     private List<Answer> answerList;*/
 
 }
