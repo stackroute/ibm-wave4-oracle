@@ -7,6 +7,4 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
 script:
   - mvn clean package -DskipTests=true
-  - mvn sonar:sonar
-  - mvn cobertura:cobertura
-
+  - mvn test jacoco:report org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.login=$SONAR_NEW_TOKEN
