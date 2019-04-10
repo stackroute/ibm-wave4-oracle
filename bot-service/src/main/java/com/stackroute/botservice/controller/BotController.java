@@ -5,12 +5,14 @@ import com.stackroute.botservice.domain.*;
 import com.stackroute.botservice.service.QueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /* Created on : 27/03/2019 by gopal */
@@ -51,10 +53,12 @@ public class BotController {
         }
         if (answer == null) {
             response = new ArrayList<>();
-            List<QueryAnswer> probableAnswers = restTemplate.getForObject("http://localhost:8082/api/v1/answer/" + concepts, List.class);
 
-            for (QueryAnswer query : probableAnswers) {
-                response.add(new SendQuery(query, new Status(false, true)));
+            Response probableAnswers = restTemplate.getForObject("http://localhost:8082/api/v1/answer/" + concepts,Response.class);
+            List<QueryAnswer> queryAnswer = probableAnswers.getResponses();
+
+            for (QueryAnswer qa : queryAnswer) {
+                response.add(new SendQuery(qa, new Status(false, true)));
             }
         }
 

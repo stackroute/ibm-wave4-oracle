@@ -12,11 +12,10 @@ import { ManaualApiService } from '../manaual-api.service'
 export class ManualAnswerComponent implements OnInit {
 
 
-  question:questions[]
+  question:questions[] = []
   userQuery:userQuery[] = []
 
   constructor(private manual_api:ManaualApiService) { }
-
   ngOnInit() {
 
     this.manual_api.getAllQuestions().subscribe(data => {

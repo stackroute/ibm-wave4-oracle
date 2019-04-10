@@ -37,8 +37,8 @@ public class GraphQueryController {
         returns the set of answers for that particular question and concept
      */
     @GetMapping("/answer/{concept}")
-    public ResponseEntity<List<Response>> getSolution(@PathVariable String concept) {
-        return new ResponseEntity<>(graphQueryService.solution(concept).getResponses(), HttpStatus.FOUND);
+    public ResponseEntity<ResponseDTO> getSolution(@PathVariable String concept) {
+        return new ResponseEntity<>(graphQueryService.solution(concept), HttpStatus.FOUND);
     }
 
     /*
