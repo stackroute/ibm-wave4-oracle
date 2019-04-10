@@ -7,7 +7,8 @@ export const environment = {
   savedData:'http://localhost:8081/api/v1/saveUser',
   loginData:'http://localhost:8081/api/v1/login',
   allUserData:'http://localhost:8081/api/v1/users',
-  singleUserData:'http://localhost:8081/api/v1/user'
+  singleUserData:'http://localhost:8081/api/v1/user',
+  manaul_answer:'http://localhost:8091/api/v1/'
 };
 
 /*

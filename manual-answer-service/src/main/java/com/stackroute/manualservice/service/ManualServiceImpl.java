@@ -130,7 +130,13 @@ public class ManualServiceImpl implements ManualService {
             //check is question found or not
             if (isQuestionFound) {
                 queryList.remove(query);
-                userQuery.setQuery(queryList);
+                if(queryList.isEmpty()){
+                    this.manualRepository.delete(userQuery);
+                }
+                else{
+                    userQuery.setQuery(queryList);
+                }
+
                 return manualRepository.save(userQuery);
             } else {
                 throw new QueryNotFoundException("Question not found with this id");

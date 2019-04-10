@@ -13,11 +13,19 @@ import { HttpClientModule } from "@angular/common/http";
 import { UserService } from "./user.service";
 import { AuthGuard } from "./auth.guard";
 import { ChatBotHomepageComponent } from "./chat-bot-homepage/chat-bot-homepage.component";
-import {MatButtonModule, MatDividerModule, MatInputModule, MatSidenavModule, MatTabsModule} from "@angular/material";
+import {
+  MatButtonModule, MatButtonToggleModule,
+  MatDatepickerModule,
+  MatDividerModule,
+  MatInputModule,
+  MatSidenavModule,
+  MatTabsModule
+} from "@angular/material";
 import { UserdashboardComponent } from "./userdashboard/userdashboard.component";
 import { AdmindashboardComponent } from "./admindashboard/admindashboard.component";
 import { ProfileComponent } from './profile/profile.component';
 import { AllUsersProfileComponent } from './all-users-profile/all-users-profile.component';
+import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +38,8 @@ import { AllUsersProfileComponent } from './all-users-profile/all-users-profile.
     UserdashboardComponent,
     AdmindashboardComponent,
     ProfileComponent,
-    AllUsersProfileComponent
+    AllUsersProfileComponent,
+    ManualAnswerComponent
   ],
 
   imports: [
@@ -44,7 +53,9 @@ import { AllUsersProfileComponent } from './all-users-profile/all-users-profile.
     MatButtonModule,
     MatDividerModule,
     MatTabsModule,
-    MatInputModule
+    MatInputModule,
+    MatDatepickerModule,
+    MatButtonToggleModule
   ],
   providers: [UserService, AuthGuard],
   bootstrap: [AppComponent]
