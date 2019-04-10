@@ -75,7 +75,7 @@ public class QueryServiceImpl implements QueryService {
         return answer;
 
     }
-
+    @Override
     public QueryAnsListWithConcept updateQueryAnswer(String concept,String question,String answer) {
         QueryAnsListWithConcept queryAnsListWithConcept = new QueryAnsListWithConcept();
         // getting all concepts with question/answer set
@@ -98,6 +98,10 @@ public class QueryServiceImpl implements QueryService {
             }
         }
 
+        queryRespository.save(queryAnsListWithConcept);
+
         return queryAnsListWithConcept;
     }
+
+
 }

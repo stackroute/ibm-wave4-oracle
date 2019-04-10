@@ -1,12 +1,8 @@
 package com.stackroute.botservice.controller;
 
 
-import com.stackroute.botservice.domain.QueryAnsListWithConcept;
-import com.stackroute.botservice.domain.QueryAnswer;
-import com.stackroute.botservice.domain.QuestionDTO;
-import com.stackroute.botservice.domain.SendQuery;
+import com.stackroute.botservice.domain.*;
 import com.stackroute.botservice.service.QueryService;
-import com.stackroute.botservice.service.QueryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,36 +30,65 @@ public class BotController {
 
     }
 
-    @PostMapping("/send")
-    public ResponseEntity<?> sendNewQuery(@RequestBody SendQuery sendQuery) {
-        String question = sendQuery.getQueryAnswer().getQuestion();
+    @GetMapping("/getanswer")
+    public ResponseEntity<?> getAnswer(@RequestBody SendQuery sendQuery) {
+
         RestTemplate restTemplate = new RestTemplate();
-        String correctedQuery = restTemplate.getForObject("http://localhost:8595/api/v1/getCorrectedQuery/" + question, String.class);
+        String correctedQuery = restTemplate.getForObject("http://localhost:8595/api/v1/getCorrectedQuery/" + sendQuery.getQueryAnswer().getQuestion(), String.class);
         String concepts = restTemplate.getForObject("http://localhost:8383/api/v1/concepts/" + correctedQuery, String.class);
 
-        ResponseEntity<?> responseEntity = null;
-        System.out.println("Query : "+correctedQuery);
-        System.out.println("Concept : "+concepts);
+        System.out.println("Query : " + correctedQuery);
+        System.out.println("Concept : " + concepts);
+
+        List<SendQuery> response = null;
 
         String answer = queryService.getAnswerOfSimilarQuestion(concepts, correctedQuery);
         if (answer != null) {
-            responseEntity = new ResponseEntity<String>(answer, HttpStatus.OK);
+            response = new ArrayList<>();
+            sendQuery.setQueryAnswer(new QueryAnswer("", correctedQuery, answer));
+            sendQuery.getStatus().setAnswered(true);
+            response.add(sendQuery);
         }
-        if (answer == null){
-            List<QueryAnswer> solution = restTemplate.getForObject("http://localhost:8082/api/v1/answer/" + concepts, List.class);
-            System.out.println("Question/Answer List");
+        if (answer == null) {
+            response = new ArrayList<>();
+            List<QueryAnswer> probableAnswers = restTemplate.getForObject("http://localhost:8082/api/v1/answer/" + concepts, List.class);
 
-            System.out.println("=================="+solution);
-
-            responseEntity = new ResponseEntity<List<QueryAnswer>>(solution, HttpStatus.OK);
+            for (QueryAnswer query : probableAnswers) {
+                response.add(new SendQuery(query, new Status(false, true)));
+            }
         }
-        QuestionDTO questionDTO = new QuestionDTO();
 
-        questionDTO.setConcept(concepts);
-        questionDTO.setQuestion(correctedQuery);
-        kafkaTemplate.send("new_query", questionDTO);
-        System.out.println("===================="+questionDTO);
-        //responseEntity = new ResponseEntity<String>("Sent to Manual Answer Service",HttpStatus.CREATED);
+        return new ResponseEntity<List<SendQuery>>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/saveanswer")
+    public ResponseEntity<?> saveQueryAnswer(@RequestBody SendQuery sendQuery){
+
+        RestTemplate restTemplate = new RestTemplate();
+        String correctedQuery = restTemplate.getForObject("http://localhost:8595/api/v1/getCorrectedQuery/" + sendQuery.getQueryAnswer().getQuestion(), String.class);
+        String concept = restTemplate.getForObject("http://localhost:8383/api/v1/concepts/" + correctedQuery, String.class);
+
+        ResponseEntity<?> responseEntity = new ResponseEntity<String>("Request Not Supported",HttpStatus.BAD_REQUEST);
+        /* if answer is accepted by user then send it to neo4j via kafka and save in mongodb */
+        if (sendQuery.getStatus().isAnswered() && sendQuery.getStatus().isAccepted()) {
+            QuestionDTO questionDTO = new QuestionDTO();
+            questionDTO.setConcept(concept);
+            questionDTO.setQuestion(correctedQuery);
+            questionDTO.setAnswer(sendQuery.getQueryAnswer().getAnswer());
+            // saving it in mongodb
+            queryService.updateQueryAnswer(concept,correctedQuery,sendQuery.getQueryAnswer().getAnswer());
+
+            kafkaTemplate.send("answerwithquery", questionDTO);
+            responseEntity = new ResponseEntity<String>("Sent to Neo4J",HttpStatus.ACCEPTED);
+        }
+        /* if answer is NOT accepted by user then send it to manual-answer-service via kafka */
+        if (!sendQuery.getStatus().isAccepted()) {
+            QuestionDTO questionDTO = new QuestionDTO();
+            questionDTO.setConcept(concept);
+            questionDTO.setQuestion(correctedQuery);
+            kafkaTemplate.send("new_query", questionDTO);
+            responseEntity = new ResponseEntity<String>("Sent to Manual-Answer-Service",HttpStatus.ACCEPTED);
+        }
 
         return responseEntity;
     }

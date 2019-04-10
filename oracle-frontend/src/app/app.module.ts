@@ -13,7 +13,14 @@ import { HttpClientModule } from "@angular/common/http";
 import { UserService } from "./user.service";
 import { AuthGuard } from "./auth.guard";
 import { ChatBotHomepageComponent } from "./chat-bot-homepage/chat-bot-homepage.component";
-import {MatButtonModule, MatDividerModule, MatInputModule, MatSidenavModule, MatTabsModule} from "@angular/material";
+import {
+  MatButtonModule, MatButtonToggleModule,
+  MatDatepickerModule,
+  MatDividerModule,
+  MatInputModule,
+  MatSidenavModule,
+  MatTabsModule
+} from "@angular/material";
 import { UserdashboardComponent } from "./userdashboard/userdashboard.component";
 import { AdmindashboardComponent } from "./admindashboard/admindashboard.component";
 import { ProfileComponent } from './profile/profile.component';
@@ -46,7 +53,9 @@ import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
     MatButtonModule,
     MatDividerModule,
     MatTabsModule,
-    MatInputModule
+    MatInputModule,
+    MatDatepickerModule,
+    MatButtonToggleModule
   ],
   providers: [UserService, AuthGuard],
   bootstrap: [AppComponent]
