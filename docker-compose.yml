@@ -11,8 +11,8 @@ services:
     hostname: 127.0.0.1
     volumes:
       - /home/mongo/data:/var/lib/mongo
-      mem_limit: 100m
-      mem_reservation: 100m
+    mem_limit: 100m
+    mem_reservation: 100m
 
 
   mysql:

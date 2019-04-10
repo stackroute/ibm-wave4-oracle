@@ -19,7 +19,7 @@ interface UserQuery {
 @Component({
   selector: "app-chat-bot-homepage",
   templateUrl: "./chat-bot-homepage.component.html",
-  styleUrls: ["./chat-bot-homepage.component.css"]
+  styleUrls: ["./chat-bot-homnpepage.component.css"]
 })
 export class ChatBotHomepageComponent implements OnInit {
   constructor(private chatService: ItChatServiceService) {}
