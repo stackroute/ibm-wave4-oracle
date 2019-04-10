@@ -168,7 +168,7 @@ services:
 
 
 
-oraclefrontend:
+  oraclefrontend:
     build: oracle-frontend/
     image: oracle-frontend:latest
     container_name: oracle-frontend
