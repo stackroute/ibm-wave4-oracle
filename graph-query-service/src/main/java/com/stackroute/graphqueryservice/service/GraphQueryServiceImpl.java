@@ -2,6 +2,8 @@ package com.stackroute.graphqueryservice.service;
 
 import com.stackroute.graphqueryservice.domain.Concept;
 import com.stackroute.graphqueryservice.domain.Questions;
+import com.stackroute.graphqueryservice.domain.Response;
+import com.stackroute.graphqueryservice.domain.ResponseDTO;
 import com.stackroute.graphqueryservice.repository.ConceptRepository;
 import com.stackroute.graphqueryservice.repository.QueryRepository;
 import lombok.NoArgsConstructor;
@@ -27,7 +29,7 @@ public class GraphQueryServiceImpl implements GraphQueryService {
       returns the set of answers for that particular question and concept
      */
     @Override
-    public List<Questions> solution(String concept) {
+    public ResponseDTO solution(String concept) {
         return queryRepository.findByConcept(concept);
     }
 

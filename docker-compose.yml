@@ -1,5 +1,4 @@
 version: '2.4'
-
 services:
   mongo:
     image: mongo:3.4-jessie
@@ -12,8 +11,8 @@ services:
     hostname: 127.0.0.1
     volumes:
       - /home/mongo/data:/var/lib/mongo
-#    mem_limit: 100m
-#    mem_reservation: 100m
+  #    mem_limit: 100m
+  #    mem_reservation: 100m
 
   mysql:
     image: mysql:5.7
@@ -29,9 +28,8 @@ services:
       - 3306:3306
     volumes:
       - /DB/mysql:/var/lib/mysql
-#    mem_limit: 100m
-#    mem_reservation: 100m
-
+  #    mem_limit: 100m
+  #    mem_reservation: 100m
 
   neo4j:
     image: neo4j:3.5.3
@@ -49,11 +47,8 @@ services:
       - ./neo4j/import:/import
     environment:
       - NEO4J_AUTH=neo4j/1234
-#    mem_limit: 100m
-#    mem_reservation: 100m
-
-
-
+  #    mem_limit: 100m
+  #    mem_reservation: 100m
 
   eureka-server:
     build: eureka-server/
@@ -62,10 +57,8 @@ services:
     hostname: localhost
     ports:
       - 8761:8761
-#    mem_limit: 100m
-#    mem_reservation: 100m
-
-
+  #    mem_limit: 100m
+  #    mem_reservation: 100m
 
   config-service:
     build: config-server/
@@ -75,9 +68,8 @@ services:
     hostname: localhost
     ports:
       - 8888:8888
-#    mem_limit: 100m
-#    mem_reservation: 100m
-
+  #    mem_limit: 100m
+  #    mem_reservation: 100m
 
   zuul-apigateway:
     build: zuul-api/
@@ -89,9 +81,8 @@ services:
     hostname: localhost
     ports:
       - 8080:8080
-#    mem_limit: 100m
-#    mem_reservation: 100m
-
+  #    mem_limit: 100m
+  #    mem_reservation: 100m
 
   zookeeper:
     container_name: zookeeper
@@ -106,11 +97,8 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000000000
-#    mem_limit: 100m
-#    mem_reservation: 100m
-
-
-
+  #    mem_limit: 100m
+  #    mem_reservation: 100m
 
   kafka:
     container_name: kafka
@@ -134,7 +122,6 @@ services:
     mem_limit: 200m
     mem_reservation: 200m
 
-
   manual-answer:
     build: manual-answer-service/
     restart: always
@@ -150,8 +137,6 @@ services:
     mem_limit: 300m
     mem_reservation: 300m
 
-
-
   user-service:
     build: user-service/
     restart: always
@@ -166,9 +151,7 @@ services:
     mem_limit: 200m
     mem_reservation: 200m
 
-
-
-oraclefrontend:
+  oraclefrontend:
     build: oracle-frontend/
     image: oracle-frontend:latest
     container_name: oracle-frontend
@@ -194,9 +177,6 @@ oraclefrontend:
     mem_limit: 300m
     mem_reservation: 200m
 
-
-
-
   queryautocorrector-service:
     build: queryautocorrector-service/
     restart: always
@@ -207,7 +187,6 @@ oraclefrontend:
     depends_on:
       - bot-service
       - eureka-server
-
 
   graph-query-service:
     build: graph-query-service/
@@ -222,9 +201,6 @@ oraclefrontend:
     mem_limit: 200m
     mem_reservation: 200m
 
-
-
-
   extract-intent-service:
     build: extract-intent-service/
     image: extract-intent-service
@@ -233,7 +209,3 @@ oraclefrontend:
     hostname: localhost
     ports:
       - 8383:8383
-
-
-
-
