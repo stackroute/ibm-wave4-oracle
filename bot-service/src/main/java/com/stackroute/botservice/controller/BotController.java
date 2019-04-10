@@ -30,7 +30,7 @@ public class BotController {
 
     }
 
-    @GetMapping("/getanswer")
+    @PostMapping("/getanswer")
     public ResponseEntity<?> getAnswer(@RequestBody SendQuery sendQuery) {
 
         RestTemplate restTemplate = new RestTemplate();
