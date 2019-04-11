@@ -1,4 +1,4 @@
-version: '2.4'
+version: '3'
 
 services:
   mongo:
@@ -12,8 +12,7 @@ services:
     hostname: 127.0.0.1
     volumes:
       - /home/mongo/data:/var/lib/mongo
-    mem_limit: 100m
-    mem_reservation: 100m
+
 
 
   mysql:
@@ -30,8 +29,7 @@ services:
       - 3306:3306
     volumes:
       - /DB/mysql:/var/lib/mysql
-    mem_limit: 100m
-    mem_reservation: 100m
+
 
   neo4j:
     image: neo4j:3.5.3
@@ -49,8 +47,7 @@ services:
       - ./neo4j/import:/import
     environment:
       - NEO4J_AUTH=neo4j/1234
-    mem_limit: 100m
-    mem_reservation: 100m
+
 
   eureka-server:
     build: eureka-server/
@@ -59,7 +56,7 @@ services:
     hostname: localhost
     ports:
       - 8761:8761
-    mem_limit: 200m
+
 
 
 
@@ -71,8 +68,6 @@ services:
     hostname: localhost
     ports:
       - 8888:8888
-    mem_limit: 100m
-    mem_reservation: 100m
 
   zuul-apigateway:
     build: zuul-api/
@@ -84,8 +79,7 @@ services:
     hostname: localhost
     ports:
       - 8080:8080
-    mem_limit: 100m
-    mem_reservation: 100m
+
 
   zookeeper:
     container_name: zookeeper
@@ -100,8 +94,7 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000000000
-    mem_limit: 100m
-    mem_reservation: 100m
+
 
 
   kafka:
@@ -123,8 +116,8 @@ services:
       KAFKA_MESSAGE_MAX_BYTES: 1000000000
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
-    mem_limit: 200m
-    mem_reservation: 200m
+
+
   manual-answer:
     build: manual-answer-service/
     restart: always
@@ -133,8 +126,6 @@ services:
     hostname: localhost
     ports:
       - 8091:8091
-    mem_limit: 300m
-    mem_reservation: 300m
 
   user-service:
     build: user-service/
@@ -144,8 +135,7 @@ services:
     hostname: localhost
     ports:
       - 8081:8081
-    mem_limit: 200m
-    mem_reservation: 200m
+
 
 #  oraclefrontend:
 #    build: oracle-frontend/
@@ -164,8 +154,7 @@ services:
     hostname: localhost
     ports:
       - 8090:8090
-    mem_limit: 300m
-    mem_reservation: 200m
+
 
   queryautocorrector-service:
     build: queryautocorrector-service/
@@ -184,8 +173,7 @@ services:
     hostname: localhost
     ports:
       - 8082:8082
-    mem_limit: 200m
-    mem_reservation: 200m
+
 
   extract-intent-service:
     build: extract-intent-service/
