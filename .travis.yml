@@ -12,6 +12,10 @@ env:
 before_install:
   - docker pull mongo:3.4-jessie
   - docker run -d -p 127.0.0.1:27017:27017 mongo:3.4-jessie
+  - docker pull zookeeper:3.4
+  - docker run -d -p 127.0.0.1:2181:2181 zookeeper:3.4
+  - docker pull wurstmeister/kafka:latest
+  - docker run -d -p 127.0.0.1:9092:9092 wurstmeister/kafka:latest
   - docker ps -a
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
