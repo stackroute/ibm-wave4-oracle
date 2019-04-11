@@ -13,10 +13,7 @@ services:
       - /home/mongo/data:/var/lib/mongo
     mem_limit: 100m
     mem_reservation: 100m
-<<<<<<< HEAD
-=======
 
->>>>>>> 223a54016885eed4dd9207b5c18f877b803c818d
 
   mysql:
     image: mysql:5.7
@@ -61,13 +58,8 @@ services:
     hostname: localhost
     ports:
       - 8761:8761
-<<<<<<< HEAD
     mem_limit: 200m
 
-=======
-    mem_limit: 100m
-    mem_reservation: 100m
->>>>>>> 223a54016885eed4dd9207b5c18f877b803c818d
 
   config-service:
     build: config-server/
@@ -106,13 +98,9 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000000000
-<<<<<<< HEAD
     mem_limit: 100m
     mem_reservation: 100m
-=======
-      mem_limit: 100m
-      mem_reservation: 100m
->>>>>>> 223a54016885eed4dd9207b5c18f877b803c818d
+
 
   kafka:
     container_name: kafka
