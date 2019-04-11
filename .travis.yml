@@ -11,7 +11,7 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
   
-install:
+before_script:
   - docker-compose -f common-service.yml up --build -d
   
 cache:
