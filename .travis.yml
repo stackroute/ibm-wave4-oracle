@@ -3,20 +3,14 @@ jdk: openjdk11
   
 cache:
   directories:
-    - "$HOME/.m2/repository"
+    - "$HOME/travis/.m2/repository"
 services:
   - docker
-env:
-  - DOCKER_COMPOSE_VERSION=1.4.2
 
 before_install:
-  - docker pull mongo:3.4-jessie
-  - docker run -d -p 127.0.0.1:27017:27017 mongo:3.4-jessie
+  - docker-compose -f common-service.yml up --build -d kafka mongo mysql
   - docker ps -a
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
+
 
 
 after_success:

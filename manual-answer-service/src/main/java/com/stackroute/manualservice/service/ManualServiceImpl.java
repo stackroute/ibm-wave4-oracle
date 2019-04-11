@@ -130,10 +130,9 @@ public class ManualServiceImpl implements ManualService {
             //check is question found or not
             if (isQuestionFound) {
                 queryList.remove(query);
-                if(queryList.isEmpty()){
+                if (queryList.isEmpty()) {
                     this.manualRepository.delete(userQuery);
-                }
-                else{
+                } else {
                     userQuery.setQuery(queryList);
                 }
 

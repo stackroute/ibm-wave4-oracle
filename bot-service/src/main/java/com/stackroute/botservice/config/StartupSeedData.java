@@ -55,33 +55,36 @@ class StartupSeedData implements ApplicationListener<ContextRefreshedEvent> {
                 // getting all concepts with question/answer set
                 queryAnsListWithConceptList = queryServiceImpl.getAll();
 
-                for (QueryAnsListWithConcept q : queryAnsListWithConceptList) {
-                    // searching for same concept as the current one
-                    if (q.getConcept().equals(quesAndAns[1])) {
-                        List<QueryAnswer> queryAnswerList = q.getQueryAnswer();
+                if (!queryAnsListWithConceptList.isEmpty()){
+                    for (QueryAnsListWithConcept q : queryAnsListWithConceptList) {
+                        // searching for same concept as the current one
+                        if (q.getConcept().equals(quesAndAns[1])) {
+                            List<QueryAnswer> queryAnswerList = q.getQueryAnswer();
 
-                        // setting data in "QueryAnswer" object
-                        queryAnswer.setId(quesAndAns[0]);
-                        queryAnswer.setQuestion(quesAndAns[2]);
+                            // setting data in "QueryAnswer" object
+                            queryAnswer.setId(quesAndAns[0]);
+                            queryAnswer.setQuestion(quesAndAns[2]);
 
-                        // setting answer
-                        StringBuilder answer = new StringBuilder();
-                        for (int i = 3; i < quesAndAns.length; i++) {
-                            answer.append(quesAndAns[i]);
+                            // setting answer
+                            StringBuilder answer = new StringBuilder();
+                            for (int i = 3; i < quesAndAns.length; i++) {
+                                answer.append(quesAndAns[i]);
+                            }
+                            queryAnswer.setAnswer(answer.toString());
+
+                            // updating the list of question and answer
+                            queryAnswerList.add(queryAnswer);
+
+                            // setting data in "QueryAnsListWithConcept" object
+                            queryAnsListWithConcept.setId(q.getId());
+                            queryAnsListWithConcept.setConcept(q.getConcept());
+                            queryAnsListWithConcept.setQueryAnswer(queryAnswerList);
+
+                            foundConcept = true;
                         }
-                        queryAnswer.setAnswer(answer.toString());
-
-                        // updating the list of question and answer
-                        queryAnswerList.add(queryAnswer);
-
-                        // setting data in "QueryAnsListWithConcept" object
-                        queryAnsListWithConcept.setId(q.getId());
-                        queryAnsListWithConcept.setConcept(q.getConcept());
-                        queryAnsListWithConcept.setQueryAnswer(queryAnswerList);
-
-                        foundConcept = true;
                     }
                 }
+
                 if (foundConcept == false || queryAnsListWithConceptList.isEmpty()) {
                     // creating new instance of QueryAnsListWithConcept
                     queryAnsListWithConcept = new QueryAnsListWithConcept();

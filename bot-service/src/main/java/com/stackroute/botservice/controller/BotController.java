@@ -101,7 +101,7 @@ public class BotController {
             queryService.updateQueryAnswer(concept, correctedQuery, sendQuery.getQueryAnswer().getAnswer());
 
             kafkaTemplate.send("answerwithquery", questionDTO);
-            responseEntity = new ResponseEntity<>("Sent to Neo4J", HttpStatus.ACCEPTED);
+            responseEntity = new ResponseEntity<>("Sent to Neo4j", HttpStatus.ACCEPTED);
         }
         /* if answer is NOT accepted by user then send it to manual-answer-service via kafka */
         if (!sendQuery.getStatus().isAccepted()) {
