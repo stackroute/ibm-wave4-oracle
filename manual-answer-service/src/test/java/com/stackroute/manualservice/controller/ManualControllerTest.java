@@ -1,9 +1,11 @@
 package com.stackroute.manualservice.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.stackroute.manualservice.config.KafkaConsumerConfig;
 import com.stackroute.manualservice.domain.Query;
 import com.stackroute.manualservice.domain.UserQuery;
 import com.stackroute.manualservice.repository.ManualRepository;
+import com.stackroute.manualservice.service.ManualService;
 import com.stackroute.manualservice.service.ManualServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,14 +35,21 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@WebMvcTest
 @AutoConfigureMockMvc
 public class ManualControllerTest {
     @Autowired
     private MockMvc mockMvc;
     private UserQuery userQuery;
     private Query query;
-    @Autowired
+    @MockBean
+    private ManualService manualService;
+    @MockBean
+    private KafkaConsumerConfig consumerConfig;
+
+    @MockBean
+    private KafkaTemplate<Object,Object> kafkaTemplate;
+    @InjectMocks
     private ManualController controller;
 
 
