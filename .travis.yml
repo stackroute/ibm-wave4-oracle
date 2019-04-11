@@ -1,5 +1,9 @@
 language: java
 jdk: openjdk11
+  
+cache:
+  directories:
+    - "$HOME/.m2/repository"
 services:
   - docker
 env:
@@ -11,11 +15,9 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
   
-before_script:
-  - docker-compose up --build -d mongo mysql eureka-server
-  
-cache:
-  directories:
-    - "$HOME/.m2/repository"
+script:
+  - docker-compose build
+  - docker-compose run mongo mysql
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)
