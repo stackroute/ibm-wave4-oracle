@@ -12,7 +12,7 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
   
 before_script:
-  - docker-compose -f common-service.yml up --build -d
+  - docker-compose up --build -d mongo mysql eureka-server
   
 cache:
   directories:
