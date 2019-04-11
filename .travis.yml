@@ -6,6 +6,5 @@ cache:
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 script:
-  - mvn clean package -DskipTests=true
-
-
+  - mvn clean package -DskipTests=true jacoco:report org.jacoco:jacoco-maven-plugin:prepare-agent 
+  - mvn sonar:sonar -Dsonar.projectKey=mritunjayr_ibm-wave4-oracle -Dsonar.organization=mritunjayr-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=6c8053fb41ecab6c0293c0fa6080120c794e25f2
