@@ -7,7 +7,7 @@ cache:
 services:
   - docker
 
-before_install:
+before_script:
   - docker-compose -f common-service.yml up --build -d kafka mongo mysql
   - docker ps -a
 
