@@ -1,12 +1,10 @@
 package com.stackroute.userservice.controller;
 
 import com.stackroute.userservice.domain.Response;
-import com.stackroute.userservice.exception.UnauthorizedException;
 import com.stackroute.userservice.domain.UserDTO;
 import com.stackroute.userservice.domain.User;
 import com.stackroute.userservice.security.JwtTokenUtil;
 import com.stackroute.userservice.security.JwtUser;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
