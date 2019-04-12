@@ -11,10 +11,8 @@ services:
     hostname: 127.0.0.1
     volumes:
       - /home/mongo/data:/var/lib/mongo
-      mem_limit: 100m
-      mem_reservation: 100m
-
-
+    mem_limit: 100m
+    mem_reservation: 100m
   mysql:
     image: mysql:5.7
     restart: always
@@ -31,7 +29,6 @@ services:
       - /DB/mysql:/var/lib/mysql
     mem_limit: 100m
     mem_reservation: 100m
-
   neo4j:
     image: neo4j:3.5.3
     ports:
@@ -50,7 +47,6 @@ services:
       - NEO4J_AUTH=neo4j/1234
     mem_limit: 100m
     mem_reservation: 100m
-
   eureka-server:
     build: eureka-server/
     restart: always
@@ -60,7 +56,6 @@ services:
       - 8761:8761
     mem_limit: 100m
     mem_reservation: 100m
-
   config-service:
     build: config-server/
     restart: always
@@ -71,7 +66,6 @@ services:
       - 8888:8888
     mem_limit: 100m
     mem_reservation: 100m
-
   zuul-apigateway:
     build: zuul-api/
     depends_on:
@@ -84,7 +78,6 @@ services:
       - 8080:8080
     mem_limit: 100m
     mem_reservation: 100m
-
   zookeeper:
     container_name: zookeeper
     image: zookeeper:latest
@@ -100,7 +93,6 @@ services:
       ZOOKEEPER_TICK_TIME: 2000000000
       mem_limit: 100m
       mem_reservation: 100m
-
   kafka:
     container_name: kafka
     image: wurstmeister/kafka:latest
@@ -122,7 +114,6 @@ services:
       - '/var/run/docker.sock:/var/run/docker.sock'
     mem_limit: 200m
     mem_reservation: 200m
-
   manual-answer:
     build: manual-answer-service/
     restart: always
@@ -137,7 +128,6 @@ services:
       - eureka-server
     mem_limit: 300m
     mem_reservation: 300m
-
   user-service:
     build: user-service/
     restart: always
@@ -151,7 +141,6 @@ services:
       - eureka-server
     mem_limit: 200m
     mem_reservation: 200m
-
   oraclefrontend:
     build: oracle-frontend/
     image: oracle-frontend:latest
@@ -161,7 +150,6 @@ services:
     ports:
       - 4200:4200
     restart: always
-
   bot-service:
     build: bot-service/
     restart: always
@@ -177,7 +165,6 @@ services:
       - config-service
     mem_limit: 300m
     mem_reservation: 200m
-
   queryautocorrector-service:
     build: queryautocorrector-service/
     restart: always
@@ -188,7 +175,6 @@ services:
     depends_on:
       - bot-service
       - eureka-server
-
   graph-query-service:
     build: graph-query-service/
     image: graph-query-service
@@ -199,9 +185,11 @@ services:
       - 8082:8082
     depends_on:
       - neo4j
+      - kafka
+      - zookeeper
+      - eureka-server
     mem_limit: 200m
     mem_reservation: 200m
-
   extract-intent-service:
     build: extract-intent-service/
     image: extract-intent-service

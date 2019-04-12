@@ -1,9 +1,7 @@
-package com.stackroute.manualservice.config;
+package com.stackroute.graphqueryservice.config;
 
-import com.stackroute.manualservice.domain.Query;
-import com.stackroute.manualservice.domain.QuestionDTO;
-import com.stackroute.manualservice.service.ManualService;
-import com.stackroute.manualservice.service.ManualServiceImpl;
+import com.stackroute.graphqueryservice.domain.QuestionDTO;
+import com.stackroute.graphqueryservice.service.GraphQueryServiceImpl;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,15 +23,14 @@ import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 @EnableKafka
 public class KafkaConsumerConfig {
 
-    private ManualServiceImpl manualService;
+    private GraphQueryServiceImpl graphQueryService;
 
     @Autowired
-    public KafkaConsumerConfig(ManualServiceImpl manualService) {
-
-        this.manualService = manualService;
+    public KafkaConsumerConfig(GraphQueryServiceImpl graphQueryService) {
+        this.graphQueryService = graphQueryService;
     }
 
-    //Declaration
+     //Declaration
 
     private final Logger logger = LoggerFactory.getLogger(KafkaConsumerConfig.class);
 
@@ -58,23 +55,26 @@ public class KafkaConsumerConfig {
     }
 
 
-    @KafkaListener(id = "queryGroup", topics = "new_query")
+    @KafkaListener(id = "graphGroup", topics = "updated_query")
     public void listen(QuestionDTO questionDTO) {
 
-        logger.info("Received: " + questionDTO);
+        logger.info("Inside Kafka Consumer ******Received: " + questionDTO);
+        System.out.println(questionDTO.getAnswer());
+        System.out.println(questionDTO.getQuestion());
+        System.out.println(questionDTO.getConcept());
+        System.out.println(graphQueryService.getClass());
+        graphQueryService.createNodesAndRelationships(questionDTO.getConcept(),questionDTO.getQuestion(),questionDTO.getAnswer());
 
-        System.out.println(manualService.getClass());
-
-        manualService.saveToDataBase(questionDTO);
+        System.out.println("Relationship created");
 
     }
-
 
     @Bean
     public NewTopic topic() {
 
-        return new NewTopic("new_query", 1, (short) 1);
+        return new NewTopic("update_query", 1, (short) 1);
     }
+
 
 
 }

@@ -1,6 +1,7 @@
 package com.stackroute.manualservice.controller;
 
 import com.stackroute.manualservice.domain.Query;
+import com.stackroute.manualservice.domain.QuestionDTO;
 import com.stackroute.manualservice.domain.UserQuery;
 import com.stackroute.manualservice.exception.QueryNotFoundException;
 import com.stackroute.manualservice.service.ManualService;
@@ -64,10 +65,28 @@ public class ManualController {
 
         UserQuery updateQuestion = manualService.updateQuestion(query,concept);
 
-        logger.info("Updated Questions:" + updateQuestion);
+
+        if(updateQuestion == null){
+            throw new QueryNotFoundException("query not found");
+        }
+       // logger.info("Updated Questions:" + updateQuestion);
+
+
+        System.out.println("******updated Question*****" + updateQuestion);
+        // configure QuestionDTo to send to kafka
+
+        QuestionDTO questionDTO = new QuestionDTO();
+        questionDTO.setQuestion(query.getQuestion());
+        questionDTO.setId(query.getId());
+        questionDTO.setAnswer(query.getAnswer());
+        questionDTO.setConcept(concept);
+
+
+        System.out.println("***********Question DTO**********" + questionDTO);
+        logger.info("question Dto ******" + questionDTO);
 
         // send data back to the bot service
-        kafkaTemplate.send("update_query", updateQuestion);
+        kafkaTemplate.send("updated_query", questionDTO);
 
         //Delete that quedstion from Consumer side
 

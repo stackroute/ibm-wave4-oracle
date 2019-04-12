@@ -18,6 +18,8 @@ public class GraphQueryServiceImpl implements GraphQueryService {
     private QueryRepository queryRepository;
     private ConceptRepository conceptRepository;
 
+
+
     @Autowired
     public GraphQueryServiceImpl(QueryRepository queryRepository, ConceptRepository conceptRepository) {
         this.queryRepository = queryRepository;
@@ -38,9 +40,12 @@ public class GraphQueryServiceImpl implements GraphQueryService {
         creates question and answer domain and also creates relationship between them,
         and also this entire set is attached to particular concept
      */
+
+
     @Override
-    public List<Questions> createNodesAndRelationships(String concept, String question, String answer) {
-        return queryRepository.createNodesAndRelationships(concept, question, answer);
+    public void createNodesAndRelationships(String concept, String question, String answer) {
+        queryRepository.createNodesAndRelationships(, question, answer);
+        System.out.println("Relationship created");
     }
 
     /*
