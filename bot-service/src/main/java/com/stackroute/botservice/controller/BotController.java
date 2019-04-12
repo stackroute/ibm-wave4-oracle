@@ -63,6 +63,7 @@ public class BotController {
             response = new ArrayList<>();
             sendQuery.setQueryAnswer(new QueryAnswer("", correctedQuery, answer));
             sendQuery.getStatus().setAnswered(true);
+            sendQuery.setSuggested(false);
             response.add(sendQuery);
         }
         if (answer == null) {
@@ -72,7 +73,7 @@ public class BotController {
             List<QueryAnswer> queryAnswer = probableAnswers.getResponses();
 
             for (QueryAnswer qa : queryAnswer) {
-                response.add(new SendQuery(qa, new Status(false, true)));
+                response.add(new SendQuery(qa, new Status(false, true),true));
             }
         }
 
