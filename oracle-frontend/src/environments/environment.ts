@@ -8,7 +8,10 @@ export const environment = {
   loginData:'http://localhost:8081/api/v1/login',
   allUserData:'http://localhost:8081/api/v1/users',
   singleUserData:'http://localhost:8081/api/v1/user',
-  manaul_answer:'http://localhost:8091/api/v1/'
+  manaul_answer:'http://localhost:8091/api/v1/',
+  dialogflow:{
+    angularBot:'aa0e2a8f0792403c8119d2410e7aafd1'
+  },
 };
 
 /*

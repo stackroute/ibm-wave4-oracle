@@ -26,6 +26,9 @@ import { AdmindashboardComponent } from "./admindashboard/admindashboard.compone
 import { ProfileComponent } from './profile/profile.component';
 import { AllUsersProfileComponent } from './all-users-profile/all-users-profile.component';
 import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
+import { TourismBotComponent } from './tourism-bot/tourism-bot.component';
+import { CommonModule } from "@angular/common";
+import { TourismService } from "./tourism.service";
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
     AdmindashboardComponent,
     ProfileComponent,
     AllUsersProfileComponent,
-    ManualAnswerComponent
+    ManualAnswerComponent,
+    TourismBotComponent,
   ],
 
   imports: [
@@ -55,9 +59,11 @@ import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
     MatTabsModule,
     MatInputModule,
     MatDatepickerModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    CommonModule
   ],
-  providers: [UserService, AuthGuard],
+  exports: [TourismBotComponent],
+  providers: [UserService, AuthGuard,TourismService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
