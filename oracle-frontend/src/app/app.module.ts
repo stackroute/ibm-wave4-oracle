@@ -25,6 +25,7 @@ import { UserdashboardComponent } from "./userdashboard/userdashboard.component"
 import { AdmindashboardComponent } from "./admindashboard/admindashboard.component";
 import { ProfileComponent } from './profile/profile.component';
 import { AllUsersProfileComponent } from './all-users-profile/all-users-profile.component';
+import { RecastMovieComponent } from './recast-movie/recast-movie.component';
 import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
 import { TourismBotComponent } from './tourism-bot/tourism-bot.component';
 import { CommonModule } from "@angular/common";
@@ -44,6 +45,8 @@ import { TourismService } from "./tourism.service";
     AllUsersProfileComponent,
     ManualAnswerComponent,
     TourismBotComponent,
+    RecastMovieComponent
+    ManualAnswerComponent
   ],
 
   imports: [

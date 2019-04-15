@@ -7,6 +7,9 @@ import { UserdashboardComponent } from "./userdashboard/userdashboard.component"
 import { AdmindashboardComponent } from "./admindashboard/admindashboard.component";
 import { AuthGuard } from "./auth.guard";
 import { ChatBotHomepageComponent } from "./chat-bot-homepage/chat-bot-homepage.component";
+import { ProfileComponent } from "./profile/profile.component";
+import { AllUsersProfileComponent } from "./all-users-profile/all-users-profile.component";
+import { RecastMovieComponent } from "./recast-movie/recast-movie.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {AllUsersProfileComponent} from "./all-users-profile/all-users-profile.component";
 import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
@@ -18,22 +21,23 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "manual", component: ManualAnswerComponent },
   { path: "chatbot", component: ChatBotHomepageComponent },
-
+  { path: "recast", component: RecastMovieComponent },
   {
     path: "admindashboard",
     component: AdmindashboardComponent,
     canActivate: [AuthGuard],
-    children:[
+    children: [
       {
-        path:"profile",component:UserdashboardComponent
+        path: "profile",
+        component: UserdashboardComponent
       },
       {
-        path:"users",component:AllUsersProfileComponent
+        path: "users",
+        component: AllUsersProfileComponent
       }
-
     ]
   },
-  {path:"profile",component:ProfileComponent},
+  { path: "profile", component: ProfileComponent },
   { path: "userdashboard", component: UserdashboardComponent },
   { path:"tourism-bot",component:TourismBotComponent},
   { path: "**", pathMatch: "full", redirectTo: "home" }
