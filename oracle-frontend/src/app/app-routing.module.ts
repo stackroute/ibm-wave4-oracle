@@ -7,15 +7,10 @@ import { UserdashboardComponent } from "./userdashboard/userdashboard.component"
 import { AdmindashboardComponent } from "./admindashboard/admindashboard.component";
 import { AuthGuard } from "./auth.guard";
 import { ChatBotHomepageComponent } from "./chat-bot-homepage/chat-bot-homepage.component";
-<<<<<<< HEAD
-import { ProfileComponent } from "./profile/profile.component";
 import { AllUsersProfileComponent } from "./all-users-profile/all-users-profile.component";
 import { RecastMovieComponent } from "./recast-movie/recast-movie.component";
-=======
-import {ProfileComponent} from "./profile/profile.component";
-import {AllUsersProfileComponent} from "./all-users-profile/all-users-profile.component";
-import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
->>>>>>> a2974108d863c36617a0c669b03c59a8b6623e9e
+import { ProfileComponent } from "./profile/profile.component";
+import { ManualAnswerComponent } from "./manual-answer/manual-answer.component";
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
