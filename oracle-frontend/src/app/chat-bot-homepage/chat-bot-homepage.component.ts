@@ -34,12 +34,17 @@ export class ChatBotHomepageComponent implements OnInit {
   };
 
   queryList: any = [];
-  botItems:any=[  {"icon":"fas fa-dollar-sign","name":"Stock"},
-                  {"icon":"fas fa-train","name":"Train"},
-                  {"icon":"fas fa-plane","name":"Air-Ticket"},
-                  {"icon":"fas fa-cloud","name":"Weather"}
+  botItems:any=[
+                  {"icon":"fas fa-cloud","name":"Weather", "rvalue":"abc"},
+                  {"icon":"fas fa-globe-africa","name":"Tourism", "rvalue":"/tourism-bot"},
+                  {"icon":"fas fa-film","name":"Movie", "rvalue":"xyz"}
                 ];
-  botBasket:any=[{"icon":"fas fa-cloud","name":"Weather"}];
+  botBasket:any=[{"icon":"fas fa-cloud","name":"Weather"},
+                {"icon":"fas fa-globe-africa","name":"Tourism", "rvalue":"/tourism-bot"},
+                {"icon":"fas fa-film","name":"Movie"}
+  ];
+
+  
 
   ngOnInit() {
 

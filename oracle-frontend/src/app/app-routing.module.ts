@@ -11,6 +11,7 @@ import { AllUsersProfileComponent } from "./all-users-profile/all-users-profile.
 import { RecastMovieComponent } from "./recast-movie/recast-movie.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { ManualAnswerComponent } from "./manual-answer/manual-answer.component";
+import { TourismBotComponent } from "./tourism-bot/tourism-bot.component";
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -36,6 +37,7 @@ const routes: Routes = [
   },
   { path: "profile", component: ProfileComponent },
   { path: "userdashboard", component: UserdashboardComponent },
+  { path: "tourism-bot", component: TourismBotComponent },
   { path: "**", pathMatch: "full", redirectTo: "home" }
 ];
 

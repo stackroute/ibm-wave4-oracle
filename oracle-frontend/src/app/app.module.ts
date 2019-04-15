@@ -24,10 +24,20 @@ import {
 } from "@angular/material";
 import { UserdashboardComponent } from "./userdashboard/userdashboard.component";
 import { AdmindashboardComponent } from "./admindashboard/admindashboard.component";
+<<<<<<< HEAD
 import { ProfileComponent } from "./profile/profile.component";
 import { AllUsersProfileComponent } from "./all-users-profile/all-users-profile.component";
 import { RecastMovieComponent } from "./recast-movie/recast-movie.component";
 import { ManualAnswerComponent } from "./manual-answer/manual-answer.component";
+=======
+import { ProfileComponent } from './profile/profile.component';
+import { AllUsersProfileComponent } from './all-users-profile/all-users-profile.component';
+import { RecastMovieComponent } from './recast-movie/recast-movie.component';
+import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
+import { TourismBotComponent } from './tourism-bot/tourism-bot.component';
+import { CommonModule } from "@angular/common";
+import { TourismService } from "./tourism.service";
+>>>>>>> 030c2b2bb17cbfb93c58c015181e5a6baf42d762
 
 @NgModule({
   declarations: [
@@ -41,7 +51,13 @@ import { ManualAnswerComponent } from "./manual-answer/manual-answer.component";
     AdmindashboardComponent,
     ProfileComponent,
     AllUsersProfileComponent,
+<<<<<<< HEAD
     RecastMovieComponent,
+=======
+    ManualAnswerComponent,
+    TourismBotComponent,
+    RecastMovieComponent
+>>>>>>> 030c2b2bb17cbfb93c58c015181e5a6baf42d762
     ManualAnswerComponent
   ],
 
@@ -58,9 +74,11 @@ import { ManualAnswerComponent } from "./manual-answer/manual-answer.component";
     MatTabsModule,
     MatInputModule,
     MatDatepickerModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    CommonModule
   ],
-  providers: [UserService, AuthGuard],
+  exports: [TourismBotComponent],
+  providers: [UserService, AuthGuard,TourismService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
