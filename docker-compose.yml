@@ -1,4 +1,5 @@
 version: '2.4'
+
 services:
   mongo:
     image: mongo:3.4-jessie
@@ -174,6 +175,7 @@ services:
     depends_on:
       - bot-service
       - eureka-server
+
 
   graph-query-service:
     build: graph-query-service/

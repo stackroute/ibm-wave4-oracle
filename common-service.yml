@@ -44,7 +44,6 @@ services:
     mem_limit: 200m
 
 
-
   config-service:
     build: config-server/
     restart: always
@@ -71,7 +70,7 @@ services:
 
   zookeeper:
     container_name: zookeeper
-    image: wurstmeister/zookeeper:latest
+    image: zookeeper:latest
     restart: always
     ports:
       - 2181:2181
