@@ -1,11 +1,8 @@
-package com.stackroute.manualservice.controller;
+package com.stackroute.userservice.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.stackroute.manualservice.domain.Query;
-import com.stackroute.manualservice.domain.UserQuery;
-import com.stackroute.manualservice.listener.ProducerService;
-import com.stackroute.manualservice.service.ManualService;
-import com.stackroute.manualservice.service.ManualServiceImpl;
+import com.stackroute.userservice.domain.User;
+import com.stackroute.userservice.service.UserServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +10,6 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -22,57 +18,60 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.when;
+
 @RunWith(SpringRunner.class)
 @WebMvcTest
-public class ManualControllerTest {
+public class UserLoginControllerTest {
     @Autowired
     private MockMvc mockMvc;
-
-    private UserQuery userQuery;
-    private Query query;
-
-    @MockBean
-    private ManualService manualService;
-    @MockBean
-    private ProducerService producerService;
+    private User user;
     @InjectMocks
-    private ManualController manualController;
+    private UserServiceImpl userService;
+    @InjectMocks
+    private UserLoginController userLoginController;
+    private List<User> list = null;
 
-    private List<UserQuery> list = null;
-    private List<Query> queryList = null;
 
     @Before
     public void setUp() throws Exception {
+
         MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(manualController).build();
-        queryList=new ArrayList<>();
-        query = new Query();
-        query.setQuestion("abcd");
-        query.setId("1");
-        query.setAnswer("kjsfdjefj");
-        queryList.add(query);
-        userQuery = new UserQuery();
-        userQuery.setQuery(queryList);
-        userQuery.setConcept("concept");
-        userQuery.setId("we");
+        mockMvc = MockMvcBuilders.standaloneSetup(userLoginController).build();
+        user = new User();
+       user.setId(1);
+       user.setConfirmPassword("yutr");
+        list = new ArrayList();
+        list.add(user);
+
 
     }
 
     @Test
-    public void getAllQuestions() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/questions")
-                .contentType(MediaType.APPLICATION_JSON).content(asJsonString(userQuery)))
+    public void getAllUsers() throws Exception{
+        when(userService.findall()).thenReturn(list);
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/")
+                .contentType(MediaType.APPLICATION_JSON).content(asJsonString(user)))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
+    public void getUser() throws Exception {
+
+        when(userService.getUserByEmail("priyamd2017@gmail.com")).thenReturn(user);
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/")
+                .contentType(MediaType.APPLICATION_JSON).content(asJsonString(user)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
 
+
     }
-
-
-
     private static String asJsonString(final Object obj)
     {
         try{
@@ -82,5 +81,4 @@ public class ManualControllerTest {
             throw new RuntimeException(e);
         }
     }
-
 }

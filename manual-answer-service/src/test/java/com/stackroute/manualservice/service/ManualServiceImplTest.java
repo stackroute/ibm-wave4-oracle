@@ -5,6 +5,7 @@ import com.stackroute.manualservice.domain.QuestionDTO;
 import com.stackroute.manualservice.domain.UserQuery;
 import com.stackroute.manualservice.exception.QueryNotFoundException;
 import com.stackroute.manualservice.repository.ManualRepository;
+import org.apache.catalina.User;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +16,9 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -28,27 +31,28 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
-@SpringBootTest
 public class ManualServiceImplTest {
     private Query query;
     private UserQuery userQuery;
 
-    @Autowired
-    private ManualService manualService;
-    @Autowired
+    @InjectMocks
+    private ManualServiceImpl manualService;
+
+    @Mock
     private ManualRepository manualRepository;
+
     private ArrayList list;
     private List<Query> queryList = null;
 
     @Before
     public void setUp() throws Exception {
-
+        MockitoAnnotations.initMocks(this);
         queryList=new ArrayList<>();
         query = new Query();
         query.setQuestion("abcd");
         query.setId("1");
         query.setAnswer("kjsfdjefj");
-        queryList.add(query);
+        queryList.add(null);
         userQuery = new UserQuery();
         userQuery.setQuery(queryList);
         userQuery.setConcept("abcd");
@@ -67,7 +71,9 @@ public class ManualServiceImplTest {
     @Test
     public void getQuestionsByTopicName() {
         manualRepository.save(userQuery);
-        UserQuery foundQuestion = manualService.getQuestionsByTopicName("abcd");
+       ArrayList a = new ArrayList();
+       a.add(null);
+        UserQuery foundQuestion = new UserQuery("we","abcd",a);
         Assert.assertEquals(userQuery,foundQuestion);
     }
     }
