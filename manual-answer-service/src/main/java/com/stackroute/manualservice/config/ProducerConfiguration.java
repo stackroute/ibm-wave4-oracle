@@ -1,5 +1,6 @@
 package com.stackroute.manualservice.config;
 
+import com.stackroute.manualservice.domain.QuestionDTO;
 import com.stackroute.manualservice.domain.UserQuery;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +16,7 @@ import java.util.Map;
 @Configuration
 public class ProducerConfiguration {
     @Bean
-    public ProducerFactory<String, UserQuery> producerFactory() {
+    public ProducerFactory<String, QuestionDTO> producerFactory() {
         Map<String, Object> config = new HashMap<>();
 
         config.put(org.apache.kafka.clients.producer.ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
@@ -27,7 +28,8 @@ public class ProducerConfiguration {
 
 
     @Bean
-    public KafkaTemplate<String, UserQuery> kafkaTemplate() {
+    public KafkaTemplate<String, QuestionDTO> kafkaTemplate() {
+
         return new KafkaTemplate<>(producerFactory());
     }
 }

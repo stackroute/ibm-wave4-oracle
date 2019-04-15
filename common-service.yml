@@ -44,7 +44,6 @@ services:
     mem_limit: 200m
 
 
-
   config-service:
     build: config-server/
     restart: always

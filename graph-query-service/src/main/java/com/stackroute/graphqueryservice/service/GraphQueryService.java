@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+
 public interface GraphQueryService {
 
     /*
@@ -23,7 +23,7 @@ public interface GraphQueryService {
         creates question and answer domain and also creates relationship between them,
         and also this entire set is attached to particular concept
      */
-    List<Questions> createNodesAndRelationships(String concept, String question, String answer);
+    void createNodesAndRelationships(String concept, String question, String answer);
 
     /*
         This method displays all the concepts
