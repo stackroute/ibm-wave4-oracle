@@ -7,8 +7,6 @@ import { UserdashboardComponent } from "./userdashboard/userdashboard.component"
 import { AdmindashboardComponent } from "./admindashboard/admindashboard.component";
 import { AuthGuard } from "./auth.guard";
 import { ChatBotHomepageComponent } from "./chat-bot-homepage/chat-bot-homepage.component";
-import { ProfileComponent } from "./profile/profile.component";
-import { AllUsersProfileComponent } from "./all-users-profile/all-users-profile.component";
 import { RecastMovieComponent } from "./recast-movie/recast-movie.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {AllUsersProfileComponent} from "./all-users-profile/all-users-profile.component";

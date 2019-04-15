@@ -45,7 +45,7 @@ import { TourismService } from "./tourism.service";
     AllUsersProfileComponent,
     ManualAnswerComponent,
     TourismBotComponent,
-    RecastMovieComponent
+    RecastMovieComponent,
     ManualAnswerComponent
   ],
 
