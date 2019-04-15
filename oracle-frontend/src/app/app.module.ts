@@ -25,7 +25,11 @@ import { UserdashboardComponent } from "./userdashboard/userdashboard.component"
 import { AdmindashboardComponent } from "./admindashboard/admindashboard.component";
 import { ProfileComponent } from './profile/profile.component';
 import { AllUsersProfileComponent } from './all-users-profile/all-users-profile.component';
+<<<<<<< HEAD
 import { RecastMovieComponent } from './recast-movie/recast-movie.component';
+=======
+import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
+>>>>>>> a2974108d863c36617a0c669b03c59a8b6623e9e
 
 @NgModule({
   declarations: [
@@ -39,7 +43,11 @@ import { RecastMovieComponent } from './recast-movie/recast-movie.component';
     AdmindashboardComponent,
     ProfileComponent,
     AllUsersProfileComponent,
+<<<<<<< HEAD
     RecastMovieComponent
+=======
+    ManualAnswerComponent
+>>>>>>> a2974108d863c36617a0c669b03c59a8b6623e9e
   ],
 
   imports: [

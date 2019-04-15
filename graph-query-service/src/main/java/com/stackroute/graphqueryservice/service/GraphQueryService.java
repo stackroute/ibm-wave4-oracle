@@ -2,6 +2,9 @@ package com.stackroute.graphqueryservice.service;
 
 import com.stackroute.graphqueryservice.domain.Concept;
 import com.stackroute.graphqueryservice.domain.Questions;
+import com.stackroute.graphqueryservice.domain.Response;
+import com.stackroute.graphqueryservice.domain.ResponseDTO;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +16,7 @@ public interface GraphQueryService {
         This method takes concept and question through rest call and
         returns the set of answers for that particular question and concept
      */
-    List<Questions> solution(String concept);
+    ResponseDTO solution(String concept);
 
     /*
         This method takes concept,question and answer through rest call and

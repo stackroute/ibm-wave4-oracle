@@ -15,5 +15,4 @@ public class ManualAnswerServiceApplication {
 		SpringApplication.run(ManualAnswerServiceApplication.class, args);
 
 	}
-
 }
