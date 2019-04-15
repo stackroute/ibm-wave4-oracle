@@ -1,17 +1,16 @@
 package com.stackroute.manualservice.controller;
 
 import com.stackroute.manualservice.domain.Query;
+import com.stackroute.manualservice.domain.QuestionDTO;
 import com.stackroute.manualservice.domain.UserQuery;
 import com.stackroute.manualservice.exception.QueryNotFoundException;
+import com.stackroute.manualservice.listener.ProducerService;
 import com.stackroute.manualservice.service.ManualService;
-import com.stackroute.manualservice.service.ManualServiceImpl;
-import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,14 +24,15 @@ public class ManualController {
     //Declaration
 
     private ManualService manualService;
-    private KafkaTemplate<Object, Object> kafkaTemplate;
+    private ProducerService producerService;
 
     private final Logger logger = LoggerFactory.getLogger(ManualController.class);
 
     @Autowired
-    public ManualController(ManualService manualService, KafkaTemplate<Object, Object> kafkaTemplate) {
+    public ManualController(ManualService manualService, ProducerService producerService) {
         this.manualService = manualService;
-        this.kafkaTemplate = kafkaTemplate;
+        this.producerService = producerService;
+
     }
 
     // Get  Request for getting all the questions
@@ -63,17 +63,36 @@ public class ManualController {
     public ResponseEntity<String> updateQuestion(@RequestBody Query query,@PathVariable("concept") String concept) throws QueryNotFoundException {
 
         UserQuery updateQuestion = manualService.updateQuestion(query,concept);
+        System.out.println(query);
 
-        logger.info("Updated Questions:" + updateQuestion);
+        if(updateQuestion == null){
+            throw new QueryNotFoundException("query not found");
+        }
+       // logger.info("Updated Questions:" + updateQuestion);
+
+
+        System.out.println("******updated Question*****" + updateQuestion);
+        // configure QuestionDTo to send to kafka
+
+        QuestionDTO questionDTO = new QuestionDTO();
+        questionDTO.setQuestion(query.getQuestion());
+        questionDTO.setId(query.getId());
+        questionDTO.setAnswer(query.getAnswer());
+        questionDTO.setConcept(concept);
+
+
+        System.out.println("***********Question DTO**********" + questionDTO);
+        logger.info("question Dto ******" + questionDTO);
 
         // send data back to the bot service
-        kafkaTemplate.send("update_query", updateQuestion);
 
-        //Delete that quedstion from Consumer side
+        producerService.sendTemplate(questionDTO);
+
+        //Delete that question from Consumer side
 
         manualService.deleteQuestion(query,concept);
 
-        return new ResponseEntity<String >("Quey Deleted Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<String >("Query Deleted Successfully", HttpStatus.CREATED);
     }
 
 }

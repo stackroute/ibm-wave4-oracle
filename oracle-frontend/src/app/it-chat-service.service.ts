@@ -13,9 +13,16 @@ export class ItChatServiceService {
       .set("Content-Type", "application/json")
       .append("Access-Control-Allow-Origin", "*")
   };
-  savedQuery(queryAnswer) {
+  getQuery(queryAnswer) {
     return this.http.post(
-      "http://localhost:8090/api/v1/send",
+      "http://localhost:8090/api/v1/getanswer",
+      queryAnswer,
+      this.options
+    );
+  }
+  saveQuery(queryAnswer) {
+    return this.http.post(
+      "http://localhost:8090/api/v1/saveanswer",
       queryAnswer,
       this.options
     );

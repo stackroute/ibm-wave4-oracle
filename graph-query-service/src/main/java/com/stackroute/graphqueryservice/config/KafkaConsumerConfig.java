@@ -1,9 +1,8 @@
-package com.stackroute.manualservice.config;
+package com.stackroute.graphqueryservice.config;
 
-import com.stackroute.manualservice.domain.Query;
-import com.stackroute.manualservice.domain.QuestionDTO;
-
-import com.stackroute.manualservice.service.ManualService;
+import com.stackroute.graphqueryservice.domain.QuestionDTO;
+import com.stackroute.graphqueryservice.service.GraphQueryService;
+import com.stackroute.graphqueryservice.service.GraphQueryServiceImpl;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
@@ -30,6 +29,15 @@ import java.util.Map;
 @Configuration
 @EnableKafka
 public class KafkaConsumerConfig {
+
+    private GraphQueryService graphQueryService;
+
+    @Autowired
+    public KafkaConsumerConfig(GraphQueryService graphQueryService) {
+        this.graphQueryService = graphQueryService;
+    }
+
+     //Declaration
 
 
     //Declaration
@@ -63,7 +71,7 @@ public class KafkaConsumerConfig {
         Map<String, Object> config = new HashMap<>();
 
         config.put(org.apache.kafka.clients.consumer.ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        config.put(org.apache.kafka.clients.consumer.ConsumerConfig.GROUP_ID_CONFIG, "group_json");
+        config.put(org.apache.kafka.clients.consumer.ConsumerConfig.GROUP_ID_CONFIG, "graphGroup");
         config.put(org.apache.kafka.clients.consumer.ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(org.apache.kafka.clients.consumer.ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
         return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(),
@@ -77,6 +85,26 @@ public class KafkaConsumerConfig {
         return factory;
     }
 
+
+//    @KafkaListener(id = "graphGroup", topics = "updated_query")
+//    public void listen(QuestionDTO questionDTO) {
+//
+//        logger.info("Inside Kafka Consumer ******Received: " + questionDTO);
+//        System.out.println(questionDTO.getAnswer());
+//        System.out.println(questionDTO.getQuestion());
+//        System.out.println(questionDTO.getConcept());
+//        System.out.println(graphQueryService.getClass());
+//        graphQueryService.createNodesAndRelationships(questionDTO.getConcept(),questionDTO.getQuestion(),questionDTO.getAnswer());
+//
+//        System.out.println("Relationship created");
+//
+//    }
+//
+//    @Bean
+//    public NewTopic topic() {
+//
+//        return new NewTopic("update_query", 1, (short) 1);
+//    }
 
 
 

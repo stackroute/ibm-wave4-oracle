@@ -49,7 +49,7 @@ export class ChatBotHomepageComponent implements OnInit {
     let jsonQuery = JSON.stringify({ queryAnswer: this.queryAnswer, status: this.status });
     console.log("submitted" + jsonQuery);
     this.queryList.push(JSON.parse(jsonQuery));
-    this.chatService.savedQuery(jsonQuery).subscribe((value1 :any) => {
+    this.chatService.getQuery(jsonQuery).subscribe((value1 :any) => {
       console.log(value1);
       value1.forEach(data=>{
       this.queryList.push(data)});
@@ -74,7 +74,7 @@ export class ChatBotHomepageComponent implements OnInit {
   submitAccepted(data){
     data.status.accepted  =true;
     data.queryAnswer.id=10;
-    this.chatService.savedQuery(data).subscribe((value1 :any) => {
+    this.chatService.saveQuery(data).subscribe((value1 :any) => {
       console.log(value1);
     });
   }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ManualServiceImpl implements ManualService {
@@ -40,7 +41,7 @@ public class ManualServiceImpl implements ManualService {
         //if no Document with concept is present
         if (userQuery == null) {
             userQuery = new UserQuery();
-            query.setId("1");
+            query.setId(UUID.randomUUID().toString());
             userQuery.setConcept(questionDTO.getConcept());
             List<Query> queryList = new ArrayList<Query>();
             queryList.add(query);
@@ -52,7 +53,7 @@ public class ManualServiceImpl implements ManualService {
 
         else {
             List<Query> queryList = userQuery.getQuery();
-            query.setId(String.valueOf(queryList.size() + 1));
+            query.setId(UUID.randomUUID().toString());
             queryList.add(query);
             userQuery.setQuery(queryList);
             return manualRepository.save(userQuery);
@@ -130,10 +131,9 @@ public class ManualServiceImpl implements ManualService {
             //check is question found or not
             if (isQuestionFound) {
                 queryList.remove(query);
-                if(queryList.isEmpty()){
+                if (queryList.isEmpty()) {
                     this.manualRepository.delete(userQuery);
-                }
-                else{
+                } else {
                     userQuery.setQuery(queryList);
                 }
 
