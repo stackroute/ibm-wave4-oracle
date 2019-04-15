@@ -14,7 +14,8 @@ import { UserService } from "./user.service";
 import { AuthGuard } from "./auth.guard";
 import { ChatBotHomepageComponent } from "./chat-bot-homepage/chat-bot-homepage.component";
 import {
-  MatButtonModule, MatButtonToggleModule,
+  MatButtonModule,
+  MatButtonToggleModule,
   MatDatepickerModule,
   MatDividerModule,
   MatInputModule,
@@ -43,6 +44,7 @@ import { TourismService } from "./tourism.service";
     AdmindashboardComponent,
     ProfileComponent,
     AllUsersProfileComponent,
+    RecastMovieComponent,
     ManualAnswerComponent,
     TourismBotComponent,
     RecastMovieComponent,
