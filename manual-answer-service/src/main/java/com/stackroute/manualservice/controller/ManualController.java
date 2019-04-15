@@ -63,7 +63,7 @@ public class ManualController {
     public ResponseEntity<String> updateQuestion(@RequestBody Query query,@PathVariable("concept") String concept) throws QueryNotFoundException {
 
         UserQuery updateQuestion = manualService.updateQuestion(query,concept);
-
+        System.out.println(query);
 
         if(updateQuestion == null){
             throw new QueryNotFoundException("query not found");
@@ -86,8 +86,7 @@ public class ManualController {
 
         // send data back to the bot service
 
-        producerService.sendTemplate(updateQuestion);
-
+        producerService.sendTemplate(questionDTO);
 
         //Delete that question from Consumer side
 

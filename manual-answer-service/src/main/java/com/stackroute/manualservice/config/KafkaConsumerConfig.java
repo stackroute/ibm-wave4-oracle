@@ -2,9 +2,8 @@ package com.stackroute.manualservice.config;
 
 import com.stackroute.manualservice.domain.Query;
 import com.stackroute.manualservice.domain.QuestionDTO;
-import com.stackroute.manualservice.domain.UserQuery;
+
 import com.stackroute.manualservice.service.ManualService;
-import com.stackroute.manualservice.service.ManualServiceImpl;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
@@ -31,7 +30,6 @@ import java.util.Map;
 @Configuration
 @EnableKafka
 public class KafkaConsumerConfig {
-
 
 
     //Declaration
