@@ -1,8 +1,7 @@
 package com.stackroute.graphqueryservice.controller;
 
 
-import com.stackroute.graphqueryservice.domain.Concept;
-import com.stackroute.graphqueryservice.domain.Questions;
+import com.stackroute.graphqueryservice.domain.*;
 import com.stackroute.graphqueryservice.service.GraphQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +16,8 @@ public class GraphQueryController {
 
     private GraphQueryService graphQueryService;
 
-    private Questions questions;
+    private Questions question;
+    private Answer answer;
 
     @Autowired
     public GraphQueryController(GraphQueryService graphQueryService) {
@@ -37,7 +37,7 @@ public class GraphQueryController {
         returns the set of answers for that particular question and concept
      */
     @GetMapping("/answer/{concept}")
-    public ResponseEntity<List<Questions>> getSolution(@PathVariable String concept) {
+    public ResponseEntity<ResponseDTO> getSolution(@PathVariable String concept) {
         return new ResponseEntity<>(graphQueryService.solution(concept), HttpStatus.FOUND);
     }
 
@@ -46,8 +46,10 @@ public class GraphQueryController {
        creates question and answer domain and also creates relationship between them,
        and also this entire set is attached to particular concept
     */
-    @PostMapping("/relationship/{concept}/{question}/{answer}")
+
+   /* @PostMapping("/relationship/{concept}/{question}/{answer}")
     public ResponseEntity<List<Questions>> createNodesAndRelationships(@PathVariable String concept, @PathVariable String question, @PathVariable String answer) {
         return new ResponseEntity<>(graphQueryService.createNodesAndRelationships(concept, question, answer), HttpStatus.CREATED);
-    }
+    }*/
+
 }

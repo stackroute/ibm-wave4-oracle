@@ -1,0 +1,37 @@
+<div class="wrap">
+  <div id="chatWindow" class="container overflow-auto">
+    <div id="header">
+      <h1 class="gradient-multiline overflowInit">
+        MOVIE BOT
+      </h1>
+    </div>
+    <div class="messages gradient-multiline overflowInit">
+      <p class="ours talk-bubble triangle left-top">
+        Hi ! How may i assist you ?
+      </p>
+    </div>
+
+    <div *ngFor="let response of responseArr">
+      <div class="messages gradient-multiline" id="toRight">
+        <p class="ours talk-bubble triangle right-top ">
+          {{ response.results.nlp.source }}
+        </p>
+      </div>
+      <div class="messages gradient-multiline" id="toLeft">
+        <p class="ours talk-bubble triangle left-top ">
+          {{ response.results.messages[0].content }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div id="inputWindow" class="form">
+    <input
+      id="inp"
+      type="text"
+      [(ngModel)]="question"
+      name=""
+      placeholder="Type here..."
+    />
+    <input id="btn" type="button" (click)="askQuestion()" value="Send" />
+  </div>
+</div>

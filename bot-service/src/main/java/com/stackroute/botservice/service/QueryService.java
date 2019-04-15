@@ -7,4 +7,5 @@ import org.springframework.stereotype.Service;
 public interface QueryService {
     QueryAnsListWithConcept saveQuery(QueryAnsListWithConcept queryAnsListWithConcept);
     public String getAnswerOfSimilarQuestion(String concept, String question);
+    public QueryAnsListWithConcept updateQueryAnswer(String concept,String question,String answer);
 }

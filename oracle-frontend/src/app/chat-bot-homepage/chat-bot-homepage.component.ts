@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, HostListener, OnInit} from "@angular/core";
 import {ItChatServiceService} from "../it-chat-service.service";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
@@ -44,20 +44,22 @@ export class ChatBotHomepageComponent implements OnInit {
   ngOnInit() {
 
   }
+  // chat sending and receiving
   onSubmit(value) {
     let jsonQuery = JSON.stringify({ queryAnswer: this.queryAnswer, status: this.status });
     console.log("submitted" + jsonQuery);
     this.queryList.push(JSON.parse(jsonQuery));
-    this.chatService.savedQuery(jsonQuery).subscribe(value1 => {
+    this.chatService.getQuery(jsonQuery).subscribe((value1 :any) => {
       console.log(value1);
-
-      this.queryList.push(value1);
+      value1.forEach(data=>{
+      this.queryList.push(data)});
     });
     console.log(this.queryList);
 
     value.reset();
   }
 
+  // drag event handle
   drop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -67,6 +69,14 @@ export class ChatBotHomepageComponent implements OnInit {
         event.previousIndex,
         event.currentIndex);
     }
+  }
+  // after accepted answer
+  submitAccepted(data){
+    data.status.accepted  =true;
+    data.queryAnswer.id=10;
+    this.chatService.saveQuery(data).subscribe((value1 :any) => {
+      console.log(value1);
+    });
   }
 
 }

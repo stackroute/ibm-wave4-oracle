@@ -1,7 +1,4 @@
-/* #submitbutton:hover {
-  color: blueviolet;
-  background-color: whitesmoke;
-} */
+
 #main {
   background-image: url(../../assets/federico-beccari-62960-unsplash.jpg );
   background-size: cover;
@@ -47,3 +44,34 @@
   max-width: 75%;
   width: fit-content;
 }
+
+
+/*.sb13:before {*/
+/*  content: "";*/
+/*  width: 0px;*/
+/*  height: 0px;*/
+/*  position: absolute;*/
+/*  border-left: 15px solid #00bfb6;*/
+/*  border-right: 15px solid transparent;*/
+/*  border-top: 15px solid #00bfb6;*/
+/*  border-bottom: 15px solid transparent;*/
+/*  right: -16px;*/
+/*  top: 0px;*/
+/*}*/
+
+
+/*!* speech bubble 14 *!*/
+
+/*.sb14:before {*/
+/*  content: "";*/
+/*  width: 0px;*/
+/*  height: 0px;*/
+/*  position: absolute;*/
+/*  border-left: 15px solid transparent;*/
+/*  border-right: 15px solid #00bfb6;*/
+/*  border-top: 15px solid #00bfb6;*/
+/*  border-bottom: 15px solid transparent;*/
+/*  left: -16px;*/
+/*  top: 0px;*/
+/*}*/
+

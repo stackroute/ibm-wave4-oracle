@@ -11,8 +11,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class QueryAnswer {
 
+public class QueryAnswer {
     @Id
     private String id;
     private String question;

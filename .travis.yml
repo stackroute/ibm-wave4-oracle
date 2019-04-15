@@ -1,11 +1,17 @@
 language: java
 jdk: openjdk11
+  
 cache:
   directories:
-    - "$HOME/.m2/repository"
+    - "$HOME/travis/.m2/repository"
+services:
+  - docker
+
+before_script:
+  - docker-compose -f common-service.yml up --build -d kafka mongo mysql
+  - docker ps -a
+
+
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-script:
-  - mvn clean package -DskipTests
-
-
