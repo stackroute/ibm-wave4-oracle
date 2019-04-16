@@ -21,6 +21,7 @@ public class GraphQueryController {
 
     @Autowired
     public GraphQueryController(GraphQueryService graphQueryService) {
+
         this.graphQueryService = graphQueryService;
     }
 
@@ -47,7 +48,7 @@ public class GraphQueryController {
        and also this entire set is attached to particular concept
     */
 
-   /* @PostMapping("/relationship/{concept}/{question}/{answer}")
+    /*@PostMapping("/relationship/{concept}/{question}/{answer}")
     public ResponseEntity<List<Questions>> createNodesAndRelationships(@PathVariable String concept, @PathVariable String question, @PathVariable String answer) {
         return new ResponseEntity<>(graphQueryService.createNodesAndRelationships(concept, question, answer), HttpStatus.CREATED);
     }*/

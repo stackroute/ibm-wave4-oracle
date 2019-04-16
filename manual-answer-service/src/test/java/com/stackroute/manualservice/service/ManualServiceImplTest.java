@@ -35,8 +35,6 @@ public class ManualServiceImplTest {
 
     @Autowired
     private ManualService manualService;
-    @Autowired
-    private ManualRepository manualRepository;
     private ArrayList list;
     private List<Query> queryList = null;
 
@@ -66,7 +64,7 @@ public class ManualServiceImplTest {
 
     @Test
     public void getQuestionsByTopicName() {
-        manualRepository.save(userQuery);
+
         UserQuery foundQuestion = manualService.getQuestionsByTopicName("abcd");
         Assert.assertEquals(userQuery,foundQuestion);
     }

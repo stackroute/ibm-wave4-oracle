@@ -14,25 +14,22 @@ services:
     mem_limit: 100m
     mem_reservation: 100m
 
-
-  mysql:
-    image: mysql:5.7
-    restart: always
-    container_name: mysql
-    network_mode: "host"
-    hostname: localhost
-    environment:
-      MYSQL_ROOT_PASSWORD: root123
-      MYSQL_DATABASE: userDB
-      MYSQL_PASSWORD: root123
-    ports:
-      - 3306:3306
-    volumes:
-      - /DB/mysql:/var/lib/mysql
-    mem_limit: 100m
-    mem_reservation: 100m
-
-
+#  mysql:
+#    image: mysql:5.7
+#    restart: always
+#    container_name: mysql
+#    network_mode: "host"
+#    hostname: localhost
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root123
+#      MYSQL_DATABASE: userDB
+#      MYSQL_PASSWORD: root123
+#    ports:
+#      - 3306:3306
+#    volumes:
+#      - /DB/mysql:/var/lib/mysql
+#    mem_limit: 100m
+#    mem_reservation: 100m
 
   eureka-server:
     build: eureka-server/
@@ -42,7 +39,6 @@ services:
     ports:
       - 8761:8761
     mem_limit: 200m
-
 
   config-service:
     build: config-server/
