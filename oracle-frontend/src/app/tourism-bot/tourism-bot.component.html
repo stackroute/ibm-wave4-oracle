@@ -1,0 +1,36 @@
+
+<div class="wrap">
+  <div class="card-title text-center bg-info">
+    <h1 mat-dialog-title>Trip Planner</h1>
+  </div>
+  <div class="container">
+    <div class="bubble left">
+      <p>
+        Hey! I'm Tourism Trip Planner... Are you looking for help in planning
+        your trip?
+      </p>
+    </div>
+    <ng-container *ngFor="let message of (messages | async)">
+      <div
+        class="message"
+        [ngClass]="{
+          from: message.sentBy === 'bot',
+          to: message.sentBy === 'user'
+        }"
+      >
+        <p>{{ message.content }}</p>
+      </div>
+    </ng-container>
+    <div mat-dialog-actions class="form">
+      <input
+        [(ngModel)]="formValue"
+        (keyup.enter)="sendMessage()"
+        type="text"
+        placeholder="Type or select from above..."
+      />
+      <button mat-stroked-button (click)="sendMessage()" class="button bg-info">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+</div>
