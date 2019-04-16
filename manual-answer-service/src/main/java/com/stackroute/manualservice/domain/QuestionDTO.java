@@ -17,4 +17,10 @@ public class QuestionDTO {
     private String concept;
     private String question;
     private String answer;
+
+    public QuestionDTO(String concept, String question, String answer) {
+        this.concept = concept;
+        this.question = question;
+        this.answer = answer;
+    }
 }

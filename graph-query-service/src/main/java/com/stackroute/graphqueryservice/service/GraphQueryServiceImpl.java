@@ -1,9 +1,6 @@
 package com.stackroute.graphqueryservice.service;
 
-import com.stackroute.graphqueryservice.domain.Concept;
-import com.stackroute.graphqueryservice.domain.Questions;
-import com.stackroute.graphqueryservice.domain.Response;
-import com.stackroute.graphqueryservice.domain.ResponseDTO;
+import com.stackroute.graphqueryservice.domain.*;
 import com.stackroute.graphqueryservice.repository.ConceptRepository;
 import com.stackroute.graphqueryservice.repository.QueryRepository;
 import lombok.NoArgsConstructor;
@@ -17,6 +14,8 @@ import java.util.List;
 public class GraphQueryServiceImpl implements GraphQueryService {
     private QueryRepository queryRepository;
     private ConceptRepository conceptRepository;
+
+
 
     @Autowired
     public GraphQueryServiceImpl(QueryRepository queryRepository, ConceptRepository conceptRepository) {
@@ -38,9 +37,16 @@ public class GraphQueryServiceImpl implements GraphQueryService {
         creates question and answer domain and also creates relationship between them,
         and also this entire set is attached to particular concept
      */
+    private  Questions questions;
+    private Answer answers;
+
     @Override
-    public List<Questions> createNodesAndRelationships(String concept, String question, String answer) {
-        return queryRepository.createNodesAndRelationships(concept, question, answer);
+    public void createNodesAndRelationships(String concept, String question, String answer) {
+        queryRepository.createNodesAndRelationships(concept, question, answer);
+        System.out.println("*******Inside nodes function********");
+        System.out.println(questions.getConcept()+"---------"+questions.getName()+"---------"+answers.getAnswer());
+        queryRepository.createNodesAndRelationships(questions.getConcept(),questions.getName(),answers.getAnswer());
+        System.out.println("Relationship created");
     }
 
     /*

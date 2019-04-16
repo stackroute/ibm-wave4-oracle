@@ -5,6 +5,7 @@ import com.stackroute.manualservice.domain.Query;
 import com.stackroute.manualservice.domain.UserQuery;
 import com.stackroute.manualservice.listener.ProducerService;
 import com.stackroute.manualservice.service.ManualService;
+import com.stackroute.manualservice.service.ManualServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,7 +39,6 @@ public class ManualControllerTest {
     private ManualService manualService;
     @MockBean
     private ProducerService producerService;
-
     @InjectMocks
     private ManualController manualController;
 

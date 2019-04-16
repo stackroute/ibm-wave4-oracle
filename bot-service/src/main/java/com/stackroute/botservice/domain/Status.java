@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 public class Status {
     private boolean accepted;
     private boolean answered;
+    private boolean suggested;
 }

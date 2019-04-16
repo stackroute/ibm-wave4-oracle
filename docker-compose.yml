@@ -1,6 +1,7 @@
 version: '2.4'
 
 services:
+
   neo4j:
     image: neo4j:3.5
     ports:
@@ -30,7 +31,6 @@ services:
       - 8091:8091
     mem_limit: 300m
     mem_reservation: 300m
-
   user-service:
     build: user-service/
     restart: always
@@ -42,15 +42,17 @@ services:
     mem_limit: 200m
     mem_reservation: 200m
 
-  #  oraclefrontend:
-  #    build: oracle-frontend/
-  #    image: oracle-frontend:latest
-  #    container_name: oracle-frontend
-  #    network_mode: "host"
-  #    hostname: localhost
-  #    ports:
-  #      - 4200:4200
-  #    restart: always
+
+  oraclefrontend:
+    build: oracle-frontend/
+    image: oracle-frontend:latest
+    container_name: oracle-frontend
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 4200:4200
+    restart: always
+
 
   bot-service:
     build: bot-service/
@@ -61,7 +63,6 @@ services:
       - 8090:8090
     mem_limit: 300m
     mem_reservation: 200m
-
   queryautocorrector-service:
     build: queryautocorrector-service/
     restart: always
@@ -80,9 +81,9 @@ services:
     hostname: localhost
     ports:
       - 8082:8082
+
     mem_limit: 200m
     mem_reservation: 200m
-
   extract-intent-service:
     build: extract-intent-service/
     image: extract-intent-service

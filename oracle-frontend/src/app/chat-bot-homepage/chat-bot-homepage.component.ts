@@ -41,12 +41,17 @@ export class ChatBotHomepageComponent implements OnInit {
   suggested:boolean=false;
   scrollableH;
   latestQuestion:string="";
-  botItems: any = [{"icon": "fas fa-dollar-sign", "name": "Stock"},
-    {"icon": "fas fa-train", "name": "Train"},
-    {"icon": "fas fa-plane", "name": "Air-Ticket"},
-    {"icon": "fas fa-cloud", "name": "Weather"}
+
+  botItems:any=[
+                  {"icon":"fas fa-cloud","name":"Weather", "rvalue":"abc"},
+                  {"icon":"fas fa-globe-africa","name":"Tourism", "rvalue":"/tourism-bot"},
+                  {"icon":"fas fa-film","name":"Movie", "rvalue":"xyz"}
+                ];
+  botBasket:any=[{"icon":"fas fa-cloud","name":"Weather"},
+                {"icon":"fas fa-globe-africa","name":"Tourism", "rvalue":"/tourism-bot"},
+                {"icon":"fas fa-film","name":"Movie"}
   ];
-  botBasket: any = [{"icon": "fas fa-cloud", "name": "Weather"}];
+
 
   ngOnInit() {
 
@@ -62,8 +67,8 @@ export class ChatBotHomepageComponent implements OnInit {
     this.chatService.getQuery(jsonQuery).subscribe((value1: any) => {
       console.log(value1);
       this.scrollableH=scrollItem.scrollHeight;
-      value1.forEach((data, index) => {
-        if (data.suggested){
+      value1.forEach((data) => {
+        if(data.status.suggested){
 
          this.suggested=true;
           this.suggestionList.push(data);
