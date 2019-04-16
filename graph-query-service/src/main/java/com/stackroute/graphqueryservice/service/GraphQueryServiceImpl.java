@@ -41,6 +41,7 @@ public class GraphQueryServiceImpl implements GraphQueryService {
 
     @Override
     public void createNodesAndRelationships(String concept, String question, String answer) {
+        queryRepository.createNodesAndRelationships(concept, question, answer);
         System.out.println("*******Inside nodes function********");
         System.out.println(queryRepository);
         System.out.println(concept);

@@ -12,5 +12,4 @@ public class SendQuery {
 
     private QueryAnswer queryAnswer;
     private Status status;
-    private boolean suggested;
 }

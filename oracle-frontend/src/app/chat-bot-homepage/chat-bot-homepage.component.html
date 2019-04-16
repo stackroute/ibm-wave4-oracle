@@ -133,10 +133,14 @@
   (cdkDropListDropped)="drop($event)"
   style="background-color: darkolivegreen"
 >
-  <button class="btn btn-outline-light" cdkDrag *ngFor="let item of botBasket">
+
+<div *ngFor="let item of botBasket">
+  <button class="btn btn-outline-light" cdkDrag   routerLink="{{item.rvalue}}">
     <span
-    ><i class="{{ item.icon }}" style="font-size: 5rem;"></i>
+    ><i class="{{ item.icon }}"  style="font-size: 5rem;"></i>
       <p>{{ item.name }}</p>
+      
     </span>
   </button>
+</div>
 </div>
