@@ -10,8 +10,8 @@ import org.springframework.data.annotation.Id;
 @NoArgsConstructor
 public class QuestionDTO {
 
-    @Id
-    private String id;
+    /*@Id
+    private String id;*/
     private String concept;
     private String question;
     private String answer;

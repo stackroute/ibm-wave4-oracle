@@ -86,25 +86,6 @@ public class KafkaConsumerConfig {
     }
 
 
-//    @KafkaListener(id = "graphGroup", topics = "updated_query")
-//    public void listen(QuestionDTO questionDTO) {
-//
-//        logger.info("Inside Kafka Consumer ******Received: " + questionDTO);
-//        System.out.println(questionDTO.getAnswer());
-//        System.out.println(questionDTO.getQuestion());
-//        System.out.println(questionDTO.getConcept());
-//        System.out.println(graphQueryService.getClass());
-//        graphQueryService.createNodesAndRelationships(questionDTO.getConcept(),questionDTO.getQuestion(),questionDTO.getAnswer());
-//
-//        System.out.println("Relationship created");
-//
-//    }
-//
-//    @Bean
-//    public NewTopic topic() {
-//
-//        return new NewTopic("update_query", 1, (short) 1);
-//    }
 
 
 
