@@ -58,7 +58,7 @@ public class BotController {
 
         List<SendQuery> response = null;
 
-        String answer = queryService.getAnswerOfSimilarQuestion(concepts, correctedQuery);
+        String answer = queryService.getAnswerOfSimilarQuestion(concepts, correctedQuery.toLowerCase());
         if (answer != null) {
             response = new ArrayList<>();
             sendQuery.setQueryAnswer(new QueryAnswer("", correctedQuery, answer));
