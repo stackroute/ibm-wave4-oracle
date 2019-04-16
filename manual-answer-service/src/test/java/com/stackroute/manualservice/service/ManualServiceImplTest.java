@@ -35,6 +35,7 @@ public class ManualServiceImplTest {
     private Query query;
     private UserQuery userQuery;
 
+
     @InjectMocks
     private ManualServiceImpl manualService;
 
@@ -70,10 +71,12 @@ public class ManualServiceImplTest {
 
     @Test
     public void getQuestionsByTopicName() {
+
         manualRepository.save(userQuery);
        ArrayList a = new ArrayList();
        a.add(null);
         UserQuery foundQuestion = new UserQuery("we","abcd",a);
+
         Assert.assertEquals(userQuery,foundQuestion);
     }
     }

@@ -64,6 +64,7 @@ services:
       - 8090:8090
     mem_limit: 300m
     mem_reservation: 200m
+
   queryautocorrector-service:
     build: queryautocorrector-service/
     restart: always
@@ -73,7 +74,6 @@ services:
       - 8595:8595
     mem_limit: 300m
 
-
   graph-query-service:
     build: graph-query-service/
     image: graph-query-service
@@ -82,9 +82,9 @@ services:
     hostname: localhost
     ports:
       - 8082:8082
-
     mem_limit: 200m
     mem_reservation: 200m
+
   extract-intent-service:
     build: extract-intent-service/
     image: extract-intent-service
