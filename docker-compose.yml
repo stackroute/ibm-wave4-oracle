@@ -69,6 +69,7 @@ services:
     hostname: localhost
     ports:
       - 8595:8595
+    mem_limit: 300m
 
 
   graph-query-service:

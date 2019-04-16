@@ -16,7 +16,7 @@ import { ChatBotHomepageComponent } from "./chat-bot-homepage/chat-bot-homepage.
 import {
   MatButtonModule, MatButtonToggleModule,
   MatDatepickerModule,
-  MatDividerModule,
+  MatDividerModule, MatExpansionModule,
   MatInputModule,
   MatSidenavModule,
   MatTabsModule
@@ -55,7 +55,8 @@ import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
     MatTabsModule,
     MatInputModule,
     MatDatepickerModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatExpansionModule
   ],
   providers: [UserService, AuthGuard],
   bootstrap: [AppComponent]
