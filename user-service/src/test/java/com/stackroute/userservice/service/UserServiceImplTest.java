@@ -1,3 +1,4 @@
+
 package com.stackroute.userservice.service;
 
 import com.stackroute.userservice.domain.User;
@@ -47,12 +48,13 @@ public class UserServiceImplTest {
 
 
     @Test
-    public void findall(){
+    public void findall() {
         userRepository.save(user);
         //  stubbing the mock to return specific data
-       when(userRepository.findAll()).thenReturn(list);
-        List<User> userQueryList = userService. findall();
+        when(userRepository.findAll()).thenReturn(list);
+        List<User> userQueryList = userService.findall();
         Assert.assertEquals(list, userQueryList);
 
     }
-    }
+}
+

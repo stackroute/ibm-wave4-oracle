@@ -44,15 +44,15 @@ services:
     mem_reservation: 200m
 
 
-  #  oraclefrontend:
-  #    build: oracle-frontend/
-  #    image: oracle-frontend:latest
-  #    container_name: oracle-frontend
-  #    network_mode: "host"
-  #    hostname: localhost
-  #    ports:
-  #      - 4200:4200
-  #    restart: always
+  oraclefrontend:
+    build: oracle-frontend/
+    image: oracle-frontend:latest
+    container_name: oracle-frontend
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 4200:4200
+    restart: always
 
 
   bot-service:
@@ -71,6 +71,7 @@ services:
     hostname: localhost
     ports:
       - 8595:8595
+    mem_limit: 300m
 
 
   graph-query-service:
