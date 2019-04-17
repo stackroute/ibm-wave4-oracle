@@ -17,7 +17,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping(value="/api/v1")
 @CrossOrigin
 public class ManualController {
 

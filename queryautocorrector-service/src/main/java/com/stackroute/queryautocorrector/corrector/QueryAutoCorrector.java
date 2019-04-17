@@ -11,6 +11,8 @@ import java.util.List;
 
 public class QueryAutoCorrector {
 
+    private QueryAutoCorrector(){}
+
     /* This method returns corrected queryAnswer after removing any spelling errors */
 
     public static String correctQuery(String query) throws IOException {
