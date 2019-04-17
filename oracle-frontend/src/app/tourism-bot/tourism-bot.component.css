@@ -58,21 +58,7 @@
     border-right: 8px solid #ccc;
     border-bottom: 4px solid transparent;
   }
-  .message {
-    margin: 1rem 1rem 2rem 1rem;
-    padding: 1rem 1rem 1rem 1rem;
-    position: relative;
-    border-radius: 1rem;
-  }
-  .message.to {
-    border: 1px solid #363636;
-    margin-left: 5rem;
-    text-align: right;
-  }
-  .message.from {
-    border: 1px solid #363636;
-    margin-right: 5rem;
-  }
+  
   .form {
     flex: 0 0 32px;
     display: flex;
@@ -93,4 +79,20 @@
     height: 3rem;
     width: 3rem;
   }
+  .message {
+    margin: 1rem 1rem 2rem 1rem;
+    padding: 1rem 1rem 1rem 1rem;
+    position: relative;
+    border-radius: 1rem;
+  }
+  .message.to {
+    border: 1px solid #363636;
+    margin-left: 5rem;
+    text-align: right;
+  }
+  .message.from {
+    border: 1px solid #363636;
+    margin-right: 5rem;
+  }
+
   

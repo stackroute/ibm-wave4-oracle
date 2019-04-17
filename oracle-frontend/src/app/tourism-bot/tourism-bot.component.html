@@ -1,4 +1,3 @@
-
 <div class="wrap">
   <div class="card-title text-center bg-info">
     <h1 mat-dialog-title>Trip Planner</h1>
@@ -8,24 +7,30 @@
       <p>
         Hey! I'm Tourism Trip Planner... Are you looking for help in planning
         your trip?
+       
       </p>
+    
     </div>
-    <ng-container *ngFor="let message of (messages | async)">
+    <ng-container  *ngFor="let message of messages">
+      <p class="my-3" style="text-align:right">{{formValue}}</p>
+      <p>{{message.speech}}</p>
+      <p class="mx-3">{{ message.textToSpeech }}</p>
+    
       <div
-        class="message"
-        [ngClass]="{
-          from: message.sentBy === 'bot',
-          to: message.sentBy === 'user'
-        }"
+        *ngFor="let sug of message.suggestions"
+        class="btn-block text-center mx-2 my-2"
       >
-        <p>{{ message.content }}</p>
+        <button (click)="onClick(sug.title)" class="btn btn-outline-primary">
+          {{ sug.title }}
+        </button>
       </div>
     </ng-container>
-    <div mat-dialog-actions class="form">
+    <div mat-dialog-actions class="form" ngForm="#myform">
       <input
         [(ngModel)]="formValue"
         (keyup.enter)="sendMessage()"
         type="text"
+        name="formValue"
         placeholder="Type or select from above..."
       />
       <button mat-stroked-button (click)="sendMessage()" class="button bg-info">
