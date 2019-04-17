@@ -42,57 +42,57 @@ public class ManualController {
 
         List<UserQuery> questionList = manualService.getListOfQuestions();
 
-        return new ResponseEntity<List<UserQuery>>(questionList, HttpStatus.OK);
+        return new ResponseEntity<>(questionList, HttpStatus.OK);
 
     }
 
     //Get Question by Topic Name
 
-    @GetMapping("/question/{topic_name}")
-    public ResponseEntity<UserQuery>getByTopicName(@PathVariable("topic_name") String topic_name) throws QueryNotFoundException {
+    @GetMapping("/question/{topic}")
+    public ResponseEntity<UserQuery>getByTopicName(@PathVariable("topic") String topic) {
         ResponseEntity responseEntity;
 
-        UserQuery queryList = manualService.getQuestionsByTopicName(topic_name);
-        responseEntity = new ResponseEntity<UserQuery>(queryList, HttpStatus.ACCEPTED);
+        UserQuery queryList = manualService.getQuestionsByTopicName(topic);
+        responseEntity = new ResponseEntity<>(queryList, HttpStatus.ACCEPTED);
         return responseEntity;
 
     }
     //Delete Request
 
     @PostMapping("/question/{concept}")
-    public ResponseEntity<String> updateQuestion(@RequestBody Query query,@PathVariable("concept") String concept) throws QueryNotFoundException {
-
-        UserQuery updateQuestion = manualService.updateQuestion(query,concept);
-        System.out.println(query);
-
-        if(updateQuestion == null){
-            throw new QueryNotFoundException("query not found");
-        }
-       // logger.info("Updated Questions:" + updateQuestion);
+    public ResponseEntity<String> updateQuestion(@RequestBody Query query,@PathVariable("concept") String concept) {
 
 
-        System.out.println("******updated Question*****" + updateQuestion);
-        // configure QuestionDTo to send to kafka
+            try {
+                UserQuery updateQuestion = manualService.updateQuestion(query,concept);
+                logger.info("query: {}" + query);
+                logger.info("Updated-Questions: {}" + updateQuestion);
 
-        QuestionDTO questionDTO = new QuestionDTO();
-        questionDTO.setQuestion(query.getQuestion());
-        questionDTO.setId(query.getId());
-        questionDTO.setAnswer(query.getAnswer());
-        questionDTO.setConcept(concept);
+                // configure QuestionDTo to send to kafka
+
+                QuestionDTO questionDTO = new QuestionDTO();
+                questionDTO.setQuestion(query.getQuestion());
+                questionDTO.setId(query.getId());
+                questionDTO.setAnswer(query.getAnswer());
+                questionDTO.setConcept(concept);
+
+                logger.info("questionDTO: {}" + questionDTO);
+
+                // send data back to the bot service
+
+                producerService.sendTemplate(questionDTO);
+
+                //Delete that question from Consumer side
+
+                manualService.deleteQuestion(query,concept);
+
+            } catch (QueryNotFoundException e) {
+                logger.info(e.getMessage());
+            }
 
 
-        System.out.println("***********Question DTO**********" + questionDTO);
-        logger.info("question Dto ******" + questionDTO);
 
-        // send data back to the bot service
-
-        producerService.sendTemplate(questionDTO);
-
-        //Delete that question from Consumer side
-
-        manualService.deleteQuestion(query,concept);
-
-        return new ResponseEntity<String >("Query Deleted Successfully", HttpStatus.CREATED);
+        return new ResponseEntity<>("Query Deleted Successfully", HttpStatus.CREATED);
     }
 
 }

@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 @NoArgsConstructor
 public class GraphQueryServiceImpl implements GraphQueryService {
+
     private QueryRepository queryRepository;
     private ConceptRepository conceptRepository;
 
@@ -29,6 +30,7 @@ public class GraphQueryServiceImpl implements GraphQueryService {
      */
     @Override
     public ResponseDTO solution(String concept) {
+
         return queryRepository.findByConcept(concept);
     }
 
@@ -42,9 +44,6 @@ public class GraphQueryServiceImpl implements GraphQueryService {
     @Override
     public void createNodesAndRelationships(String concept, String question, String answer) {
         queryRepository.createNodesAndRelationships(concept, question, answer);
-
-        queryRepository.createNodesAndRelationships(concept,question,answer);
-
     }
 
     /*

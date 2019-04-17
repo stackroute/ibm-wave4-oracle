@@ -1,7 +1,6 @@
 package com.stackroute.manualservice.config;
 
 import com.stackroute.manualservice.domain.QuestionDTO;
-import com.stackroute.manualservice.domain.UserQuery;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
