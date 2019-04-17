@@ -60,8 +60,6 @@ public class QueryServiceImpl implements QueryService {
                 LevenshteinDistance getDistance = new LevenshteinDistance();
                 for (QueryAnswer qa : queryAnswerList)
                     distanceWithAnswerMap.put(getDistance.apply(question, qa.getQuestion()), qa.getAnswer());
-
-                break;
             }
         }
 
