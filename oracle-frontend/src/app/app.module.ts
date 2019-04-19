@@ -31,6 +31,7 @@ import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
 import { TourismBotComponent } from './tourism-bot/tourism-bot.component';
 import { CommonModule } from "@angular/common";
 import { TourismService } from "./tourism.service";
+import { ChatHistoryComponent } from './chat-history/chat-history.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { TourismService } from "./tourism.service";
     ManualAnswerComponent,
     TourismBotComponent,
     RecastMovieComponent,
-    ManualAnswerComponent
+    ManualAnswerComponent,
+    ChatHistoryComponent
   ],
 
   imports: [

@@ -3,5 +3,5 @@
 @import url("../node_modules/font-awesome/css/font-awesome.css");
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 body {
-  background-color: gainsboro;
+  background-color: ghostwhite;
 }
