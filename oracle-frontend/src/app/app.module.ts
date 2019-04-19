@@ -14,9 +14,10 @@ import { UserService } from "./user.service";
 import { AuthGuard } from "./auth.guard";
 import { ChatBotHomepageComponent } from "./chat-bot-homepage/chat-bot-homepage.component";
 import {
-  MatButtonModule, MatButtonToggleModule,
+  MatButtonModule,
+  MatButtonToggleModule,
   MatDatepickerModule,
-  MatDividerModule,
+  MatDividerModule, MatExpansionModule,
   MatInputModule,
   MatSidenavModule,
   MatTabsModule
@@ -25,11 +26,11 @@ import { UserdashboardComponent } from "./userdashboard/userdashboard.component"
 import { AdmindashboardComponent } from "./admindashboard/admindashboard.component";
 import { ProfileComponent } from './profile/profile.component';
 import { AllUsersProfileComponent } from './all-users-profile/all-users-profile.component';
-<<<<<<< HEAD
 import { RecastMovieComponent } from './recast-movie/recast-movie.component';
-=======
 import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
->>>>>>> a2974108d863c36617a0c669b03c59a8b6623e9e
+import { TourismBotComponent } from './tourism-bot/tourism-bot.component';
+import { CommonModule } from "@angular/common";
+import { TourismService } from "./tourism.service";
 
 @NgModule({
   declarations: [
@@ -43,11 +44,11 @@ import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
     AdmindashboardComponent,
     ProfileComponent,
     AllUsersProfileComponent,
-<<<<<<< HEAD
-    RecastMovieComponent
-=======
+    RecastMovieComponent,
+    ManualAnswerComponent,
+    TourismBotComponent,
+    RecastMovieComponent,
     ManualAnswerComponent
->>>>>>> a2974108d863c36617a0c669b03c59a8b6623e9e
   ],
 
   imports: [
@@ -63,9 +64,12 @@ import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
     MatTabsModule,
     MatInputModule,
     MatDatepickerModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatExpansionModule,
+    CommonModule
   ],
-  providers: [UserService, AuthGuard],
+  exports: [TourismBotComponent],
+  providers: [UserService, AuthGuard,TourismService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

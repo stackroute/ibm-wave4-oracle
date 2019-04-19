@@ -21,7 +21,7 @@
           <div
             class="overflow-auto w-100 chat m-0"
             #scrollMe
-            [scrollTop]="scrollMe.scrollHeight"
+            [scrollTop]="scrollableH"
           >
             <div
               class="d-flex flex-column justify-content-end align-items-end w-100"
@@ -37,28 +37,63 @@
                 >
                   {{ item.queryAnswer.question }}
                 </p>
-
+                <div class="card-body m-0 bg-info" *ngIf="item.status.answered"
+                     style="padding:.8rem 1.1rem; border-radius:10%;right: 25%; position: relative;">
                 <p
-                  class="card-body m-0 text-justify text-center blockquote overflow-auto bg-info"
-                  *ngIf="item.status.answered"
-                  style="padding:.8rem 1.1rem; border-radius:10%;right: 25%; position: relative;"
+                  class="card-text text-justify text-center blockquote overflow-auto"
+
+
                 >
                   {{ item.queryAnswer.answer }}
-
-                  <button class="btn " (click)="submitAccepted(item)" [ngClass]="item.queryAnswer.id===10?'btn-primary':''"><i class="fa fa-thumbs-o-up" ></i></button>
-                  <button class="btn"><i class="fa fa-thumbs-o-down" ></i></button>
-
                 </p>
-
+                  <button class="btn btn-outline-dark" (click)="submitAccepted(item)" *ngIf="item.queryAnswer.id!=10"><i class="fa fa-thumbs-o-up"></i>
+                    satisfied?
+                  </button>
+                  <button class="btn lead disabled" style="color:green;" *ngIf="item.queryAnswer.id===10">satisfied<i class="fa fa-check"></i>
+                  </button>
+                </div>
 
               </div>
             </div>
+            <p
+              class="card-body text-justify text-center  mt-3 row bg-light text-muted"
+              *ngIf="suggested"
+              style="padding:.8rem 1.1rem;margin-left:10%;  border-radius:10%;width: 80%; position: relative; background-color: #8B8982"
+            >
+              Your search "{{latestQuestion}}" did not match any document.
+              but Oracle IT service will provide solution later.
+
+            </p>
+            <div class="container mt-3">
+
+              <mat-accordion *ngIf="suggested">
+                <mat-expansion-panel [disabled]="true">
+                  <mat-expansion-panel-header>
+                    People also ask
+                  </mat-expansion-panel-header>
+                </mat-expansion-panel>
+                <div *ngFor="let item of suggestionList">
+                  <mat-expansion-panel class="card m-0">
+                    <mat-expansion-panel-header
+                      class="card-header">
+                      <div class="card-title">
+                        {{item.queryAnswer.question}}
+                      </div>
+                    </mat-expansion-panel-header>
+                    <div class="card-body">
+                      <div class="card-text">{{item.queryAnswer.answer}}</div>
+                    </div>
+                  </mat-expansion-panel>
+                </div>
+              </mat-accordion>
+            </div>
           </div>
+
         </div>
         <form
           class="container-fluid form-inline d-flex my-1"
           #chatForm="ngForm"
-          (ngSubmit)="onSubmit(chatForm)"
+          (ngSubmit)="onSubmit(chatForm,scrollMe)"
         >
           <input
             type="text"
@@ -133,10 +168,14 @@
   (cdkDropListDropped)="drop($event)"
   style="background-color: darkolivegreen"
 >
-  <button class="btn btn-outline-light" cdkDrag *ngFor="let item of botBasket">
+
+<div *ngFor="let item of botBasket">
+  <button class="btn btn-outline-light" cdkDrag   routerLink="{{item.rvalue}}">
     <span
-    ><i class="{{ item.icon }}" style="font-size: 5rem;"></i>
+    ><i class="{{ item.icon }}"  style="font-size: 5rem;"></i>
       <p>{{ item.name }}</p>
+      
     </span>
   </button>
+</div>
 </div>

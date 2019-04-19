@@ -14,7 +14,7 @@ services:
     hostname: localhost
     restart: always
     volumes:
-      - ./neo4j/data:/data
+      - /neo4j/data:/data
       - ./neo4j/import:/import
     environment:
       - NEO4J_AUTH=neo4j/1234
@@ -31,6 +31,7 @@ services:
       - 8091:8091
     mem_limit: 300m
     mem_reservation: 300m
+
   user-service:
     build: user-service/
     restart: always
@@ -54,6 +55,7 @@ services:
     restart: always
 
 
+
   bot-service:
     build: bot-service/
     restart: always
@@ -63,6 +65,7 @@ services:
       - 8090:8090
     mem_limit: 300m
     mem_reservation: 200m
+
   queryautocorrector-service:
     build: queryautocorrector-service/
     restart: always
@@ -70,7 +73,7 @@ services:
     hostname: localhost
     ports:
       - 8595:8595
-
+    mem_limit: 300m
 
   graph-query-service:
     build: graph-query-service/
@@ -80,9 +83,9 @@ services:
     hostname: localhost
     ports:
       - 8082:8082
-
     mem_limit: 200m
     mem_reservation: 200m
+
   extract-intent-service:
     build: extract-intent-service/
     image: extract-intent-service

@@ -1,13 +1,11 @@
 package com.stackroute.graphqueryservice.domain;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.neo4j.ogm.annotation.GeneratedValue;
+import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
-import org.springframework.data.neo4j.annotation.QueryResult;
 
 import java.util.List;
 
@@ -17,6 +15,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Questions {
+
+    @Id
+    @GeneratedValue
+    private Long id;
     private String name;
     private String concept;
 

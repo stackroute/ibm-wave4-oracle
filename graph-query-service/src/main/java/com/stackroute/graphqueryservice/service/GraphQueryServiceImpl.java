@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 @NoArgsConstructor
 public class GraphQueryServiceImpl implements GraphQueryService {
+
     private QueryRepository queryRepository;
     private ConceptRepository conceptRepository;
 
@@ -29,6 +29,7 @@ public class GraphQueryServiceImpl implements GraphQueryService {
      */
     @Override
     public ResponseDTO solution(String concept) {
+
         return queryRepository.findByConcept(concept);
     }
 
@@ -37,15 +38,11 @@ public class GraphQueryServiceImpl implements GraphQueryService {
         creates question and answer domain and also creates relationship between them,
         and also this entire set is attached to particular concept
      */
-    private  Questions questions;
-    private Answer answers;
+
 
     @Override
     public void createNodesAndRelationships(String concept, String question, String answer) {
-        System.out.println("*******Inside nodes function********");
-        System.out.println(questions.getConcept()+"---------"+questions.getName()+"---------"+answers.getAnswer());
-        queryRepository.createNodesAndRelationships(questions.getConcept(),questions.getName(),answers.getAnswer());
-        System.out.println("Relationship created");
+        queryRepository.createNodesAndRelationships(concept, question, answer);
     }
 
     /*
@@ -53,6 +50,7 @@ public class GraphQueryServiceImpl implements GraphQueryService {
      */
     @Override
     public Iterable<Concept> concepts() {
+
         return conceptRepository.findAll();
     }
 
