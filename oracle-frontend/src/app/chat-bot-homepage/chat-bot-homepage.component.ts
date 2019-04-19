@@ -45,11 +45,11 @@ export class ChatBotHomepageComponent implements OnInit {
   botItems:any=[
                   {"icon":"fas fa-cloud","name":"Weather", "rvalue":"abc"},
                   {"icon":"fas fa-globe-africa","name":"Tourism", "rvalue":"/tourism-bot"},
-                  {"icon":"fas fa-film","name":"Movie", "rvalue":"xyz"}
+                  {"icon":"fas fa-film","name":"Movie", "rvalue":"/recast"}
                 ];
   botBasket:any=[{"icon":"fas fa-cloud","name":"Weather"},
                 {"icon":"fas fa-globe-africa","name":"Tourism", "rvalue":"/tourism-bot"},
-                {"icon":"fas fa-film","name":"Movie"}
+                {"icon":"fas fa-film","name":"Movie","rvalue":"/recast"}
   ];
 
 
