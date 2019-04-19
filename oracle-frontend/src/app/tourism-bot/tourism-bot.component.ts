@@ -11,6 +11,7 @@ export class TourismBotComponent implements OnInit {
   messages: any = [];
   formValue: string;
   mymessages: any;
+  input:string;
 
   constructor(private chat: TourismService) {}
 
@@ -30,7 +31,7 @@ export class TourismBotComponent implements OnInit {
   }
   sendMessage() {
     console.log(this.formValue)
-    //this.input=this.formValue;
+    this.input=this.formValue;
     this.chat.converse(this.formValue);
     this.formValue = "";
     

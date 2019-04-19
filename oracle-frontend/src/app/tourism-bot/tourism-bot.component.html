@@ -7,23 +7,20 @@
       <p>
         Hey! I'm Tourism Trip Planner... Are you looking for help in planning
         your trip?
-       
       </p>
-    
     </div>
-    <ng-container  *ngFor="let message of messages">
-      <p class="my-3" style="text-align:right">{{formValue}}</p>
-      <p>{{message.speech}}</p>
-      <p class="mx-3">{{ message.textToSpeech }}</p>
-    
-      <div
+    <ng-container *ngFor="let message of messages">
+      <p class="my-3" style="text-align:right">{{ input }}</p>
+      <p class="mx-3">{{ message.speech }}</p>
+      <p>{{ message.textToSpeech }}</p>
+      <p
         *ngFor="let sug of message.suggestions"
-        class="btn-block text-center mx-2 my-2"
+        class="text-center mx-2 my-2"
       >
         <button (click)="onClick(sug.title)" class="btn btn-outline-primary">
           {{ sug.title }}
         </button>
-      </div>
+      </p>
     </ng-container>
     <div mat-dialog-actions class="form" ngForm="#myform">
       <input

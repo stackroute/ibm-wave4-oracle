@@ -30,6 +30,21 @@
     overflow: auto;
 
   }
+  /* .text{
+    margin-left: 5rem;
+    text-align: right;
+    padding: 1rem 1rem 1rem 1rem;
+    position: relative;
+    border-radius: 1rem;
+    border: 1px solid #363636;
+  }
+  .texts{
+    border: 1px solid #363636;
+    margin-right: 5rem;
+    padding: 1rem 1rem 1rem 1rem;
+    border-radius: 1rem;
+    position: relative;
+  } */
   .bubble {
     flex: 1 1 auto;
     clear: both;
@@ -79,7 +94,7 @@
     height: 3rem;
     width: 3rem;
   }
-  .message {
+  /* .message {
     margin: 1rem 1rem 2rem 1rem;
     padding: 1rem 1rem 1rem 1rem;
     position: relative;
@@ -95,4 +110,4 @@
     margin-right: 5rem;
   }
 
-  
+   */

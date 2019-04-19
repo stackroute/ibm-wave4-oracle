@@ -17,7 +17,7 @@ import {
   MatButtonModule,
   MatButtonToggleModule,
   MatDatepickerModule,
-  MatDividerModule,
+  MatDividerModule, MatExpansionModule,
   MatInputModule,
   MatSidenavModule,
   MatTabsModule
@@ -65,6 +65,7 @@ import { TourismService } from "./tourism.service";
     MatInputModule,
     MatDatepickerModule,
     MatButtonToggleModule,
+    MatExpansionModule,
     CommonModule
   ],
   exports: [TourismBotComponent],

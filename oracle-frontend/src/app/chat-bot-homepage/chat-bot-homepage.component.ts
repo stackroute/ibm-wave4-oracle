@@ -7,10 +7,12 @@ interface Status {
   accepted: boolean;
   answered: boolean;
 }
+
 interface Query {
   question: string;
   answer: string;
 }
+
 interface UserQuery {
   queryAnswer: Query;
   status: Status;
@@ -22,7 +24,8 @@ interface UserQuery {
   styleUrls: ["./chat-bot-homepage.component.css"]
 })
 export class ChatBotHomepageComponent implements OnInit {
-  constructor(private chatService: ItChatServiceService) {}
+  constructor(private chatService: ItChatServiceService) {
+  }
 
   queryAnswer: Query = {
     question: "",
@@ -34,6 +37,11 @@ export class ChatBotHomepageComponent implements OnInit {
   };
 
   queryList: any = [];
+  suggestionList: any = [];
+  suggested:boolean=false;
+  scrollableH;
+  latestQuestion:string="";
+
   botItems:any=[
                   {"icon":"fas fa-cloud","name":"Weather", "rvalue":"abc"},
                   {"icon":"fas fa-globe-africa","name":"Tourism", "rvalue":"/tourism-bot"},
@@ -44,23 +52,37 @@ export class ChatBotHomepageComponent implements OnInit {
                 {"icon":"fas fa-film","name":"Movie"}
   ];
 
-  
 
   ngOnInit() {
 
   }
+
   // chat sending and receiving
-  onSubmit(value) {
-    let jsonQuery = JSON.stringify({ queryAnswer: this.queryAnswer, status: this.status });
+  onSubmit(value,scrollItem) {
+    let jsonQuery = JSON.stringify({queryAnswer: this.queryAnswer, status: this.status});
+    this.latestQuestion=this.queryAnswer.question;
+
     console.log("submitted" + jsonQuery);
     this.queryList.push(JSON.parse(jsonQuery));
-    this.chatService.getQuery(jsonQuery).subscribe((value1 :any) => {
+    this.chatService.getQuery(jsonQuery).subscribe((value1: any) => {
       console.log(value1);
-      value1.forEach(data=>{
-      this.queryList.push(data)});
+      this.scrollableH=scrollItem.scrollHeight;
+      value1.forEach((data) => {
+        if(data.status.suggested){
+
+         this.suggested=true;
+          this.suggestionList.push(data);
+
+        } else {
+          this.suggestionList=[];
+          this.queryList.push(data);
+          this.suggested=false;
+
+        }
+      });
     });
     console.log(this.queryList);
-
+    console.log(this.suggestionList);
     value.reset();
   }
 
@@ -75,11 +97,12 @@ export class ChatBotHomepageComponent implements OnInit {
         event.currentIndex);
     }
   }
+
   // after accepted answer
-  submitAccepted(data){
-    data.status.accepted  =true;
-    data.queryAnswer.id=10;
-    this.chatService.saveQuery(data).subscribe((value1 :any) => {
+  submitAccepted(data) {
+    data.status.accepted = true;
+    data.queryAnswer.id = 10;
+    this.chatService.saveQuery(data).subscribe((value1: any) => {
       console.log(value1);
     });
   }
