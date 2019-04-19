@@ -164,3 +164,44 @@ spring:166,attach,spring:7,term,evaluation,7,indicatorof
 spring:167,defend,spring:7,term,evaluation,3,counterindicatorof
 spring:168,summarize,spring:7,term,evaluation,3,counterindicatorof
 spring:169,interpret,spring:7,term,evaluation,4,counterindicatorof
+spring:170,how to,spring:4,term,application,5,indicatorof
+spring:171,how can i,spring:4,term,application,3,indicatorof
+spring:172,how do i,spring:4,term,application,6,indicatorof
+spring:173,how do i fix,spring:4,term,application,3,indicatorof
+spring:174,how do i resolve,spring:4,term,application,4,indicatorof
+spring:175,how do i solve,spring:4,term,application,3,indicatorof
+spring:176,how do i rectify,spring:4,term,application,5,indicatorof
+spring:177,troubleshoot,spring:4,term,application,2,indicatorof
+spring:178,tell me how,spring:4,term,application,4,indicatorof
+spring:179,how to know,spring:4,term,application,6,indicatorof
+spring:180,debug message,spring:5,term,analysis,3,indicatorof
+spring:181,log message,spring:5,term,analysis,1,indicatorof
+spring:182,error,spring:5,term,analysis,5,indicatorof
+spring:183,not working,spring:5,term,analysis,2,indicatorof
+spring:184,throwing error,spring:5,term,analysis,5,indicatorof
+spring:185,why,spring:5,term,analysis,7,indicatorof
+spring:186,stops,spring:5,term,analysis,8,indicatorof
+spring:187,exists,spring:5,term,analysis,3,indicatorof
+spring:188,terminates,spring:5,term,analysis,8,indicatorof
+spring:189,reporting error,spring:5,term,analysis,7,indicatorof
+spring:190,crash,spring:5,term,analysis,6,indicatorof
+spring:191,exists code,spring:5,term,analysis,6,indicatorof
+spring:192,fix,spring:5,term,analysis,5,indicatorof
+spring:193,won’t start,spring:5,term,analysis,5,indicatorof
+spring:194,dosen’t start,spring:5,term,analysis,3,indicatorof
+spring:195,not starting ,spring:5,term,analysis,4,indicatorof
+spring:196,problems,spring:5,term,analysis,2,indicatorof
+spring:197,analyse,spring:5,term,analysis,9,indicatorof
+Spring:198,dosen’t start,spring:5,term,analysis,8,indicatorof
+spring:199,does not exists,spring:5,term,analysis,7,indicatorof
+spring:200,cannot resolve symbol,spring:5,term,analysis,6,indicatorof
+spring:201,cannot run,spring:5,term,analysis,5,indicatorof
+spring:202,can’t run,spring:5,term,analysis,4,indicatorof
+spring:203,resolve,spring:5,term,analysis,3,indicatorof
+spring:204,solve,spring:5,term,analysis,2,indicatorof
+spring:205,rectify,spring:5,term,analysis,1,indicatorof
+spring:206,where,spring:3,term,comprehension,5,indicatorof
+spring:207,what,spring:4,term,application,4,indicatorof
+spring:208,when ,spring:3,term,comprehension,3,indicatorof
+spring:209,is,spring:2,term,knowledge,2,indicatorof
+Spring:210,do,spring:2,term,knowledge,2,indicatorof
