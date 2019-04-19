@@ -3,6 +3,8 @@ package com.stackroute.botservice.controller;
 
 import com.stackroute.botservice.domain.*;
 import com.stackroute.botservice.service.QueryService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /* Created on : 27/03/2019 - Gopal Panchal and Subhajit Pal (@rahzex)*/
 
@@ -20,6 +23,9 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/api/v1")
 public class BotController {
+
+    //logging
+    private Logger logger= LoggerFactory.getLogger(BotController.class);
 
     private KafkaTemplate<Object, Object> kafkaTemplate;
     private QueryService queryService;
@@ -48,17 +54,17 @@ public class BotController {
     */
 
     @PostMapping("/getanswer")
-    public ResponseEntity<?> getAnswer(@RequestBody SendQuery sendQuery) {
+    public ResponseEntity<List<SendQuery>> getAnswer(@RequestBody SendQuery sendQuery) {
 
-        String correctedQuery = restTemplate.getForObject(AUTO_CORRECTOR_URI + sendQuery.getQueryAnswer().getQuestion(), String.class);
-        String concepts = restTemplate.getForObject(CONCEPT_URI + correctedQuery, String.class);
+        String correctedQuery = restTemplate.getForObject(AUTO_CORRECTOR_URI + sendQuery.getQueryAnswer().getQuestion(), String.class).toLowerCase();
+        String concept = restTemplate.getForObject(CONCEPT_URI + correctedQuery, String.class);
 
-        System.out.println("Query : " + correctedQuery);
-        System.out.println("Concept : " + concepts);
+        logger.info(correctedQuery);
+        logger.info(concept);
 
         List<SendQuery> response = null;
 
-        String answer = queryService.getAnswerOfSimilarQuestion(concepts, correctedQuery);
+        String answer = queryService.getAnswerOfSimilarQuestion(concept, correctedQuery.toLowerCase());
         if (answer != null) {
             response = new ArrayList<>();
             sendQuery.setQueryAnswer(new QueryAnswer("", correctedQuery, answer));
@@ -69,15 +75,31 @@ public class BotController {
         if (answer == null) {
             response = new ArrayList<>();
 
-            Response probableAnswers = restTemplate.getForObject(NEO4J_ANSWER_URI + concepts, Response.class);
+            Response probableAnswers = restTemplate.getForObject(NEO4J_ANSWER_URI + concept, Response.class);
             List<QueryAnswer> queryAnswer = probableAnswers.getResponses();
 
             for (QueryAnswer qa : queryAnswer) {
                 response.add(new SendQuery(qa, new Status(false, false,true)));
             }
         }
+        /* Default answer to client if concept is not found.*/
+        if(response.isEmpty()){
+            String[] defaultResponses = {"We don't have a answer for this question right now. We will get back to you via email.",
+                    "Oops! Seems like we have to figure it out too:( We will mail you once we figure it out:)",
+                    "Our Expert Scientist are working on this! We will get back to you via mail.",
+                    "Hmmm... looks like I don't know this yet. Let me tell this to my Human master.He will get back to you via mail."};
 
-        return new ResponseEntity<List<SendQuery>>(response, HttpStatus.OK);
+            int replyIndex = new Random().nextInt(4);
+            response.add(new SendQuery(new QueryAnswer("","",defaultResponses[replyIndex]), new Status(false, false,false)));
+
+            // sending to manual answer service
+            QuestionDTO questionDTO = new QuestionDTO();
+            questionDTO.setConcept(concept);
+            questionDTO.setQuestion(correctedQuery);
+            kafkaTemplate.send("new_query", questionDTO);
+        }
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     /*
@@ -86,12 +108,12 @@ public class BotController {
     */
 
     @PostMapping("/saveanswer")
-    public ResponseEntity<?> saveQueryAnswer(@RequestBody SendQuery sendQuery) {
+    public ResponseEntity<String> saveQueryAnswer(@RequestBody SendQuery sendQuery) {
 
-        String correctedQuery = restTemplate.getForObject(AUTO_CORRECTOR_URI + sendQuery.getQueryAnswer().getQuestion(), String.class);
+        String correctedQuery = restTemplate.getForObject(AUTO_CORRECTOR_URI + sendQuery.getQueryAnswer().getQuestion(), String.class).toLowerCase();
         String concept = restTemplate.getForObject(CONCEPT_URI + correctedQuery, String.class);
 
-        ResponseEntity<?> responseEntity = new ResponseEntity<>("Request Not Supported", HttpStatus.BAD_REQUEST);
+        ResponseEntity<String> responseEntity = new ResponseEntity<>("Request Not Supported", HttpStatus.BAD_REQUEST);
         /* if answer is accepted by user then send it to neo4j via kafka and save in mongodb */
         if (sendQuery.getStatus().isAnswered() && sendQuery.getStatus().isAccepted()) {
             QuestionDTO questionDTO = new QuestionDTO();

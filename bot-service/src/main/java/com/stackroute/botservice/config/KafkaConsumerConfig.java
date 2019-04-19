@@ -1,8 +1,6 @@
-package com.stackroute.manualservice.config;
+package com.stackroute.botservice.config;
 
-
-import com.stackroute.manualservice.domain.QuestionDTO;
-
+import com.stackroute.botservice.domain.QuestionDTO;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,14 +17,12 @@ import java.util.Map;
 @EnableKafka
 public class KafkaConsumerConfig {
 
-    // Consumer factory method
-
     @Bean
     public ConsumerFactory<String, String> consumerFactory () {
         Map<String, Object> config = new HashMap<>();
 
         config.put(org.apache.kafka.clients.consumer.ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        config.put(org.apache.kafka.clients.consumer.ConsumerConfig.GROUP_ID_CONFIG, "group_id");
+        config.put(org.apache.kafka.clients.consumer.ConsumerConfig.GROUP_ID_CONFIG, "group_str");
         config.put(org.apache.kafka.clients.consumer.ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(org.apache.kafka.clients.consumer.ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         return new DefaultKafkaConsumerFactory<>(config);
@@ -39,7 +35,6 @@ public class KafkaConsumerConfig {
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }
-
 
     @Bean
     public ConsumerFactory<String, QuestionDTO> userConsumerFactory () {
@@ -59,8 +54,4 @@ public class KafkaConsumerConfig {
         factory.setConsumerFactory(userConsumerFactory());
         return factory;
     }
-
-
-
-
 }
