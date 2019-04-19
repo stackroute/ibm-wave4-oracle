@@ -1,7 +1,6 @@
 package com.stackroute.graphqueryservice.repository;
 
 import com.stackroute.graphqueryservice.domain.Questions;
-import com.stackroute.graphqueryservice.domain.Response;
 import com.stackroute.graphqueryservice.domain.ResponseDTO;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.Neo4jRepository;

@@ -58,7 +58,4 @@ public class GraphQueryServiceImplTest {
 
     }
 
-    @Test
-    public void createNodesAndRelationships() {
-    }
 }
