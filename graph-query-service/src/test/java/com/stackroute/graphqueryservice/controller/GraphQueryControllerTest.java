@@ -1,19 +1,27 @@
+
 package com.stackroute.graphqueryservice.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stackroute.graphqueryservice.domain.Concept;
 import com.stackroute.graphqueryservice.domain.ResponseDTO;
+
 import com.stackroute.graphqueryservice.service.GraphQueryService;
-import com.stackroute.graphqueryservice.service.GraphQueryServiceImpl;
 import org.junit.After;
-import org.junit.Assert;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.mockito.InjectMocks;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.boot.test.autoconfigure.data.neo4j.AutoConfigureDataNeo4j;
+import org.springframework.boot.test.autoconfigure.data.neo4j.DataNeo4jTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+
+
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -21,15 +29,18 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest
+@AutoConfigureMockMvc
+@AutoConfigureDataNeo4j
 public class GraphQueryControllerTest {
 
 
@@ -37,10 +48,10 @@ public class GraphQueryControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private GraphQueryService graphQueryService;
+    GraphQueryService graphQueryService;
 
     @InjectMocks
-    private GraphQueryController graphQueryController;
+    GraphQueryController graphQueryController;
 
     private List<Concept> concepts = null;
     private List<ResponseDTO> responseDTOS = null;
@@ -48,9 +59,8 @@ public class GraphQueryControllerTest {
 
     @Before
     public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(graphQueryController).build();
 
+        concepts=new ArrayList<>();
         Concept concept = new Concept();
         concept.setGraphId((long) 1);
         concept.setName("java");

@@ -37,21 +37,21 @@
                 >
                   {{ item.queryAnswer.question }}
                 </p>
-
+                <div class="card-body m-0 bg-info" *ngIf="item.status.answered"
+                     style="padding:.8rem 1.1rem; border-radius:10%;right: 25%; position: relative;">
                 <p
-                  class="card-body m-0 text-justify text-center blockquote overflow-auto bg-info"
-                  *ngIf="item.status.answered"
-                  style="padding:.8rem 1.1rem; border-radius:10%;right: 25%; position: relative;"
+                  class="card-text text-justify text-center blockquote overflow-auto"
+
+
                 >
                   {{ item.queryAnswer.answer }}
-
-                  <button class="btn " (click)="submitAccepted(item)"
-                          [ngClass]="item.queryAnswer.id===10?'btn-primary':''"><i class="fa fa-thumbs-o-up"></i>
-                  </button>
-                  <button class="btn"><i class="fa fa-thumbs-o-down"></i></button>
-
                 </p>
-
+                  <button class="btn btn-outline-dark" (click)="submitAccepted(item)" *ngIf="item.queryAnswer.id!=10"><i class="fa fa-thumbs-o-up"></i>
+                    satisfied?
+                  </button>
+                  <button class="btn lead disabled" style="color:green;" *ngIf="item.queryAnswer.id===10">satisfied<i class="fa fa-check"></i>
+                  </button>
+                </div>
 
               </div>
             </div>

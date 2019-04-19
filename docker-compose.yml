@@ -54,7 +54,6 @@ services:
       - 4200:4200
     restart: always
 
-
   bot-service:
     build: bot-service/
     restart: always

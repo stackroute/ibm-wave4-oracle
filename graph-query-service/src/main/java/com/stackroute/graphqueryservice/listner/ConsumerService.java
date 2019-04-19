@@ -8,9 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-import org.springframework.boot.json.GsonJsonParser;
 
 @Service
 public class ConsumerService {
@@ -31,17 +28,12 @@ public class ConsumerService {
 
     @KafkaListener(topics = "updated_query", groupId = "graphGroup")
     public void consume(String message) {
-        JSONObject object = (JSONObject) JSONValue.parse(message);
-       logger.info("info" + object);
-
-        logger.info("recieved :"+message);
+        logger.info(message);
 
         Gson gson=new Gson();
         QuestionDTO questionDTO = gson.fromJson(message, QuestionDTO.class);
-        logger.info("questiondto1="+questionDTO);
-        //Converting JsonObject to Paragraph domain object
 
-        logger.info("Inside Kafka Consumer Received: " + questionDTO);
+        //Converting JsonObject to Paragraph domain object
 
         graphQueryService.createNodesAndRelationships(questionDTO.getConcept(),questionDTO.getQuestion(),questionDTO.getAnswer());
 

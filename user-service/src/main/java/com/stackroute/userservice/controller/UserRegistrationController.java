@@ -20,14 +20,14 @@ public class UserRegistrationController {
     private UserService userService;
 
     @PostMapping("/saveUser")
-    public ResponseEntity<?> registration(@RequestBody User user)
+    public ResponseEntity<Response> registration(@RequestBody User user)
     {
         user.setRole("USER");
         if (userService.getUserByEmail(user.getEmail())==null) {
             User dbUser = userService.save(user);
-            return new ResponseEntity<Response>(new Response(dbUser.getEmail()+" is registered successfully."), HttpStatus.OK);
+            return new ResponseEntity<>(new Response(dbUser.getEmail()+" is registered successfully."), HttpStatus.OK);
         }else {
-            return new ResponseEntity<Response>(new Response("this email is already registered."), HttpStatus.CONFLICT);
+            return new ResponseEntity<>(new Response("this email is already registered."), HttpStatus.CONFLICT);
         }
     }
 }

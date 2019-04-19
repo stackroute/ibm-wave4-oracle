@@ -12,9 +12,11 @@ export class TourismBotComponent implements OnInit {
   mymessages: any;
   input: string;
 
+
   constructor(private chat: TourismService) {}
 
   ngOnInit() {
+
     let that = this;
     this.chat.messages.subscribe((data: any) => {
       data["query"] = this.input;
@@ -25,7 +27,7 @@ export class TourismBotComponent implements OnInit {
   sendMessage() {
     this.input = this.formValue;
     this.chat.converse(this.formValue);
-    this.messages.push({ type: 0, ourText: this.formValue });
+    this.messages.push({type: 0, ourText: this.formValue})
     this.formValue = "";
   }
 

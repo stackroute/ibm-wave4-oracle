@@ -1,5 +1,6 @@
 package com.stackroute.userservice;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
@@ -13,6 +14,7 @@ public class UserServiceApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		Assert.assertTrue(true);
 	}
 
 }

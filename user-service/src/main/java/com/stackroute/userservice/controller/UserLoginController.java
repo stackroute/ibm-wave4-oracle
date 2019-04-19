@@ -27,7 +27,7 @@ public class UserLoginController {
     public ResponseEntity<List<User>> getAllUsers()
     {
             List<User> users= userService.findall();
-            return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+            return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
 
@@ -36,6 +36,6 @@ public class UserLoginController {
     public ResponseEntity<User> getUser(Principal principal)
     {
       User user1= userService.getUserByEmail(principal.getName());
-        return new ResponseEntity<User>(user1, HttpStatus.OK);
+        return new ResponseEntity<>(user1, HttpStatus.OK);
     }
 }

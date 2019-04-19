@@ -12,5 +12,5 @@ import org.neo4j.ogm.annotation.NodeEntity;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Answer {
-    private String answer;
+    private String ans;
 }
