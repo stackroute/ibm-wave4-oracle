@@ -1,22 +1,24 @@
 <div class="bg">
   <h1>
-    <p class="text">Welcome to Manual Answer System</p>
+    <p class="text">Manual Answer Dashboard</p>
   </h1>
 
 
-<div class="container">
-  <div class="row">    
-      <div class="container h-100">
-        <div class="d-flex justify-content-center h-100">
-          <div class="searchbar">
-            <input class="search_input" type="text" name="" placeholder="Search..." #concept>
-            <button class="search_icon"  (click)="searchByTopic(concept.value)" >
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div>
+  <div class="container">
+
+      <div class="d-flex justify-content-start h-100">
+        <form (ngSubmit)="searchByTopic(concept.value)" class="form-inline" #searchForm="ngForm">
+          <mat-form-field>
+            <mat-label>Search by topic</mat-label>
+            <input matInput type="text" class="form-control" #concept required>
+          </mat-form-field>
+          <button class="btn-outline-success ml-2" mat-raised-button [disabled]="!searchForm.form.valid">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
       </div>
-  </div>
+
+
   </div>
 
 
@@ -25,15 +27,15 @@
 
       <div class="card-holder">
         <div class="card">
-        <div class="card-body">
-          <p class="card-text">{{question.question}}</p>
-          <textarea  placeholder="Type Your Answer" class="form-control" #answer></textarea>
-          <button  type="submit" (click)="submitAnswer(question,answer.value)" class="btn btn-success">Submit</button>
+          <div class="card-body">
+            <p class="card-text">{{question.question}}</p>
+            <textarea placeholder="Type Your Answer" class="form-control" #answer></textarea>
+            <button type="submit" (click)="submitAnswer(question,answer.value)" class="btn btn-success">Submit</button>
+          </div>
         </div>
       </div>
+
     </div>
-    
-    </div>    
   </div>
 </div>
 
