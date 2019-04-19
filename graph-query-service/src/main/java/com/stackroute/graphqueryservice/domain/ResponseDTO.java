@@ -12,5 +12,5 @@ import java.util.List;
 @AllArgsConstructor
 @QueryResult
 public class ResponseDTO {
-    List<Response> responses;
+   private List<Response> responses;
 }

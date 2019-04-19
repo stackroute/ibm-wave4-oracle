@@ -58,14 +58,14 @@ public class SocketService {
 
         String answer = queryService.getAnswerOfSimilarQuestion(concept, correctedQuery.toLowerCase());
         if (answer != null) {
-            response = new ArrayList<>();
+            response = new ArrayList<SendQuery>();
             sendQuery.setQueryAnswer(new QueryAnswer("", correctedQuery, answer));
             sendQuery.getStatus().setAnswered(true);
             sendQuery.getStatus().setSuggested(false);
             response.add(sendQuery);
         }
         if (answer == null) {
-            response = new ArrayList<>();
+            response = new ArrayList<SendQuery>();
 
             Response probableAnswers = restTemplate.getForObject(NEO4J_ANSWER_URI + concept, Response.class);
             List<QueryAnswer> queryAnswer = probableAnswers.getResponses();

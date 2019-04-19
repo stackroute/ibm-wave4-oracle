@@ -11,7 +11,7 @@ import org.springframework.web.socket.server.support.HttpSessionHandshakeInterce
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer {
-    @Override
+
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/socket")
                 .setAllowedOrigins("*")
@@ -19,7 +19,6 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
                 .setInterceptors(HttpSessionHandshakeInterceptor());
     }
 
-    @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.setApplicationDestinationPrefixes("/app")
                 .enableSimpleBroker("/topic","/user","/queue");

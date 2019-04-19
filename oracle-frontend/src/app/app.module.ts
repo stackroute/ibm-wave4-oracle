@@ -32,6 +32,7 @@ import { TourismBotComponent } from './tourism-bot/tourism-bot.component';
 import { CommonModule } from "@angular/common";
 import { TourismService } from "./tourism.service";
 import { InstantMessagingService } from './instant-messaging.service'
+import { ChatHistoryComponent } from './chat-history/chat-history.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { InstantMessagingService } from './instant-messaging.service'
     ManualAnswerComponent,
     TourismBotComponent,
     RecastMovieComponent,
-    ManualAnswerComponent
+    ManualAnswerComponent,
+    ChatHistoryComponent
   ],
 
   imports: [

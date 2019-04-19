@@ -5,8 +5,6 @@ import com.stackroute.manualservice.domain.QuestionDTO;
 import com.stackroute.manualservice.domain.UserQuery;
 import com.stackroute.manualservice.exception.QueryNotFoundException;
 import com.stackroute.manualservice.repository.ManualRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +16,6 @@ import java.util.UUID;
 public class ManualServiceImpl implements ManualService {
 
     private ManualRepository manualRepository;
-
-    //Declaration
-
-    private final Logger logger = LoggerFactory.getLogger(ManualServiceImpl.class);
 
     @Autowired
     public ManualServiceImpl(ManualRepository manualRepository) {
@@ -43,7 +37,7 @@ public class ManualServiceImpl implements ManualService {
             userQuery = new UserQuery();
             query.setId(UUID.randomUUID().toString());
             userQuery.setConcept(questionDTO.getConcept());
-            List<Query> queryList = new ArrayList<Query>();
+            List<Query> queryList = new ArrayList<>();
             queryList.add(query);
             userQuery.setQuery(queryList);
             return manualRepository.save(userQuery);
@@ -66,9 +60,7 @@ public class ManualServiceImpl implements ManualService {
     @Override
     public List<UserQuery> getListOfQuestions() {
 
-        List<UserQuery> userQueryList = (List<UserQuery>) manualRepository.findAll();
-
-        return userQueryList;
+        return  manualRepository.findAll();
     }
 
     //3. Update Question
@@ -122,7 +114,6 @@ public class ManualServiceImpl implements ManualService {
 
             List<Query> queryList = userQuery.getQuery();
             for (Query item : queryList) {
-                System.out.println(item);
                 if (item.getId().equals(query.getId())) {
                     isQuestionFound = true;
                 }
@@ -154,10 +145,9 @@ public class ManualServiceImpl implements ManualService {
     //5.Get Query by Topic name
 
     @Override
-    public UserQuery getQuestionsByTopicName(String topic_name) {
+    public UserQuery getQuestionsByTopicName(String topic) {
 
-        UserQuery userQuery = (UserQuery) manualRepository.searchByTopicName(topic_name);
-        return userQuery;
+        return manualRepository.searchByTopicName(topic);
     }
 
 }
