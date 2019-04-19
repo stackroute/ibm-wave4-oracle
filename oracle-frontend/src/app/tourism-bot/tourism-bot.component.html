@@ -1,7 +1,7 @@
-
 <div class="wrap">
-  <div class="card-title text-center bg-info">
+  <div class="row card-title bg-info">
     <h1 mat-dialog-title>Trip Planner</h1>
+    <span><i class="fas fa-times-circle col-sm-6" routerLink="/home"></i></span>
   </div>
   <div class="container">
     <div class="bubble left">
@@ -10,22 +10,33 @@
         your trip?
       </p>
     </div>
-    <ng-container *ngFor="let message of (messages | async)">
-      <div
-        class="message"
-        [ngClass]="{
-          from: message.sentBy === 'bot',
-          to: message.sentBy === 'user'
-        }"
-      >
-        <p>{{ message.content }}</p>
+    <ng-container *ngFor="let message of messages">
+      <p *ngIf="message.ourText !== undefined" class="my-3 text">
+        {{ message.ourText }}
+      </p>
+
+      <p class="mx-3">{{ message.speech }}</p>
+      <div>
+        <p>{{ message.textToSpeech }}</p>
+        <div
+          *ngFor="let sug of message.suggestions"
+          class="text-center mx-2 my-2"
+        >
+          <button
+            (click)="onClick(sug.title)"
+            class="btn btn-outline-primary options"
+          >
+            {{ sug.title }}
+          </button>
+        </div>
       </div>
     </ng-container>
-    <div mat-dialog-actions class="form">
+    <div mat-dialog-actions class="form" ngForm="#myform">
       <input
         [(ngModel)]="formValue"
         (keyup.enter)="sendMessage()"
         type="text"
+        name="formValue"
         placeholder="Type or select from above..."
       />
       <button mat-stroked-button (click)="sendMessage()" class="button bg-info">
