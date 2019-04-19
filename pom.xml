@@ -17,10 +17,6 @@
         <relativePath/> <!--lookup parent from repository -->
     </parent>
 
-
-
-
-
     <properties>
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <jaxb.version>2.3.0</jaxb.version>
