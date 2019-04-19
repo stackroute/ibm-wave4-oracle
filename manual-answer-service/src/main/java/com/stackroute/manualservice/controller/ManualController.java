@@ -64,10 +64,8 @@ public class ManualController {
 
 
             try {
-                UserQuery updateQuestion = manualService.updateQuestion(query,concept);
-                logger.info("query: {}" + query);
-                logger.info("Updated-Questions: {}" + updateQuestion);
 
+                 manualService.updateQuestion(query,concept);
                 // configure QuestionDTo to send to kafka
 
                 QuestionDTO questionDTO = new QuestionDTO();
@@ -76,7 +74,7 @@ public class ManualController {
                 questionDTO.setAnswer(query.getAnswer());
                 questionDTO.setConcept(concept);
 
-                logger.info("questionDTO: {}" + questionDTO);
+
 
                 // send data back to the bot service
 

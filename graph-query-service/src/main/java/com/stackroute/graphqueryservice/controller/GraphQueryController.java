@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -30,10 +29,6 @@ public class GraphQueryController {
         return new ResponseEntity<>(graphQueryService.concepts(), HttpStatus.OK);
     }
 
-//    @GetMapping("/terms")
-//    public ResponseEntity<List<Terms>> getConcepts() {
-//        return new ResponseEntity<>(graphQueryService.terms(), HttpStatus.OK);
-//    }
     /*        This method takes concept and question through rest call and
         returns the set of answers for that particular question and concept
      */

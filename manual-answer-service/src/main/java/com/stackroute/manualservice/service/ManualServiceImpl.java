@@ -60,9 +60,7 @@ public class ManualServiceImpl implements ManualService {
     @Override
     public List<UserQuery> getListOfQuestions() {
 
-        List<UserQuery> userQueryList =  manualRepository.findAll();
-
-        return userQueryList;
+        return  manualRepository.findAll();
     }
 
     //3. Update Question
@@ -149,8 +147,7 @@ public class ManualServiceImpl implements ManualService {
     @Override
     public UserQuery getQuestionsByTopicName(String topic) {
 
-        UserQuery userQuery = (UserQuery) manualRepository.searchByTopicName(topic);
-        return userQuery;
+        return manualRepository.searchByTopicName(topic);
     }
 
 }

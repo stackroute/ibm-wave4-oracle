@@ -1,9 +1,7 @@
 package com.stackroute.graphqueryservice.config;
 
 import com.stackroute.graphqueryservice.domain.QuestionDTO;
-import com.stackroute.graphqueryservice.service.GraphQueryService;
 import org.apache.kafka.common.serialization.StringDeserializer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -18,15 +16,6 @@ import java.util.Map;
 @Configuration
 @EnableKafka
 public class KafkaConsumerConfig {
-
-    //Declaration
-
-    private GraphQueryService graphQueryService;
-
-    @Autowired
-    public KafkaConsumerConfig(GraphQueryService graphQueryService) {
-        this.graphQueryService = graphQueryService;
-    }
 
 
     @Bean
