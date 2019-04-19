@@ -3,9 +3,8 @@ package com.stackroute.manualservice.service;
 import com.stackroute.manualservice.domain.Query;
 import com.stackroute.manualservice.domain.QuestionDTO;
 import com.stackroute.manualservice.domain.UserQuery;
-import com.stackroute.manualservice.exception.QueryAlreadyExistException;
 import com.stackroute.manualservice.exception.QueryNotFoundException;
-import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 

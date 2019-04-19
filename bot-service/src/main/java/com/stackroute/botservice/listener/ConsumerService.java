@@ -3,8 +3,7 @@ package com.stackroute.botservice.listener;
 import com.google.gson.Gson;
 import com.stackroute.botservice.domain.QuestionDTO;
 import com.stackroute.botservice.service.QueryService;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +28,10 @@ public class ConsumerService {
 
     @KafkaListener(topics = "updated_query", groupId = "group_json")
     public void consume(String message) {
-        JSONObject object = (JSONObject) JSONValue.parse(message);
-        System.out.println(object);
-
-        logger.info("\nReceived from Manual Service : "+ message);
+        logger.info(message);
 
         Gson gson=new Gson();
         QuestionDTO questionDTO = gson.fromJson(message, QuestionDTO.class);
-
-        logger.info("Question with Answer from Manual Service : "+ questionDTO.toString());
 
         /* adding newly answered question to mongodb */
         queryService.updateQueryAnswer(questionDTO.getConcept(),questionDTO.getQuestion(),questionDTO.getAnswer());

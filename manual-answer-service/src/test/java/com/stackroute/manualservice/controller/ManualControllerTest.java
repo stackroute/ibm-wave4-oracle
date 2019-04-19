@@ -29,6 +29,7 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @WebMvcTest
 public class ManualControllerTest {
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -39,6 +40,7 @@ public class ManualControllerTest {
     private ManualService manualService;
     @MockBean
     private ProducerService producerService;
+
     @InjectMocks
     private ManualController manualController;
 
@@ -51,9 +53,9 @@ public class ManualControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(manualController).build();
         queryList=new ArrayList<>();
         query = new Query();
-        query.setQuestion("abcd");
+        query.setQuestion("Question");
         query.setId("1");
-        query.setAnswer("kjsfdjefj");
+        query.setAnswer("Answer");
         queryList.add(query);
         userQuery = new UserQuery();
         userQuery.setQuery(queryList);

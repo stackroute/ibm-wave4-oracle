@@ -32,16 +32,16 @@ public class ConsumerService {
     @KafkaListener(topics = "updated_query", groupId = "graphGroup")
     public void consume(String message) {
         JSONObject object = (JSONObject) JSONValue.parse(message);
-
+       logger.info("info" + object);
 
         logger.info("recieved :"+message);
 
         Gson gson=new Gson();
         QuestionDTO questionDTO = gson.fromJson(message, QuestionDTO.class);
-        logger.info("questiondto1="+questionDTO.toString());
+        logger.info("questiondto1="+questionDTO);
         //Converting JsonObject to Paragraph domain object
 
-        logger.info("Inside Kafka Consumer ******Received: " + questionDTO);
+        logger.info("Inside Kafka Consumer Received: " + questionDTO);
 
         graphQueryService.createNodesAndRelationships(questionDTO.getConcept(),questionDTO.getQuestion(),questionDTO.getAnswer());
 

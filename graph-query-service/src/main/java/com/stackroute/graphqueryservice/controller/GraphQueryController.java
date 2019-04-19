@@ -16,9 +16,6 @@ public class GraphQueryController {
 
     private GraphQueryService graphQueryService;
 
-    private Questions question;
-    private Answer answer;
-
     @Autowired
     public GraphQueryController(GraphQueryService graphQueryService) {
 
@@ -33,8 +30,11 @@ public class GraphQueryController {
         return new ResponseEntity<>(graphQueryService.concepts(), HttpStatus.OK);
     }
 
-    /*
-        This method takes concept and question through rest call and
+//    @GetMapping("/terms")
+//    public ResponseEntity<List<Terms>> getConcepts() {
+//        return new ResponseEntity<>(graphQueryService.terms(), HttpStatus.OK);
+//    }
+    /*        This method takes concept and question through rest call and
         returns the set of answers for that particular question and concept
      */
     @GetMapping("/answer/{concept}")
@@ -48,9 +48,5 @@ public class GraphQueryController {
        and also this entire set is attached to particular concept
     */
 
-    /*@PostMapping("/relationship/{concept}/{question}/{answer}")
-    public ResponseEntity<List<Questions>> createNodesAndRelationships(@PathVariable String concept, @PathVariable String question, @PathVariable String answer) {
-        return new ResponseEntity<>(graphQueryService.createNodesAndRelationships(concept, question, answer), HttpStatus.CREATED);
-    }*/
 
 }
