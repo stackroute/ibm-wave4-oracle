@@ -93,3 +93,12 @@ services:
     hostname: localhost
     ports:
       - 8383:8383
+
+  timeseries-conversation-service:
+    build: timeseries-conversation-service/
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 9000:9000
+    mem_limit: 300m
