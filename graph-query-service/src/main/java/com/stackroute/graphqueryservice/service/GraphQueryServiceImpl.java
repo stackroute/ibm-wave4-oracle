@@ -27,11 +27,7 @@ public class GraphQueryServiceImpl implements GraphQueryService {
       This method takes concept and question through rest call and
       returns the set of answers for that particular question and concept
      */
-    @Override
-    public ResponseDTO solution(String concept) {
 
-        return queryRepository.findByConcept(concept);
-    }
 
     /*
         This method takes concept,question and answer through rest call and
@@ -39,6 +35,11 @@ public class GraphQueryServiceImpl implements GraphQueryService {
         and also this entire set is attached to particular concept
      */
 
+
+    @Override
+    public ResponseDTO solution(String concept, String intent) {
+        return queryRepository.findByConceptAndIntent(concept,intent);
+    }
 
     @Override
     public void createNodesAndRelationships(String concept, String question, String answer) {
