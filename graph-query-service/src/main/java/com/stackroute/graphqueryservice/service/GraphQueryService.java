@@ -12,7 +12,7 @@ public interface GraphQueryService {
         This method takes concept and question through rest call and
         returns the set of answers for that particular question and concept
      */
-    ResponseDTO solution(String concept);
+    ResponseDTO solution(String concept,String intent);
 
     /*
         This method takes concept,question and answer through rest call and
