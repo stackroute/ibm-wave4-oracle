@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { TourismService, Message } from "../tourism.service";
-import { scan } from "rxjs/operators";
+import { Component, OnInit } from "@angular/core";
+import { TourismService } from "../tourism.service";
 
 @Component({
   selector: "app-tourism-bot",
@@ -11,34 +10,26 @@ export class TourismBotComponent implements OnInit {
   messages: any = [];
   formValue: string;
   mymessages: any;
-  input:string;
+  input: string;
 
   constructor(private chat: TourismService) {}
 
   ngOnInit() {
-    // appends to array after each new message is added to feedSource
-    // this.messages = this.chat.conversation.asObservable()
-    //   .pipe(scan((acc, val) => acc.concat(val)));
-
     let that = this;
-    this.mymessages = this.chat.conversation;
-    this.mymessages.asObservable().pipe();
-    this.chat.talk();
     this.chat.messages.subscribe((data: any) => {
+      data["query"] = this.input;
       that.messages.push(data);
-      console.log(this.messages);
+      console.log(this.messages, "this is current message !!!");
     });
   }
   sendMessage() {
-    console.log(this.formValue)
-    this.input=this.formValue;
+    this.input = this.formValue;
     this.chat.converse(this.formValue);
+    this.messages.push({ type: 0, ourText: this.formValue });
     this.formValue = "";
-    
-   
   }
 
   onClick(val) {
-    console.log("val is ", val);
+    this.chat.converse(val);
   }
 }

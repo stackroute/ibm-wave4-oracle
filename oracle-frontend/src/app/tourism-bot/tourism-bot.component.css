@@ -28,9 +28,8 @@
     width: 100%;
     height: 650px;
     overflow: auto;
-
   }
-  /* .text{
+   .text{
     margin-left: 5rem;
     text-align: right;
     padding: 1rem 1rem 1rem 1rem;
@@ -38,13 +37,10 @@
     border-radius: 1rem;
     border: 1px solid #363636;
   }
-  .texts{
-    border: 1px solid #363636;
-    margin-right: 5rem;
-    padding: 1rem 1rem 1rem 1rem;
-    border-radius: 1rem;
-    position: relative;
-  } */
+  .options{
+    width:50%;
+    height:10%;
+  }
   .bubble {
     flex: 1 1 auto;
     clear: both;
@@ -94,20 +90,7 @@
     height: 3rem;
     width: 3rem;
   }
-  /* .message {
-    margin: 1rem 1rem 2rem 1rem;
-    padding: 1rem 1rem 1rem 1rem;
-    position: relative;
-    border-radius: 1rem;
-  }
-  .message.to {
-    border: 1px solid #363636;
-    margin-left: 5rem;
-    text-align: right;
-  }
-  .message.from {
-    border: 1px solid #363636;
-    margin-right: 5rem;
-  }
-
-   */
+.fa-times-circle{
+  font-size: 2rem;
+  margin: 0.5rem 0rem 0rem 12rem;
+}
