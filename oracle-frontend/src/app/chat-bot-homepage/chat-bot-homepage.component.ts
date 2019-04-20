@@ -47,17 +47,16 @@ export class ChatBotHomepageComponent implements OnInit {
   suggestionList: any = [];
   suggested: boolean = false;
   scrollableH;
-  latestQuestion: string = "";
 
-  botItems: any = [
-    { "icon": "fas fa-cloud", "name": "Weather", "rvalue": "abc" },
-    { "icon": "fas fa-globe-africa", "name": "Tourism", "rvalue": "/tourism-bot" },
-    { "icon": "fas fa-film", "name": "Movie", "rvalue": "xyz" }
-  ];
-  botBasket: any = [{ "icon": "fas fa-cloud", "name": "Weather" },
-  { "icon": "fas fa-globe-africa", "name": "Tourism", "rvalue": "/tourism-bot" },
-  { "icon": "fas fa-film", "name": "Movie" }
-  ];
+  latestQuestion:string="";
+
+  botItems:any=[
+                  {"icon":"fas fa-cloud","name":"Weather", "rvalue":"abc"},
+                  {"icon":"fas fa-globe-africa","name":"Tourism", "rvalue":"/tourism-bot"},
+                  {"icon":"fas fa-film","name":"Movie", "rvalue":"xyz"}
+                ];
+  botBasket:any=[];
+
 
 
   ngOnInit() {
