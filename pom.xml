@@ -17,10 +17,6 @@
         <relativePath/> <!--lookup parent from repository -->
     </parent>
 
-
-
-
-
     <properties>
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <jaxb.version>2.3.0</jaxb.version>
@@ -41,6 +37,7 @@
         <module>queryautocorrector-service</module>
         <module>graph-query-service</module>
         <module>extract-intent-service</module>
+        <module>timeseries-conversation-service</module>
     </modules>
 
 
@@ -124,7 +121,7 @@
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.5</version>
+                <version>3.6.0.1398</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

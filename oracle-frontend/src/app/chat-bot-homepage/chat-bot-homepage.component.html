@@ -93,7 +93,7 @@
         <form
           class="container-fluid form-inline d-flex my-1"
           #chatForm="ngForm"
-          (ngSubmit)="onSubmit(chatForm,scrollMe)"
+          (ngSubmit)="onSubmit(chatForm,scrollMe);sendM"
         >
           <input
             type="text"

@@ -1,7 +1,13 @@
-import {Component, HostListener, OnInit} from "@angular/core";
-import {ItChatServiceService} from "../it-chat-service.service";
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { Component, HostListener, OnInit } from "@angular/core";
+import { ItChatServiceService } from "../it-chat-service.service";
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { InstantMessagingService } from '../instant-messaging.service';
 
+
+import * as Stomp from 'stompjs';
+// import * as Stomp from '@stomp/stompjs';
+import * as SockJS from 'sockjs-client';
+import * as $ from 'jquery';
 
 interface Status {
   accepted: boolean;
@@ -24,7 +30,8 @@ interface UserQuery {
   styleUrls: ["./chat-bot-homepage.component.css"]
 })
 export class ChatBotHomepageComponent implements OnInit {
-  constructor(private chatService: ItChatServiceService) {
+  stompClient: any;
+  constructor(private chatService: ItChatServiceService, private im: InstantMessagingService) {
   }
 
   queryAnswer: Query = {
@@ -38,8 +45,9 @@ export class ChatBotHomepageComponent implements OnInit {
 
   queryList: any = [];
   suggestionList: any = [];
-  suggested:boolean=false;
+  suggested: boolean = false;
   scrollableH;
+
   latestQuestion:string="";
 
   botItems:any=[
@@ -50,33 +58,49 @@ export class ChatBotHomepageComponent implements OnInit {
   botBasket:any=[];
 
 
+
   ngOnInit() {
 
   }
 
+  sendMessage(query) {
+    // console.log("sending messages to websocket service");
+    // console.log(queryAnswer);
+    // this.stompClient.send("/app/message",{},queryAnswer);
+    // console.log("messages sent to websocket service");
+    this.im.sendMessage(JSON.stringify(query));
+  }
+
   // chat sending and receiving
-  onSubmit(value,scrollItem) {
-    let jsonQuery = JSON.stringify({queryAnswer: this.queryAnswer, status: this.status});
-    this.latestQuestion=this.queryAnswer.question;
+  onSubmit(value, scrollItem) {
+    this.sendMessage({ queryAnswer: this.queryAnswer, status: this.status });
+    // console.log("sending messages to bot service");
+    let jsonQuery = JSON.stringify({ queryAnswer: this.queryAnswer, status: this.status });
+    // console.log(jsonQuery);
+    this.latestQuestion = this.queryAnswer.question;
 
-    console.log("submitted" + jsonQuery);
+    // console.log("submitted" + jsonQuery);
     this.queryList.push(JSON.parse(jsonQuery));
-    this.chatService.getQuery(jsonQuery).subscribe((value1: any) => {
+
+    this.im.messageList.subscribe((value1: any) => {
+      // console.log(value1);
+      this.scrollableH = scrollItem.scrollHeight;
       console.log(value1);
-      this.scrollableH=scrollItem.scrollHeight;
-      value1.forEach((data) => {
-        if(data.status.suggested){
+      if (value1) {
+        JSON.parse(value1).forEach((data) => {
+          if (data.status.suggested) {
 
-         this.suggested=true;
-          this.suggestionList.push(data);
+            this.suggested = true;
+            this.suggestionList.push(data);
 
-        } else {
-          this.suggestionList=[];
-          this.queryList.push(data);
-          this.suggested=false;
+          } else {
+            this.suggestionList = [];
+            this.queryList.push(data);
+            this.suggested = false;
 
-        }
-      });
+          }
+        });
+      }
     });
     console.log(this.queryList);
     console.log(this.suggestionList);
@@ -100,7 +124,7 @@ export class ChatBotHomepageComponent implements OnInit {
     data.status.accepted = true;
     data.queryAnswer.id = 10;
     this.chatService.saveQuery(data).subscribe((value1: any) => {
-      console.log(value1);
+      // console.log(value1);
     });
   }
 

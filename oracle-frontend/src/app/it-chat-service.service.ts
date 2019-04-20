@@ -7,7 +7,10 @@ import { HttpHeaders, HttpClient } from "@angular/common/http";
   providedIn: "root"
 })
 export class ItChatServiceService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    
+  }
+
   //get chat response
   private options = {
     headers: new HttpHeaders()
