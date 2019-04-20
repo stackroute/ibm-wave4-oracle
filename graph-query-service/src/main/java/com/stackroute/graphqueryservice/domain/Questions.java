@@ -21,6 +21,7 @@ public class Questions {
     private Long id;
     private String name;
     private String concept;
+    private String intent;
 
 
     /*

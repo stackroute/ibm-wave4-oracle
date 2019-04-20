@@ -24,12 +24,14 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   loginUser(user: any) {
+
     this.userService.loginUser(user).subscribe(response => {
       if (response) {
         localStorage.setItem("currentUser", JSON.stringify(response));
         this.authService.isLoggedIn();
         this.msg=null;
         this.router.navigateByUrl("/profile");
+      
 
       }
     },
