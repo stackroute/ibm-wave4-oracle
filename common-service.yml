@@ -38,7 +38,7 @@ services:
     hostname: localhost
     ports:
       - 8761:8761
-    mem_limit: 200m
+
 
   config-service:
     build: config-server/

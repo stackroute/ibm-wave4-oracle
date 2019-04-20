@@ -81,7 +81,7 @@ public class ExtractController {
         TypeReference<List<IntentData>> typeReference = new TypeReference<List<IntentData>>() {
         };
         ObjectMapper mapper = new ObjectMapper();
-        InputStream inputStream = new FileInputStream(new File("extract-intent-service/src/json/intent.json"));
+        InputStream inputStream = new FileInputStream(new File("intent.json"));
         List<IntentData> list1 = mapper.readValue(inputStream, typeReference);
 
         CoreDocument coreDocument = new CoreDocument(input);
