@@ -60,6 +60,26 @@ export class ChatBotHomepageComponent implements OnInit {
 
 
   ngOnInit() {
+    this.im.messageList.subscribe((value1: any) => {
+      // console.log(value1);
+
+      console.log(value1);
+      if (value1) {
+        JSON.parse(value1.response).forEach((data) => {
+          if (data.status.suggested) {
+
+            this.suggested = true;
+            this.suggestionList.push(data);
+
+          } else {
+            this.suggestionList = [];
+            this.queryList.push(data);
+            this.suggested = false;
+
+          }
+        });
+      }
+    });
 
   }
 
@@ -78,30 +98,11 @@ export class ChatBotHomepageComponent implements OnInit {
     let jsonQuery = JSON.stringify({ queryAnswer: this.queryAnswer, status: this.status });
     // console.log(jsonQuery);
     this.latestQuestion = this.queryAnswer.question;
-
+    this.scrollableH = scrollItem.scrollHeight;
     // console.log("submitted" + jsonQuery);
     this.queryList.push(JSON.parse(jsonQuery));
 
-    this.im.messageList.subscribe((value1: any) => {
-      // console.log(value1);
-      this.scrollableH = scrollItem.scrollHeight;
-      console.log(value1);
-      if (value1) {
-        JSON.parse(value1).forEach((data) => {
-          if (data.status.suggested) {
 
-            this.suggested = true;
-            this.suggestionList.push(data);
-
-          } else {
-            this.suggestionList = [];
-            this.queryList.push(data);
-            this.suggested = false;
-
-          }
-        });
-      }
-    });
     console.log(this.queryList);
     console.log(this.suggestionList);
     value.reset();
