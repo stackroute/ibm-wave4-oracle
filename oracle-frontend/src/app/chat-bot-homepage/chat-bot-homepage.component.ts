@@ -1,6 +1,6 @@
-import {Component, HostListener, OnInit} from "@angular/core";
-import {ItChatServiceService} from "../it-chat-service.service";
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { Component, HostListener, OnInit } from "@angular/core";
+import { ItChatServiceService } from "../it-chat-service.service";
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { InstantMessagingService } from '../instant-messaging.service';
 
 
@@ -31,7 +31,7 @@ interface UserQuery {
 })
 export class ChatBotHomepageComponent implements OnInit {
   stompClient: any;
-  constructor(private chatService: ItChatServiceService, private im:InstantMessagingService) {
+  constructor(private chatService: ItChatServiceService, private im: InstantMessagingService) {
   }
 
   queryAnswer: Query = {
@@ -45,18 +45,18 @@ export class ChatBotHomepageComponent implements OnInit {
 
   queryList: any = [];
   suggestionList: any = [];
-  suggested:boolean=false;
+  suggested: boolean = false;
   scrollableH;
-  latestQuestion:string="";
+  latestQuestion: string = "";
 
-  botItems:any=[
-                  {"icon":"fas fa-cloud","name":"Weather", "rvalue":"abc"},
-                  {"icon":"fas fa-globe-africa","name":"Tourism", "rvalue":"/tourism-bot"},
-                  {"icon":"fas fa-film","name":"Movie", "rvalue":"xyz"}
-                ];
-  botBasket:any=[{"icon":"fas fa-cloud","name":"Weather"},
-                {"icon":"fas fa-globe-africa","name":"Tourism", "rvalue":"/tourism-bot"},
-                {"icon":"fas fa-film","name":"Movie"}
+  botItems: any = [
+    { "icon": "fas fa-cloud", "name": "Weather", "rvalue": "abc" },
+    { "icon": "fas fa-globe-africa", "name": "Tourism", "rvalue": "/tourism-bot" },
+    { "icon": "fas fa-film", "name": "Movie", "rvalue": "xyz" }
+  ];
+  botBasket: any = [{ "icon": "fas fa-cloud", "name": "Weather" },
+  { "icon": "fas fa-globe-africa", "name": "Tourism", "rvalue": "/tourism-bot" },
+  { "icon": "fas fa-film", "name": "Movie" }
   ];
 
 
@@ -69,35 +69,39 @@ export class ChatBotHomepageComponent implements OnInit {
     // console.log(queryAnswer);
     // this.stompClient.send("/app/message",{},queryAnswer);
     // console.log("messages sent to websocket service");
-    this.im.sendMessage(JSON.stringify(query)); 
+    this.im.sendMessage(JSON.stringify(query));
   }
 
   // chat sending and receiving
-  onSubmit(value,scrollItem) {
-    this.sendMessage({queryAnswer:this.queryAnswer,status:this.status});
+  onSubmit(value, scrollItem) {
+    this.sendMessage({ queryAnswer: this.queryAnswer, status: this.status });
     // console.log("sending messages to bot service");
-    let jsonQuery = JSON.stringify({queryAnswer: this.queryAnswer, status: this.status});
+    let jsonQuery = JSON.stringify({ queryAnswer: this.queryAnswer, status: this.status });
     // console.log(jsonQuery);
-    this.latestQuestion=this.queryAnswer.question;
+    this.latestQuestion = this.queryAnswer.question;
 
     // console.log("submitted" + jsonQuery);
     this.queryList.push(JSON.parse(jsonQuery));
-    this.chatService.getQuery(jsonQuery).subscribe((value1: any) => {
+
+    this.im.messageList.subscribe((value1: any) => {
       // console.log(value1);
-      this.scrollableH=scrollItem.scrollHeight;
-      value1.forEach((data) => {
-        if(data.status.suggested){
+      this.scrollableH = scrollItem.scrollHeight;
+      console.log(value1);
+      if (value1) {
+        JSON.parse(value1).forEach((data) => {
+          if (data.status.suggested) {
 
-         this.suggested=true;
-          this.suggestionList.push(data);
+            this.suggested = true;
+            this.suggestionList.push(data);
 
-        } else {
-          this.suggestionList=[];
-          this.queryList.push(data);
-          this.suggested=false;
+          } else {
+            this.suggestionList = [];
+            this.queryList.push(data);
+            this.suggested = false;
 
-        }
-      });
+          }
+        });
+      }
     });
     console.log(this.queryList);
     console.log(this.suggestionList);

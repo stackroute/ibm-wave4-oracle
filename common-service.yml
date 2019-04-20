@@ -12,7 +12,7 @@ services:
     volumes:
       - /home/mongo/data:/var/lib/mongo
     mem_limit: 100m
-    mem_reservation: 100m
+
 
   mysql:
     image: mysql:5.7
