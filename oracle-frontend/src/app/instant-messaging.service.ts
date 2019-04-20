@@ -25,6 +25,7 @@ export class InstantMessagingService {
     let that = this;
     this.stompClient.connect({}, function (frame) {
     that.stompClient.subscribe(`/user/${info.user.email}/reply`, (message) => {
+      console.info("response"+message.body);
       });
     });
   }

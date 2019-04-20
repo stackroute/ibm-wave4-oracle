@@ -75,32 +75,32 @@ export class ChatBotHomepageComponent implements OnInit {
   // chat sending and receiving
   onSubmit(value,scrollItem) {
     this.sendMessage({queryAnswer:this.queryAnswer,status:this.status});
-    // // console.log("sending messages to bot service");
-    // let jsonQuery = JSON.stringify({queryAnswer: this.queryAnswer, status: this.status});
-    // // console.log(jsonQuery);
-    // this.latestQuestion=this.queryAnswer.question;
+    // console.log("sending messages to bot service");
+    let jsonQuery = JSON.stringify({queryAnswer: this.queryAnswer, status: this.status});
+    // console.log(jsonQuery);
+    this.latestQuestion=this.queryAnswer.question;
 
-    // // console.log("submitted" + jsonQuery);
-    // this.queryList.push(JSON.parse(jsonQuery));
-    // this.chatService.getQuery(jsonQuery).subscribe((value1: any) => {
-    //   // console.log(value1);
-    //   this.scrollableH=scrollItem.scrollHeight;
-    //   value1.forEach((data) => {
-    //     if(data.status.suggested){
+    // console.log("submitted" + jsonQuery);
+    this.queryList.push(JSON.parse(jsonQuery));
+    this.chatService.getQuery(jsonQuery).subscribe((value1: any) => {
+      // console.log(value1);
+      this.scrollableH=scrollItem.scrollHeight;
+      value1.forEach((data) => {
+        if(data.status.suggested){
 
-    //      this.suggested=true;
-    //       this.suggestionList.push(data);
+         this.suggested=true;
+          this.suggestionList.push(data);
 
-    //     } else {
-    //       this.suggestionList=[];
-    //       this.queryList.push(data);
-    //       this.suggested=false;
+        } else {
+          this.suggestionList=[];
+          this.queryList.push(data);
+          this.suggested=false;
 
-    //     }
-    //   });
-    // });
-    // console.log(this.queryList);
-    // console.log(this.suggestionList);
+        }
+      });
+    });
+    console.log(this.queryList);
+    console.log(this.suggestionList);
     value.reset();
   }
 

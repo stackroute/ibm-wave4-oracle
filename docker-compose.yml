@@ -18,8 +18,6 @@ services:
       - ./neo4j/import:/import
     environment:
       - NEO4J_AUTH=neo4j/1234
-    mem_limit: 100m
-    mem_reservation: 100m
 
   manual-answer:
     build: manual-answer-service/
@@ -29,8 +27,6 @@ services:
     hostname: localhost
     ports:
       - 8091:8091
-    mem_limit: 300m
-    mem_reservation: 300m
 
   user-service:
     build: user-service/
@@ -40,9 +36,6 @@ services:
     hostname: localhost
     ports:
       - 8081:8081
-    mem_limit: 200m
-    mem_reservation: 200m
-
 
   oraclefrontend:
     build: oracle-frontend/
@@ -61,8 +54,6 @@ services:
     hostname: localhost
     ports:
       - 8090:8090
-    mem_limit: 300m
-    mem_reservation: 200m
 
   queryautocorrector-service:
     build: queryautocorrector-service/
@@ -81,8 +72,6 @@ services:
     hostname: localhost
     ports:
       - 8082:8082
-    mem_limit: 200m
-    mem_reservation: 200m
 
   extract-intent-service:
     build: extract-intent-service/
