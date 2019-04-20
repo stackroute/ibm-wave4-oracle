@@ -31,6 +31,7 @@ import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
 import { TourismBotComponent } from './tourism-bot/tourism-bot.component';
 import { CommonModule } from "@angular/common";
 import { TourismService } from "./tourism.service";
+import { InstantMessagingService } from './instant-messaging.service'
 import { ChatHistoryComponent } from './chat-history/chat-history.component';
 
 @NgModule({
@@ -71,7 +72,7 @@ import { ChatHistoryComponent } from './chat-history/chat-history.component';
     CommonModule
   ],
   exports: [TourismBotComponent],
-  providers: [UserService, AuthGuard,TourismService],
+  providers: [UserService, AuthGuard,TourismService, InstantMessagingService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

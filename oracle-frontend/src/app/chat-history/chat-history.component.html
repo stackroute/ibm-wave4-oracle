@@ -1,0 +1,25 @@
+
+<div class="container">
+
+  <div class="row w-100">
+    <form #searchForm="ngForm" (ngSubmit)="onSubmit(search,searchForm.value)" class="form-inline border d-flex flex-wrap justify-content-around align-items-center w-100 p-3">
+      <mat-form-field class="mr-2">
+        <mat-label>pick start date</mat-label>
+        <input matInput   ngModel name="fromDate" type="date" class="form-control" required #start="ngModel">
+      </mat-form-field >
+      <mat-form-field class="mr-2">
+        <mat-label>pick end date</mat-label>
+        <input matInput  type="date" ngModel name="toDate" class="form-control" required #end="ngModel">
+      </mat-form-field>
+      <mat-form-field class="mr-2">
+        <mat-label>user id</mat-label>
+        <input matInput  type="text" ngModel name="userName" class="form-control" required #user="ngModel">
+      </mat-form-field>
+      <button class="btn-outline-success ml-2" mat-raised-button [disabled]="!searchForm.form.valid">
+        <i class="fas fa-search"></i>
+      </button>
+    </form>
+  </div>
+
+
+</div>

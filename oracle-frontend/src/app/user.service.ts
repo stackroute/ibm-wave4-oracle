@@ -27,6 +27,7 @@ export class UserService {
     return this.http.post(this.loginLink, user, {
       headers: headers
     });
+     
   }
   getAllUsers(token: any): Observable<any> {
     const headers = new HttpHeaders({ Authorization: "Bearer " + token });
