@@ -132,7 +132,7 @@
     mode="side"
     position="end"
     class="m-0 col-sm-12 col-md-3 col-lg-2"
-    style="height:100%; background-color:rgb(16, 76, 96);"
+    style="height:100%; background-color: whitesmoke"
   >
     <div
       class=" d-flex flex-column  justify-content-center align-items-center h-100 w-100"
@@ -145,7 +145,7 @@
       <div class="d-flex flex-column justify-content-around align-items-center">
         <button
           *ngFor="let item of botItems"
-          class="btn btn-outline-light"
+          class="btn btn-outline-dark"
           cdkDrag
           style="width: 100%"
         >
@@ -160,22 +160,21 @@
 </mat-drawer-container>
 
 <div
-  class="container d-flex flex-wrap justify-content-around"
+  class="container-fluid d-flex flex-wrap justify-content-around"
   cdkDropList
   [cdkDropListData]="botBasket"
   #botBasket1="cdkDropList"
   [cdkDropListConnectedTo]="botItems1"
   (cdkDropListDropped)="drop($event)"
-  style="background-color: darkolivegreen"
+  style="min-height:30rem;"
 >
 
-<div *ngFor="let item of botBasket">
-  <button class="btn btn-outline-light" cdkDrag   routerLink="{{item.rvalue}}">
+  <button *ngFor="let item of botBasket" class="btn btn-outline-dark" cdkDrag   routerLink="{{item.rvalue}}">
     <span
     ><i class="{{ item.icon }}"  style="font-size: 5rem;"></i>
       <p>{{ item.name }}</p>
       
     </span>
   </button>
-</div>
+
 </div>

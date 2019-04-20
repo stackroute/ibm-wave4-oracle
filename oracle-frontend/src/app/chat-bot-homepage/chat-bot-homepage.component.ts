@@ -47,10 +47,7 @@ export class ChatBotHomepageComponent implements OnInit {
                   {"icon":"fas fa-globe-africa","name":"Tourism", "rvalue":"/tourism-bot"},
                   {"icon":"fas fa-film","name":"Movie", "rvalue":"xyz"}
                 ];
-  botBasket:any=[{"icon":"fas fa-cloud","name":"Weather"},
-                {"icon":"fas fa-globe-africa","name":"Tourism", "rvalue":"/tourism-bot"},
-                {"icon":"fas fa-film","name":"Movie"}
-  ];
+  botBasket:any=[];
 
 
   ngOnInit() {
