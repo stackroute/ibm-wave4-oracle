@@ -77,7 +77,7 @@ public class SocketService {
             List<QueryAnswer> queryAnswer = probableAnswers.getResponses();
 
             for (QueryAnswer qa : queryAnswer) {
-                response.add(new SendQuery(qa, new Status(false, false,true)));
+                response.add(new SendQuery(qa, new Status(false, true,true)));
             }
         }
         /* Default answer to client if concept is not found.*/
