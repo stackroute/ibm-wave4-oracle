@@ -42,6 +42,9 @@ public class BotController {
     @Value("${neo4jAnsURI}")
     private String NEO4J_ANSWER_URI;
 
+    @Value("${intentURI}")
+    private String Intent_URI;
+
     @Autowired
     public BotController(KafkaTemplate<Object, Object> kafkaTemplate, QueryService queryService) {
         this.kafkaTemplate = kafkaTemplate;
@@ -58,7 +61,7 @@ public class BotController {
 
         String correctedQuery = restTemplate.getForObject(AUTO_CORRECTOR_URI + sendQuery.getQueryAnswer().getQuestion(), String.class).toLowerCase();
         String concept = restTemplate.getForObject(CONCEPT_URI + correctedQuery, String.class);
-
+        String intent = restTemplate.getForObject(Intent_URI + correctedQuery, String.class);
         logger.info(correctedQuery);
         logger.info(concept);
 
@@ -75,7 +78,7 @@ public class BotController {
         if (answer == null) {
             response = new ArrayList<>();
 
-            Response probableAnswers = restTemplate.getForObject(NEO4J_ANSWER_URI + concept, Response.class);
+            Response probableAnswers = restTemplate.getForObject(NEO4J_ANSWER_URI + concept +intent, Response.class);
             List<QueryAnswer> queryAnswer = probableAnswers.getResponses();
 
             for (QueryAnswer qa : queryAnswer) {

@@ -1,7 +1,6 @@
 package com.stackroute.com.extractintentservice.controller;
 
 
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stackroute.com.extractintentservice.model.ConceptData;
@@ -16,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
 
 
 import java.io.*;
@@ -36,7 +34,7 @@ public class ExtractController {
 
 
     @GetMapping(value = "/concepts/{input}")
-    public String extract(@PathVariable("input") String input){
+    public String extract(@PathVariable("input") String input) {
         try {
 
             RestTemplate restTemplate = new RestTemplate();
@@ -68,9 +66,7 @@ public class ExtractController {
             }
 
 
-
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             logger.info(e.getMessage());
         }
 
@@ -85,7 +81,7 @@ public class ExtractController {
         TypeReference<List<IntentData>> typeReference = new TypeReference<List<IntentData>>() {
         };
         ObjectMapper mapper = new ObjectMapper();
-        InputStream inputStream = new FileInputStream(new File("/home/gopal/Music/ibm-wave4-oracle/extract-intent-service/src/json/intent.json"));
+        InputStream inputStream = new FileInputStream(new File("extract-intent-service/src/json/intent.json"));
         List<IntentData> list1 = mapper.readValue(inputStream, typeReference);
 
         CoreDocument coreDocument = new CoreDocument(input);
@@ -104,28 +100,19 @@ public class ExtractController {
 
                 stanfordCoreNLP.annotate(coreDocument1);
                 List<CoreLabel> checkterm = coreDocument1.tokens();
-
-
                 int k = 0;
-
                 while (k < checkterm.size()) {
 
                     String pos = checkterm.get(k).lemma().toLowerCase();
-
                     if (output.equals(pos)) {
                         return field1List.get(j);
                     } else {
                         k++;
                     }
-
-
                 }
                 j++;
             }
-
         }
-
         return null;
     }
-
 }
