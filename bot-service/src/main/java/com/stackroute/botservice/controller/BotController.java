@@ -18,6 +18,10 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 /* Created on : 27/03/2019 - Gopal Panchal and Subhajit Pal (@rahzex)*/
 
 @RestController
@@ -44,6 +48,9 @@ public class BotController {
 
     @Value("${neo4jAnsURI}")
     private String NEO4J_ANSWER_URI;
+
+    @Value("${intentURI}")
+    private String Intent_URI;
 
     @Autowired
     public BotController(KafkaTemplate<Object, Object> kafkaTemplate,SocketService socketService,QueryService queryService,SimpMessagingTemplate template) {
