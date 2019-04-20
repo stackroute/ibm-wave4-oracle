@@ -18,10 +18,6 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 /* Created on : 27/03/2019 - Gopal Panchal and Subhajit Pal (@rahzex)*/
 
 @RestController
@@ -65,7 +61,7 @@ public class BotController {
         logger.info(message + " " + userName);
         SendQuery sendQuery = gson.fromJson(message, SendQuery.class);
         logger.info(sendQuery.toString());
-        template.convertAndSendToUser(userName, "/reply",gson.toJson(socketService.getAnswer(sendQuery)));
+        template.convertAndSendToUser(userName, "/reply",gson.toJson(socketService.getAnswer(sendQuery,userName)));
     }
 
 

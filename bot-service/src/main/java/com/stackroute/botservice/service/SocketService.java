@@ -7,8 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
@@ -50,8 +48,11 @@ public class SocketService {
     @Value("${intentURI}")
     private String Intent_URI;
 
+    @Value("${timeSeriesConversationURI}")
+    private String TIMESERIES_CONVERSATION_URI;
 
-    public List<SendQuery> getAnswer(SendQuery sendQuery) {
+
+    public List<SendQuery> getAnswer(SendQuery sendQuery, String userName) {
 
         String correctedQuery = restTemplate.getForObject(AUTO_CORRECTOR_URI + sendQuery.getQueryAnswer().getQuestion(), String.class).toLowerCase();
         String concept = restTemplate.getForObject(CONCEPT_URI + correctedQuery, String.class);
@@ -79,7 +80,7 @@ public class SocketService {
                 response.add(new SendQuery(qa, new Status(false, false,true)));
             }
         }
-        //* Default answer to client if concept is not found.*//*
+        /* Default answer to client if concept is not found.*/
         if(response.isEmpty()){
             String[] defaultResponses = {"We don't have a answer for this question right now. We will get back to you via email.",
                     "Oops! Seems like we have to figure it out too:( We will mail you once we figure it out:)",
@@ -95,6 +96,17 @@ public class SocketService {
             questionDTO.setQuestion(correctedQuery);
             kafkaTemplate.send("new_query", questionDTO);
         }
+        // To save every conversation in influxDB
+        Conversation newConvo = new Conversation();
+        newConvo.setUserName(userName);
+        newConvo.setUser(sendQuery.getQueryAnswer().getQuestion());
+        newConvo.setBot(response.get(0).getQueryAnswer().getAnswer());
+
+        logger.info(newConvo.toString());
+
+        String status = restTemplate.postForObject(TIMESERIES_CONVERSATION_URI,newConvo,String.class);
+
+        logger.info(status);
 
         return response;
     }
