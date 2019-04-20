@@ -47,7 +47,10 @@ public class ConversationService {
         String toDateString = timeRange.getToDate();
         String fromDateString = timeRange.getFromDate();
 
-        DateFormat dateFormat = new SimpleDateFormat("EEE, dd MMM yyyy hh:mm:ss.SSS z");
+        System.out.println(fromDateString);
+        System.out.println(toDateString);
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date toDate1 = dateFormat.parse(toDateString);
         Date fromDate1 = dateFormat.parse(fromDateString);
 
@@ -66,9 +69,9 @@ public class ConversationService {
 
         QueryResult queryResult = influxDBTemplate.query(query);
 
-        //System.out.println(queryResult.getResults().get(0).getSeries().get(0).getValues().get(1).get(0).toString());
+        //System.out.println(queryResult.getResults().get(0).getSeries().get(0).getValues().get(0).get(1).toString());
 
-        if (!queryResult.getResults().isEmpty()) {
+        if (queryResult.getResults().get(0).getSeries()!=null) {
 
             int rowSize = queryResult.getResults().get(0).getSeries().get(0).getValues().size();
             System.out.println("Size is : " + rowSize);
@@ -81,6 +84,9 @@ public class ConversationService {
                 ));
             }
         }
+
+        if (conversationList.isEmpty())
+            conversationList.add(new Conversation(timeRange.getUserName(),"00-00-00","No Data Available","No Data Available"));
 
         return conversationList;
 
