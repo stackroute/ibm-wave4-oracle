@@ -4,10 +4,6 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { InstantMessagingService } from '../instant-messaging.service';
 
 
-import * as Stomp from 'stompjs';
-// import * as Stomp from '@stomp/stompjs';
-import * as SockJS from 'sockjs-client';
-import * as $ from 'jquery';
 
 interface Status {
   accepted: boolean;
