@@ -88,7 +88,7 @@ public class SocketService {
                     "Hmmm... looks like I don't know this yet. Let me tell this to my Human master.He will get back to you via mail."};
 
             int replyIndex = new Random().nextInt(4);
-            response.add(new SendQuery(new QueryAnswer("","",defaultResponses[replyIndex]), new Status(false, false,false)));
+            response.add(new SendQuery(new QueryAnswer("","",defaultResponses[replyIndex]), new Status(false, true,false)));
 
             // sending to manual answer service
             QuestionDTO questionDTO = new QuestionDTO();
