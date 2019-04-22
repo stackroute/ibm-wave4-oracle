@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ChatHistoryService} from "../chat-history.service";
 
 @Component({
   selector: 'app-chat-history',
@@ -7,15 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatHistoryComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private chatService:ChatHistoryService) { }
+  historyList:any=[];
   search:any;
   ngOnInit() {
   }
 
-  onSubmit(value,rm){
-    console.log(value);
-    console.log(rm)
+  onSubmit(value){
+    this.chatService.getHistory(value).subscribe((data:any)=>{
+      data.forEach(item=> {
+          console.log(item);
+          this.historyList.push(item);
+        }
+      );
+
+    });
+
   }
 
 }
