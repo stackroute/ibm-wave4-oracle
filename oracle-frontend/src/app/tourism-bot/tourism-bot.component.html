@@ -1,24 +1,26 @@
 <div class="wrap">
   <div class="row card-title bg-info">
-    <h1 mat-dialog-title>Trip Planner</h1>
-    <span><i class="fas fa-times-circle col-sm-6" routerLink="/home"></i></span>
+    <h1 mat-dialog-title class="col-md-10 heading">Trip Planner</h1>
+    <i class="fas fa-times-circle col-md-2" routerLink="/home"></i>
   </div>
   <div class="container">
     <div class="bubble left">
-      <p>
-        Hey! I'm Tourism Trip Planner... Are you looking for help in planning
-        your trip?
-      </p>
+      <i class="fas fa-robot"></i>
+      <span
+        ><p>
+          Hey! I'm Tourism Trip Planner... Are you looking for help in planning
+          your trip?
+        </p></span
+      >
     </div>
     <ng-container *ngFor="let message of messages">
       <p *ngIf="message.ourText !== undefined" class="my-3 text">
         {{ message.ourText }}
       </p>
-
-      <p class="mx-3">{{ message.speech }}</p>
+      <p>{{ message.speech }}</p>
       <div>
         <p>{{ message.textToSpeech }}</p>
-        <div
+        <p
           *ngFor="let sug of message.suggestions"
           class="text-center mx-2 my-2"
         >
@@ -28,7 +30,7 @@
           >
             {{ sug.title }}
           </button>
-        </div>
+        </p>
       </div>
     </ng-container>
     <div mat-dialog-actions class="form" ngForm="#myform">
