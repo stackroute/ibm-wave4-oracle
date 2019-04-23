@@ -16,9 +16,12 @@ services:
     volumes:
       - /neo4j/data:/data
       - ./neo4j/import:/import
+<<<<<<< HEAD
     environment:
       - NEO4J_AUTH=neo4j/1234
 
+=======
+>>>>>>> 2da0f569a081a641bf408e34e0d03c85bca201ca
 
   manual-answer:
     build: manual-answer-service/
@@ -29,7 +32,6 @@ services:
     ports:
       - 8091:8091
     mem_limit: 300m
-    mem_reservation: 300m
 
   user-service:
     build: user-service/
@@ -39,9 +41,7 @@ services:
     hostname: localhost
     ports:
       - 8081:8081
-    mem_limit: 200m
-    mem_reservation: 200m
-
+    mem_limit: 300m
 
   oraclefrontend:
     build: oracle-frontend/
@@ -60,7 +60,11 @@ services:
     hostname: localhost
     ports:
       - 8090:8090
+<<<<<<< HEAD
 
+=======
+    mem_limit: 300m
+>>>>>>> 2da0f569a081a641bf408e34e0d03c85bca201ca
 
   queryautocorrector-service:
     build: queryautocorrector-service/
@@ -79,8 +83,12 @@ services:
     hostname: localhost
     ports:
       - 8082:8082
+<<<<<<< HEAD
     mem_limit: 500m
     mem_reservation: 500m
+=======
+    mem_limit: 300m
+>>>>>>> 2da0f569a081a641bf408e34e0d03c85bca201ca
 
   extract-intent-service:
     build: extract-intent-service/
@@ -99,3 +107,22 @@ services:
     ports:
       - 9000:9000
     mem_limit: 300m
+
+  prom:
+    image: quay.io/prometheus/prometheus:v2.0.0
+    volumes:
+      - /data/prometheus.yml:/etc/prometheus/prometheus.yml
+    command: "--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus"
+    ports:
+      - 9090:9090
+    depends_on:
+      - exporter
+
+  grafana:
+    image: grafana/grafana
+    ports:
+       - "3000:3000"
+    depends_on:
+       - prom
+    network_mode: "host"
+    hostname: localhost

@@ -7,8 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
@@ -16,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class SocketService {
@@ -46,28 +45,35 @@ public class SocketService {
     @Value("${neo4jAnsURI}")
     private String NEO4J_ANSWER_URI;
 
-    public List<SendQuery> getAnswer(SendQuery sendQuery) {
+    @Value("${intentURI}")
+    private String Intent_URI;
+
+    @Value("${timeSeriesConversationURI}")
+    private String TIMESERIES_CONVERSATION_URI;
+
+
+    public List<SendQuery> getAnswer(SendQuery sendQuery, String userName) {
 
         String correctedQuery = restTemplate.getForObject(AUTO_CORRECTOR_URI + sendQuery.getQueryAnswer().getQuestion(), String.class).toLowerCase();
         String concept = restTemplate.getForObject(CONCEPT_URI + correctedQuery, String.class);
-
-        System.out.println("Query : " + correctedQuery);
-        System.out.println("Concept : " + concept);
+        String intent = restTemplate.getForObject(Intent_URI + correctedQuery, String.class);
+        logger.info(correctedQuery);
+        logger.info(concept);
 
         List<SendQuery> response = null;
 
         String answer = queryService.getAnswerOfSimilarQuestion(concept, correctedQuery.toLowerCase());
         if (answer != null) {
-            response = new ArrayList<SendQuery>();
+            response = new ArrayList<>();
             sendQuery.setQueryAnswer(new QueryAnswer("", correctedQuery, answer));
             sendQuery.getStatus().setAnswered(true);
             sendQuery.getStatus().setSuggested(false);
             response.add(sendQuery);
         }
         if (answer == null) {
-            response = new ArrayList<SendQuery>();
+            response = new ArrayList<>();
 
-            Response probableAnswers = restTemplate.getForObject(NEO4J_ANSWER_URI + concept, Response.class);
+            Response probableAnswers = restTemplate.getForObject(NEO4J_ANSWER_URI + concept +"/"+ intent, Response.class);
             List<QueryAnswer> queryAnswer = probableAnswers.getResponses();
 
             for (QueryAnswer qa : queryAnswer) {
@@ -80,8 +86,9 @@ public class SocketService {
                     "Oops! Seems like we have to figure it out too:( We will mail you once we figure it out:)",
                     "Our Expert Scientist are working on this! We will get back to you via mail.",
                     "Hmmm... looks like I don't know this yet. Let me tell this to my Human master.He will get back to you via mail."};
-            int replyIndex = (int) (Math.random() * ((3) + 1));
-            response.add(new SendQuery(new QueryAnswer("","",defaultResponses[replyIndex]), new Status(false, false,false)));
+
+            int replyIndex = new Random().nextInt(4);
+            response.add(new SendQuery(new QueryAnswer("","",defaultResponses[replyIndex]), new Status(false, true,false)));
 
             // sending to manual answer service
             QuestionDTO questionDTO = new QuestionDTO();
@@ -89,6 +96,17 @@ public class SocketService {
             questionDTO.setQuestion(correctedQuery);
             kafkaTemplate.send("new_query", questionDTO);
         }
+        // To save every conversation in influxDB
+        Conversation newConvo = new Conversation();
+        newConvo.setUserName(userName);
+        newConvo.setUser(sendQuery.getQueryAnswer().getQuestion());
+        newConvo.setBot(response.get(0).getQueryAnswer().getAnswer());
+
+        logger.info(newConvo.toString());
+
+        String status = restTemplate.postForObject(TIMESERIES_CONVERSATION_URI,newConvo,String.class);
+
+        logger.info(status);
 
         return response;
     }
