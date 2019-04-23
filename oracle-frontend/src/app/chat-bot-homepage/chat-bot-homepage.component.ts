@@ -3,8 +3,6 @@ import { ItChatServiceService } from "../it-chat-service.service";
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { InstantMessagingService } from '../instant-messaging.service';
 
-
-
 interface Status {
   accepted: boolean;
   answered: boolean;
@@ -49,11 +47,13 @@ export class ChatBotHomepageComponent implements OnInit {
   botItems:any=[
                   {"icon":"fas fa-cloud","name":"Weather", "rvalue":"abc"},
                   {"icon":"fas fa-globe-africa","name":"Tourism", "rvalue":"/tourism-bot"},
-                  {"icon":"fas fa-film","name":"Movie", "rvalue":"xyz"}
+                  {"icon":"fas fa-film","name":"Movie", "rvalue":"/recast"}
                 ];
-  botBasket:any=[];
-
-
+  botBasket:any=[{"icon":"fas fa-cloud","name":"Weather"},
+                {"icon":"fas fa-globe-africa","name":"Tourism", "rvalue":"/tourism-bot"},
+                {"icon":"fas fa-film","name":"Movie","rvalue":"/recast"}
+  ];
+  
 
   ngOnInit() {
     this.im.messageList.subscribe((value1: any) => {

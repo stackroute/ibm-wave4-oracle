@@ -32,8 +32,9 @@ public class ConversationService {
     }
 
     public void saveConversation(Conversation conversation) {
+        String userName = conversation.getUserName().split("@")[0];
         influxDBTemplate.createDatabase();
-        final Point p = Point.measurement(conversation.getUserName() + "Conversation")
+        final Point p = Point.measurement(userName + "Conversation")
                 .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
                 .addField("Bot", conversation.getBot())
                 .addField("Human", conversation.getUser())
@@ -65,7 +66,9 @@ public class ConversationService {
 
         System.out.println(" database : " + dbName);
 
-        Query query = new Query("select time, Bot, Human from " + timeRange.getUserName() + "Conversation" + " where time >= " + fromUnixTime + " and time <= " + toUnixTime, dbName);
+        String userName = timeRange.getUserName().split("@")[0];
+
+        Query query = new Query("select time, Bot, Human from " + userName + "Conversation" + " where time >= " + fromUnixTime + " and time <= " + toUnixTime, dbName);
 
         QueryResult queryResult = influxDBTemplate.query(query);
 
