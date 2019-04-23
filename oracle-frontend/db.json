@@ -1,0 +1,1224 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "resto_name": "name",
+      "resto_image": "image",
+      "resto_add": "location",
+      "id": 2
+    },
+    {
+      "resto_name": "name",
+      "resto_image": "image",
+      "resto_add": "location",
+      "id": 3
+    },
+    {
+      "resto_name": "name",
+      "resto_image": "image",
+      "resto_add": "location",
+      "id": 4
+    },
+    {
+      "resto_name": "name",
+      "resto_image": "image",
+      "resto_add": "location",
+      "id": 5
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "message": [
+        {
+          "type": 0,
+          "ourText": "hi"
+        },
+        {
+          "type": 0,
+          "speech": "Good day!",
+          "query": "hi"
+        }
+      ],
+      "id": 8
+    },
+    {
+      "message": [
+        {
+          "type": 0,
+          "ourText": "hi"
+        },
+        {
+          "type": 0,
+          "speech": "Good day!",
+          "query": "hi"
+        },
+        {
+          "type": 0,
+          "ourText": "this is my email gopalpanchal10@gmail.com"
+        },
+        {
+          "type": 0,
+          "speech": "Ok, Our Traveller manager will update you the Trip details.",
+          "query": "this is my email gopalpanchal10@gmail.com"
+        }
+      ],
+      "id": 9
+    },
+    {
+      "message": [
+        {
+          "type": 0,
+          "ourText": "hi  "
+        },
+        {
+          "type": 0,
+          "speech": "Hello!",
+          "query": "hi  "
+        }
+      ],
+      "id": 10
+    },
+    {
+      "message": [
+        {
+          "type": 0,
+          "ourText": "hi  "
+        },
+        {
+          "type": 0,
+          "speech": "Hello!",
+          "query": "hi  "
+        },
+        {
+          "type": 0,
+          "ourText": "hi "
+        },
+        {
+          "type": 0,
+          "speech": "Good day!",
+          "query": "hi "
+        },
+        {
+          "type": 0,
+          "ourText": "gopal here"
+        },
+        {
+          "type": 0,
+          "speech": "One more time?",
+          "query": "gopal here"
+        },
+        {
+          "type": 0,
+          "ourText": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Ok, What kind of trip u want to book",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "For a family trip"
+            },
+            {
+              "title": "For a friends trip"
+            },
+            {
+              "title": "For a solo trip"
+            },
+            {
+              "title": "For a romantic trip"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Okay...,How many are planning to go?",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "3"
+            },
+            {
+              "title": "4"
+            },
+            {
+              "title": "5"
+            },
+            {
+              "title": "6"
+            },
+            {
+              "title": "more than 6"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Ok, Have u decided u r destination?",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "yes"
+            },
+            {
+              "title": "no"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Great! Where do you want to go?",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "Banglore"
+            },
+            {
+              "title": "Pune"
+            },
+            {
+              "title": "Mysore"
+            },
+            {
+              "title": "Paris"
+            },
+            {
+              "title": "London"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Is u r departure date fixed?",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "yes"
+            },
+            {
+              "title": "No"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Please mention your departure date?(eg:23 april)",
+          "query": "book a trip"
+        },
+        {
+          "type": 0,
+          "ourText": "23"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Ok, For how many days u r trip will be?",
+          "query": "23"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "3 days or less than"
+            },
+            {
+              "title": "4 days"
+            },
+            {
+              "title": "5 days"
+            },
+            {
+              "title": "6 days"
+            },
+            {
+              "title": "7 days or more"
+            }
+          ],
+          "query": "23"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Noted! Our travel expert will need your contact details to guide you on planning your trip Please share u r email",
+          "query": "23"
+        },
+        {
+          "type": 0,
+          "speech": "",
+          "query": "23"
+        }
+      ],
+      "id": 11
+    },
+    {
+      "message": [
+        {
+          "type": 0,
+          "ourText": "hi  "
+        },
+        {
+          "type": 0,
+          "speech": "Hello!",
+          "query": "hi  "
+        },
+        {
+          "type": 0,
+          "ourText": "hi "
+        },
+        {
+          "type": 0,
+          "speech": "Good day!",
+          "query": "hi "
+        },
+        {
+          "type": 0,
+          "ourText": "gopal here"
+        },
+        {
+          "type": 0,
+          "speech": "One more time?",
+          "query": "gopal here"
+        },
+        {
+          "type": 0,
+          "ourText": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Ok, What kind of trip u want to book",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "For a family trip"
+            },
+            {
+              "title": "For a friends trip"
+            },
+            {
+              "title": "For a solo trip"
+            },
+            {
+              "title": "For a romantic trip"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Okay...,How many are planning to go?",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "3"
+            },
+            {
+              "title": "4"
+            },
+            {
+              "title": "5"
+            },
+            {
+              "title": "6"
+            },
+            {
+              "title": "more than 6"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Ok, Have u decided u r destination?",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "yes"
+            },
+            {
+              "title": "no"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Great! Where do you want to go?",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "Banglore"
+            },
+            {
+              "title": "Pune"
+            },
+            {
+              "title": "Mysore"
+            },
+            {
+              "title": "Paris"
+            },
+            {
+              "title": "London"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Is u r departure date fixed?",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "yes"
+            },
+            {
+              "title": "No"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Please mention your departure date?(eg:23 april)",
+          "query": "book a trip"
+        },
+        {
+          "type": 0,
+          "ourText": "23"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Ok, For how many days u r trip will be?",
+          "query": "23"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "3 days or less than"
+            },
+            {
+              "title": "4 days"
+            },
+            {
+              "title": "5 days"
+            },
+            {
+              "title": "6 days"
+            },
+            {
+              "title": "7 days or more"
+            }
+          ],
+          "query": "23"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Noted! Our travel expert will need your contact details to guide you on planning your trip Please share u r email",
+          "query": "23"
+        },
+        {
+          "type": 0,
+          "speech": "",
+          "query": "23"
+        },
+        {
+          "type": 0,
+          "ourText": "gopalpanchal10@gmail.com"
+        },
+        {
+          "type": 0,
+          "speech": "Ok, Our Traveller manager will update you the Trip details.",
+          "query": "gopalpanchal10@gmail.com"
+        }
+      ],
+      "id": 12
+    },
+    {
+      "message": [
+        {
+          "type": 0,
+          "ourText": "hi"
+        },
+        {
+          "type": 0,
+          "speech": "Hi!",
+          "query": "hi"
+        },
+        {
+          "type": 0,
+          "ourText": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Ok, What kind of trip u want to book",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "For a family trip"
+            },
+            {
+              "title": "For a friends trip"
+            },
+            {
+              "title": "For a solo trip"
+            },
+            {
+              "title": "For a romantic trip"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Okay...,How many are planning to go?",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "3"
+            },
+            {
+              "title": "4"
+            },
+            {
+              "title": "5"
+            },
+            {
+              "title": "6"
+            },
+            {
+              "title": "more than 6"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Ok, Have u decided u r destination?",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "yes"
+            },
+            {
+              "title": "no"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Great! Where do you want to go?",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "Banglore"
+            },
+            {
+              "title": "Pune"
+            },
+            {
+              "title": "Mysore"
+            },
+            {
+              "title": "Paris"
+            },
+            {
+              "title": "London"
+            }
+          ],
+          "query": "book a trip"
+        }
+      ],
+      "id": 13
+    },
+    {
+      "message": [
+        {
+          "type": 0,
+          "ourText": "hi"
+        },
+        {
+          "type": 0,
+          "speech": "Hi!",
+          "query": "hi"
+        }
+      ],
+      "id": 14
+    },
+    {
+      "message": [
+        {
+          "type": 0,
+          "ourText": "hi"
+        },
+        {
+          "type": 0,
+          "speech": "Hi!",
+          "query": "hi"
+        },
+        {
+          "type": 0,
+          "ourText": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Ok, What kind of trip u want to book",
+          "query": "book a trip"
+        }
+      ],
+      "id": 15
+    },
+    {
+      "message": [
+        {
+          "type": 0,
+          "ourText": "hi"
+        },
+        {
+          "type": 0,
+          "speech": "Hi!",
+          "query": "hi"
+        },
+        {
+          "type": 0,
+          "ourText": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Ok, What kind of trip u want to book",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "For a family trip"
+            },
+            {
+              "title": "For a friends trip"
+            },
+            {
+              "title": "For a solo trip"
+            },
+            {
+              "title": "For a romantic trip"
+            }
+          ],
+          "query": "book a trip"
+        }
+      ],
+      "id": 16
+    },
+    {
+      "message": [
+        {
+          "type": 0,
+          "ourText": "hi"
+        },
+        {
+          "type": 0,
+          "speech": "Hi!",
+          "query": "hi"
+        },
+        {
+          "type": 0,
+          "ourText": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Ok, What kind of trip u want to book",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "For a family trip"
+            },
+            {
+              "title": "For a friends trip"
+            },
+            {
+              "title": "For a solo trip"
+            },
+            {
+              "title": "For a romantic trip"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Okay...,How many are planning to go?",
+          "query": "book a trip"
+        }
+      ],
+      "id": 17
+    },
+    {
+      "message": [
+        {
+          "type": 0,
+          "ourText": "hi"
+        },
+        {
+          "type": 0,
+          "speech": "Hi!",
+          "query": "hi"
+        },
+        {
+          "type": 0,
+          "ourText": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Ok, What kind of trip u want to book",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "For a family trip"
+            },
+            {
+              "title": "For a friends trip"
+            },
+            {
+              "title": "For a solo trip"
+            },
+            {
+              "title": "For a romantic trip"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Okay...,How many are planning to go?",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "3"
+            },
+            {
+              "title": "4"
+            },
+            {
+              "title": "5"
+            },
+            {
+              "title": "6"
+            },
+            {
+              "title": "more than 6"
+            }
+          ],
+          "query": "book a trip"
+        }
+      ],
+      "id": 18
+    },
+    {
+      "message": [
+        {
+          "type": 0,
+          "ourText": "hi"
+        },
+        {
+          "type": 0,
+          "speech": "Greetings!",
+          "query": "hi"
+        }
+      ],
+      "id": 19
+    },
+    {
+      "message": [
+        {
+          "type": 0,
+          "ourText": "hi"
+        },
+        {
+          "type": 0,
+          "speech": "Greetings!",
+          "query": "hi"
+        }
+      ],
+      "id": 20
+    },
+    {
+      "message": [
+        {
+          "type": 0,
+          "ourText": "hi"
+        },
+        {
+          "type": 0,
+          "speech": "Greetings!",
+          "query": "hi"
+        },
+        {
+          "type": 0,
+          "ourText": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Ok, What kind of trip u want to book",
+          "query": "book a trip"
+        }
+      ],
+      "id": 21
+    },
+    {
+      "message": [
+        {
+          "type": 0,
+          "ourText": "hi"
+        },
+        {
+          "type": 0,
+          "speech": "Greetings!",
+          "query": "hi"
+        },
+        {
+          "type": 0,
+          "ourText": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Ok, What kind of trip u want to book",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "For a family trip"
+            },
+            {
+              "title": "For a friends trip"
+            },
+            {
+              "title": "For a solo trip"
+            },
+            {
+              "title": "For a romantic trip"
+            }
+          ],
+          "query": "book a trip"
+        }
+      ],
+      "id": 22
+    },
+    {
+      "message": [
+        {
+          "type": 0,
+          "ourText": "hi"
+        },
+        {
+          "type": 0,
+          "speech": "Greetings!",
+          "query": "hi"
+        },
+        {
+          "type": 0,
+          "ourText": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Ok, What kind of trip u want to book",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "For a family trip"
+            },
+            {
+              "title": "For a friends trip"
+            },
+            {
+              "title": "For a solo trip"
+            },
+            {
+              "title": "For a romantic trip"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Okay...,How many are planning to go?",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "3"
+            },
+            {
+              "title": "4"
+            },
+            {
+              "title": "5"
+            },
+            {
+              "title": "6"
+            },
+            {
+              "title": "more than 6"
+            }
+          ],
+          "query": "book a trip"
+        }
+      ],
+      "id": 23
+    },
+    {
+      "message": [
+        {
+          "type": 0,
+          "ourText": "hi"
+        },
+        {
+          "type": 0,
+          "speech": "Greetings!",
+          "query": "hi"
+        },
+        {
+          "type": 0,
+          "ourText": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Ok, What kind of trip u want to book",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "For a family trip"
+            },
+            {
+              "title": "For a friends trip"
+            },
+            {
+              "title": "For a solo trip"
+            },
+            {
+              "title": "For a romantic trip"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Okay...,How many are planning to go?",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "3"
+            },
+            {
+              "title": "4"
+            },
+            {
+              "title": "5"
+            },
+            {
+              "title": "6"
+            },
+            {
+              "title": "more than 6"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Ok, Have u decided u r destination?",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "yes"
+            },
+            {
+              "title": "no"
+            }
+          ],
+          "query": "book a trip"
+        }
+      ],
+      "id": 24
+    },
+    {
+      "message": [
+        {
+          "type": 0,
+          "ourText": "hi"
+        },
+        {
+          "type": 0,
+          "speech": "Greetings!",
+          "query": "hi"
+        },
+        {
+          "type": 0,
+          "ourText": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Ok, What kind of trip u want to book",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "For a family trip"
+            },
+            {
+              "title": "For a friends trip"
+            },
+            {
+              "title": "For a solo trip"
+            },
+            {
+              "title": "For a romantic trip"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Okay...,How many are planning to go?",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "3"
+            },
+            {
+              "title": "4"
+            },
+            {
+              "title": "5"
+            },
+            {
+              "title": "6"
+            },
+            {
+              "title": "more than 6"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Ok, Have u decided u r destination?",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "yes"
+            },
+            {
+              "title": "no"
+            }
+          ],
+          "query": "book a trip"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "Great! Where do you want to go?",
+          "query": "book a trip"
+        },
+        {
+          "type": "suggestion_chips",
+          "platform": "google",
+          "suggestions": [
+            {
+              "title": "Banglore"
+            },
+            {
+              "title": "Pune"
+            },
+            {
+              "title": "Mysore"
+            },
+            {
+              "title": "Paris"
+            },
+            {
+              "title": "London"
+            }
+          ],
+          "query": "book a trip"
+        }
+      ],
+      "id": 25
+    },
+    {
+      "message": [
+        {
+          "type": 0,
+          "ourText": "hi"
+        },
+        {
+          "type": 0,
+          "speech": "Hi!",
+          "query": "hi"
+        }
+      ],
+      "id": 26
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
