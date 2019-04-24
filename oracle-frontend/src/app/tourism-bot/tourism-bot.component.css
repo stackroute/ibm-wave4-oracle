@@ -1,29 +1,24 @@
+.main{
+  height:100%;
+  width:100%;
+  margin:2rem 0rem 0rem 30rem;
+}
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-html,
-body {
-  height: 50%;
-  overflow: hidden;
-}
 .wrap {
-  margin: 8px;
   height: 90%;
   width: 360px;
   display: flex;
   flex-direction: column;
 }
-.heading {
-  padding: 0rem 0rem 0rem 1rem;
-}
 .card-title {
   height: 3rem;
   color: white;
 }
-.container {
-  flex: 1 1 90%;
+.container-fluid {
   display: flex;
   flex-direction: column;
   background-color: #eee;
@@ -31,7 +26,6 @@ body {
   width: 360px;
   height: 600px;
   overflow: auto;
-
 }
 .text {
   margin-left: 12rem;
@@ -53,7 +47,7 @@ body {
   border-radius: 5px;
   padding: 8px;
   margin: 8px 12px;
-  max-width: 80%; /* this will make it not exceed 80% and then wrap */
+  max-width: 100%; /* this will make it not exceed 80% and then wrap */
   position: relative;
   transition: background-color 0.5s;
 }
