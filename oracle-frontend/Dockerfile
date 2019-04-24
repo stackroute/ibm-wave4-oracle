@@ -1,7 +1,7 @@
 FROM node:latest
 RUN mkdir -p /src
 WORKDIR /src
-COPY package.json /src/
+COPY package.json package-lock.json /src/
 RUN npm install
 RUN npm cache verify
 COPY . /src
