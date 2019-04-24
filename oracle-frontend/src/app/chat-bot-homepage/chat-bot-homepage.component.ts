@@ -57,7 +57,6 @@ export class ChatBotHomepageComponent implements OnInit {
 
   ngOnInit() {
     this.im.messageList.subscribe((value1: any) => {
-      // console.log(value1);
 
       console.log(value1);
       if (value1) {
