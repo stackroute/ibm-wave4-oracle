@@ -16,6 +16,8 @@ services:
     volumes:
       - /neo4j/data:/data
       - ./neo4j/import:/import
+    environment:
+      - NEO4J_AUTH=neo4j/1234
 
   manual-answer:
     build: manual-answer-service/
@@ -38,13 +40,11 @@ services:
     mem_limit: 300m
 
   oraclefrontend:
+    image: oracle-frontend
     build: oracle-frontend/
-    image: oracle-frontend:latest
     container_name: oracle-frontend
     network_mode: "host"
     hostname: localhost
-    ports:
-      - 4200:4200
     restart: always
 
   bot-service:
@@ -55,6 +55,7 @@ services:
     ports:
       - 8090:8090
     mem_limit: 300m
+
 
   queryautocorrector-service:
     build: queryautocorrector-service/
