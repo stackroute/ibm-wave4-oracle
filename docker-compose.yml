@@ -17,7 +17,7 @@ services:
       - /neo4j/data:/data
       - ./neo4j/import:/import
     environment:
-      - NEO4J_AUTH=neo4j/1234
+      - NEO4J_AUTH=none
 
   manual-answer:
     build: manual-answer-service/
