@@ -16,12 +16,8 @@ services:
     volumes:
       - /neo4j/data:/data
       - ./neo4j/import:/import
-<<<<<<< HEAD
     environment:
       - NEO4J_AUTH=neo4j/1234
-
-=======
->>>>>>> 2da0f569a081a641bf408e34e0d03c85bca201ca
 
   manual-answer:
     build: manual-answer-service/
@@ -60,11 +56,8 @@ services:
     hostname: localhost
     ports:
       - 8090:8090
-<<<<<<< HEAD
-
-=======
     mem_limit: 300m
->>>>>>> 2da0f569a081a641bf408e34e0d03c85bca201ca
+
 
   queryautocorrector-service:
     build: queryautocorrector-service/
@@ -83,12 +76,7 @@ services:
     hostname: localhost
     ports:
       - 8082:8082
-<<<<<<< HEAD
-    mem_limit: 500m
-    mem_reservation: 500m
-=======
     mem_limit: 300m
->>>>>>> 2da0f569a081a641bf408e34e0d03c85bca201ca
 
   extract-intent-service:
     build: extract-intent-service/
