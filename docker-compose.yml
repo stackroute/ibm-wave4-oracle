@@ -38,13 +38,13 @@ services:
     mem_limit: 300m
 
   oraclefrontend:
+    image oracle-frontend
     build: oracle-frontend/
-    image: oracle-frontend:latest
     container_name: oracle-frontend
     network_mode: "host"
     hostname: localhost
     ports:
-      - 4200:4200
+      - 8000:8000
     restart: always
 
   bot-service:
