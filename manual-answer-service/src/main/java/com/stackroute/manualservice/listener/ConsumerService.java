@@ -30,7 +30,6 @@ public class ConsumerService {
         logger.info(message);
         Gson gson=new Gson();
         QuestionDTO questionDTO = gson.fromJson(message, QuestionDTO.class);
-
         //Converting JsonObject to Paragraph domain object
         manualService.saveToDataBase(questionDTO);
     }
