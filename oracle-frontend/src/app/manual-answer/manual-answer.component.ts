@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{questions} from 'src/questions'
 import{userQuery} from 'src/userQuery'
-import { from } from 'rxjs';
 import { ManaualApiService } from '../manaual-api.service'
 
 @Component({
