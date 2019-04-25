@@ -40,7 +40,7 @@ services:
     mem_limit: 300m
 
   oraclefrontend:
-    image oracle-frontend
+    image: oracle-frontend
     build: oracle-frontend/
     container_name: oracle-frontend
     network_mode: "host"
