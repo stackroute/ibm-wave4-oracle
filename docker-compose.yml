@@ -17,7 +17,7 @@ services:
     image: mysql:5.7
     restart: always
     container_name: mysql
-    network_mode: "host"
+    network_mode: 0.0.0.0
     hostname: localhost
     environment:
       MYSQL_ROOT_PASSWORD: root123
