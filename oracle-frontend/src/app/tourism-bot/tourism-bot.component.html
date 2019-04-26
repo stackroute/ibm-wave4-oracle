@@ -1,71 +1,89 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#botModal">
-  open
+<button
+  type="button"
+  class="btn btn-primary mainButton"
+  data-toggle="modal"
+  data-target="#botModal"
+>
+  Click on me to Know About Trips? 
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="botModal" tabindex="-1" role="dialog" aria-labelledby="botModal" aria-hidden="true">
+<div
+  class="modal fade"
+  id="botModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="botModal"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header header text-white">
         <h5 class="modal-title" id="botTitle">Welcome to Tourism Bot</h5>
-        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+        <button
+          type="button"
+          class="close text-white"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body botBody">
-       
-        <!-- <div class="container botBody"> -->
-
-          <!--Header division-->
-          <!-- <div class="row header">
-            <h1 class="text-white text-center">Trip Planner</h1>
-          </div> -->
-
-          <!--Middle whole content-->
-          <div class="row content">
-            <!--Default message division-->
-            <div class ="row default">
-              <div class="col-md-2 botIcon">
-                  <i class="fas fa-robot"></i>
-              </div>
-              <div class="col-md-10 data">
-                <p>Hey! I'm Tourism Trip Planner... Are you looking for help in planning your trip?</p>
-              </div>
+        <!--Middle whole content-->
+        <div class="row content">
+          <!--Default message division-->
+          <div class="row default">
+            <div class="col-md-2 botIcon">
+              <i class="fas fa-robot"></i>
             </div>
-            <!--Main chatbot division-->
-            <div class="chatBot">
-              <div class="chatData" *ngFor="let message of messages">
-                <div class="ourtext" *ngIf="message.ourText !== undefined">{{ message.ourText }}</div>
-                <div class="bottext">{{ message.speech }}</div>
-                <div class="suggestion">
-                  {{ message.textToSpeech }}
-                  <p *ngFor="let sug of message.suggestions" class="text-center">
-                    <button (click)="onClick(sug.title)" class="btn btn-secondary">{{ sug.title }}</button></p>
-                </div>
+            <div class="col-md-10 data">
+              <p>
+                Hey! I'm Tourism Trip Planner... Are you looking for help in
+                planning your trip?
+              </p>
+            </div>
+          </div>
+          <!--Main chatbot division-->
+          <div class="chatBot">
+            <div class="chatData" *ngFor="let message of messages">
+              <div class="ourtext" *ngIf="message.ourText !== undefined">
+                {{ message.ourText }}
+              </div>
+              <div class="bottext">{{ message.speech }}</div>
+              <div class="suggestion">
+                {{ message.textToSpeech }}
+                <p *ngFor="let sug of message.suggestions" class="text-center">
+                  <button
+                    (click)="onClick(sug.title)"
+                    class="btn btn-secondary"
+                  >
+                    {{ sug.title }}
+                  </button>
+                </p>
               </div>
             </div>
           </div>
-          
-        <!-- </div> -->
+        </div>
       </div>
       <!--Input form division-->
       <div class="row footer">
-          <div class="col-md-10 form-control-lg" ngForm="#myform">
-                  <input
-                    [(ngModel)]="formValue"
-                    (keyup.enter)="sendMessage()"
-                    type="text"
-                    name="formValue"
-                    placeholder="Type or select from above..."
-                  />
-          </div>
-          <div class="col-md-2">
-            <button class="p-3 mb-3 text-white send" (click)="sendMessage()">
-              <i class="fas fa-paper-plane"></i>
-            </button>
-          </div>
+        <div class="col-md-8 form-control-lg form" ngForm="#myform">
+          <input
+            [(ngModel)]="formValue"
+            (keyup.enter)="sendMessage()"
+            type="text"
+            name="formValue"
+            placeholder="Type or select from above..."
+          />
         </div>
+        <div class="col-md-2">
+          <button class="p-3 mb-3 text-white send" (click)="sendMessage()">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
