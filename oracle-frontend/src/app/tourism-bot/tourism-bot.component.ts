@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { TourismService } from "../tourism.service";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Component({
   selector: "app-tourism-bot",
@@ -12,7 +13,7 @@ export class TourismBotComponent implements OnInit {
   mymessages: any;
   input: string;
 
-  constructor(private chat: TourismService) {}
+  constructor(private chat: TourismService, private http: HttpClient) {}
 
   ngOnInit() {
     let that = this;
@@ -20,6 +21,9 @@ export class TourismBotComponent implements OnInit {
       data["query"] = this.input;
       that.messages.push(data);
       console.log(this.messages, "this is current message !!!");
+      this.chat.addDataToMyServer(this.messages).subscribe(function(data) {
+        console.log(data);
+      });
     });
   }
   sendMessage() {
@@ -30,7 +34,7 @@ export class TourismBotComponent implements OnInit {
   }
 
   onClick(val) {
-    console.log(val)
+    console.log(val);
     this.chat.converse(val);
   }
 }

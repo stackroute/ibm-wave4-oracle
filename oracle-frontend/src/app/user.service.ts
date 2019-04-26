@@ -6,7 +6,7 @@ import { environment } from '../environments/environment';
   providedIn: "root"
 })
 export class UserService {
-  savedLink=environment.savedData;
+  savedLink:string=environment.savedData;
   loginLink=environment.loginData;
   allUserLink=environment.allUserData;
   singleUserLink=environment.singleUserData;

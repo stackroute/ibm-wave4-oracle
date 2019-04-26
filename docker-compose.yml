@@ -17,7 +17,7 @@ services:
       - /neo4j/data:/data
       - ./neo4j/import:/import
     environment:
-      - NEO4J_AUTH=neo4j/1234
+      - NEO4J_AUTH=none
 
   manual-answer:
     build: manual-answer-service/
@@ -45,8 +45,6 @@ services:
     container_name: oracle-frontend
     network_mode: "host"
     hostname: localhost
-    ports:
-      - 8000:8000
     restart: always
 
   bot-service:

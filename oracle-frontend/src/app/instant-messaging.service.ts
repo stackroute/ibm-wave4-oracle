@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import { Observable, Subject } from 'rxjs';
+import {environment} from "../environments/environment";
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class InstantMessagingService {
 
-  serverUrl = 'http://localhost:8090/socket'
+  serverUrl = environment.botSocket;
   stompClient;
   user: any;
 
