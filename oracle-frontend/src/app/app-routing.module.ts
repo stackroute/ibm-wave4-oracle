@@ -14,11 +14,11 @@ import { ManualAnswerComponent } from "./manual-answer/manual-answer.component";
 import { TourismBotComponent } from "./tourism-bot/tourism-bot.component";
 
 const routes: Routes = [
-  { path: "home", component: HomeComponent },
+  { path: "", component: HomeComponent },
   { path: "signup", component: SignupComponent },
   { path: "login", component: LoginComponent },
   { path: "manual", component: ManualAnswerComponent },
-  { path: "chatbot", component: ChatBotHomepageComponent },
+  { path: "home", component: ChatBotHomepageComponent },
   { path: "recast", component: RecastMovieComponent },
   {
     path: "admindashboard",
@@ -38,7 +38,7 @@ const routes: Routes = [
   { path: "profile", component: ProfileComponent },
   { path: "userdashboard", component: UserdashboardComponent },
   { path: "tourism-bot", component: TourismBotComponent },
-  { path: "**", pathMatch: "full", redirectTo: "home" }
+  { path: "**", pathMatch: "full", redirectTo: "" }
 ];
 
 @NgModule({
