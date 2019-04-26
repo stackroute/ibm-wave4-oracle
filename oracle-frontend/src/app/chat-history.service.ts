@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {environment} from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ChatHistoryService {
 
   getHistory(data){
     console.log(data);
-    return this.http.post("http://172.23.239.126:9000/api/v1/getconversation",data,{headers: new  HttpHeaders().set("Content-Type", "application/json")
+    return this.http.post(`${environment.chatHistoryService}/getconversation`,data,{headers: new  HttpHeaders().set("Content-Type", "application/json")
       .append("Access-Control-Allow-Origin", "*")});
   }
 }

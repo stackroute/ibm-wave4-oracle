@@ -9,6 +9,9 @@ export const environment = {
   allUserData:'http://localhost:8081/api/v1/users',
   singleUserData:'http://localhost:8081/api/v1/user',
   manaul_answer:'http://localhost:8091/api/v1/',
+  chatHistoryService :"http://localhost:9000/api/v1",
+  botSocket:'http://localhost:8090/socket',
+  botService:'http://localhost:8090/api/v1',
   dialogflow:{
     angularBot:'aa0e2a8f0792403c8119d2410e7aafd1'
   },
