@@ -8,7 +8,7 @@ RUN npm install
 
 RUN npm install http-server -g
 
-RUN npm run build --prod
+RUN npm run build 
 
 WORKDIR /app/dist/oracle-frontend
 
