@@ -18,11 +18,15 @@ export class InstantMessagingService {
   messageList = new Subject();
 
   constructor() {
-    this.initializeWebSocketConnection();
+
   }
 
   initializeWebSocketConnection() {
-    let info = JSON.parse(localStorage.getItem("currentUser"));
+    var info = JSON.parse(localStorage.getItem("currentUser"));
+    if(!info){
+      info={user:{email:"guest"}};
+
+    }
     let ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
     let that = this;
@@ -33,9 +37,7 @@ export class InstantMessagingService {
       });
     });
   }
-  getMessage(): Observable<any> {
-    return this.messageList.asObservable();
-  }
+
 
   sendMessage(query) {
     let info = JSON.parse(localStorage.getItem("currentUser"));

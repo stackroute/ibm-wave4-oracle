@@ -5,6 +5,13 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+#second-section{
+
+  background-image: url(../../assets/Ss.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
 .ng-valid[required],
 .ng-valid.required {
