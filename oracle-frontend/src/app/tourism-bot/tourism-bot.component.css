@@ -1,100 +1,65 @@
-.main{
-  height:100%;
-  width:100%;
-  margin:2rem 0rem 0rem 30rem;
-}
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-.wrap {
-  height: 90%;
-  width: 360px;
-  display: flex;
-  flex-direction: column;
-}
-.card-title {
-  height: 3rem;
-  color: white;
-}
-.container-fluid {
-  display: flex;
-  flex-direction: column;
-  background-color: #eee;
-  border: 1px solid #ccc;
-  width: 360px;
-  height: 600px;
+.botBody{
+  border:1px solid black;
+  height:630px;
+  width:500px;
+  background: linear-gradient(to top left, #2e2e3c 27%, #991a2f 74%);
   overflow: auto;
 }
-.text {
-  margin-left: 12rem;
-  text-align: right;
-  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-  position: relative;
-  border-radius: 1rem;
-  border: 1px solid #363636;
+.header{
+  background: #2e2e3c;
 }
-.options {
-  width: 50%;
-  height: 10%;
+.content{
+  margin:0;
+  height:550px;
 }
-.bubble {
-  flex: 1 1 auto;
-  clear: both;
+.fa-robot {
+  font-size: 2rem;
+  color: lightgray;
+  padding:0.5rem 0rem 0rem 0rem;
 }
-.bubble p {
-  border-radius: 5px;
-  padding: 8px;
-  margin: 8px 12px;
-  max-width: 100%; /* this will make it not exceed 80% and then wrap */
-  position: relative;
-  transition: background-color 0.5s;
+.data{
+  border:1px solid lightgray;
+  border-radius:0.75rem;
+  height:4rem;
+  color:lightgray;
+  padding:0.5rem 0rem 0rem 1rem;
 }
-.left p {
-  background-color: dimgray;
-  float: left;
-  color:white;
+ .default{
+  height: 4.5rem;
+  margin:1rem 0.25rem 0rem 0.25rem;
+} 
+.chatData{
+  height:auto;
+  width:400px;
+  margin-bottom: 10%;
 }
-/* classes below are only for arrows, not relevant */
-.left p::before {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: -8px;
-  top: 8px;
-  border-top: 4px solid transparent;
-  border-right: 8px solid dimgray;
-  border-bottom: 4px solid transparent;
+.ourtext{
+  float:right;
+  color:lightgray;
+  border:1px solid lightgray;
+  padding:0.5rem 1rem 0.5rem 1rem;
+  margin:0rem -3rem 0rem 0rem; 
+  border-radius:0.75rem;
 }
-
-.form {
-  flex: 0 0 32px;
-  display: flex;
-  border: 1px solid #ddd;
+.bottext{
+  margin:0rem 0rem 0rem 1rem;
+  color: lightgray; 
+  display: inline; 
 }
-.form > input[type="text"] {
-  flex: 1 1 auto;
-  border: 1px solid #eee;
+.suggestion{
+  height: auto;
+  color: lightgray; 
+  margin:0rem 0rem -1rem 1rem; 
 }
-.form > input[type="button"] {
-  flex: 0 0 20%;
-  border: 1px solid #eee;
+.form{
+  margin:1rem 0rem 0rem 0rem;
+}
+.send{
+  background-color: #2e2e3c;
 }
 .fa-paper-plane {
   color: white;
 }
-.button {
-  height: 3rem;
-  width: 3rem;
-}
-.fa-times-circle {
-  font-size: 1.5rem;
-  margin-top: 0.5rem;
-}
-.fa-robot {
-  font-size: 1.5rem;
-  float: left;
-  margin-top: 0.5rem;
+.footer{
+  height:4rem;
 }
