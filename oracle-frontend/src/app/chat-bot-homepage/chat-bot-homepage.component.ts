@@ -56,6 +56,7 @@ export class ChatBotHomepageComponent implements OnInit {
   
 
   ngOnInit() {
+    this.im.initializeWebSocketConnection();
     this.im.messageList.subscribe((value1: any) => {
 
       console.log(value1);
