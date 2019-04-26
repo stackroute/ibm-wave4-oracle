@@ -1,6 +1,7 @@
 package com.stackroute.userservice.configuration;
 
 import com.stackroute.userservice.domain.User;
+import com.stackroute.userservice.service.PasswordUtil;
 import com.stackroute.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -15,7 +16,7 @@ public class DefaultUser implements ApplicationListener<ContextClosedEvent> {
 
     @Override
     public void onApplicationEvent(ContextClosedEvent contextClosedEvent) {
-       User u = new User(1,"admin","admin","admin@mail.com", "Admin@123", "Admin@123", true,"ADMIN",null);
+       User u = new User(1,"admin","admin","admin@mail.com", PasswordUtil.getPasswordHash("Admin@123"), "Admin@123", true,"ADMIN",null);
         User u2 = new User(1,"user","user","user@mail.com", "User@123", "User@123", true,"USER",null);
 
        userService.save(u);
