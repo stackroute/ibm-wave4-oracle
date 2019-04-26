@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 <div class="container-fluid m-0 p-0">
   <mat-drawer-container class="d-flex main flex-wrap container-fluid" id="main">
+=======
+<div class="container-fluid">
+  <mat-drawer-container
+    class="mt-2 d-flex main flex-wrap container-fluid"
+    id="main"
+  >
+>>>>>>> c46ed66645b4004885fbc67de6f217438131dcdd
     <mat-drawer-content class="w-100">
       <div
         class="d-flex justify-content-between flex-wrap"
-        style="min-height: 40rem;">
-
+        style="min-height: 40rem;"
+      >
         <div
-
           class="container card text-light shadow mt-3"
           style="width:40rem;  height: 38rem; padding:10px; border-radius:20px;background-color: #1B1B25;"
         >
@@ -37,24 +44,32 @@
                   >
                     {{ item.queryAnswer.question }}
                   </p>
-                  <div class="card-body m-0 bg-info" *ngIf="item.status.answered"
-                       style="padding:.8rem 1.1rem; border-radius:10%;right: 25%; position: relative;">
+                  <div
+                    class="card-body m-0 bg-info"
+                    *ngIf="item.status.answered"
+                    style="padding:.8rem 1.1rem; border-radius:10%;right: 25%; position: relative;"
+                  >
                     <p
                       class="card-text text-justify text-center blockquote overflow-auto"
-
-
                     >
                       {{ item.queryAnswer.answer }}
                     </p>
-                    <button class="btn btn-outline-dark" (click)="submitAccepted(item)" *ngIf="item.queryAnswer.id!=10">
+                    <button
+                      class="btn btn-outline-dark"
+                      (click)="submitAccepted(item)"
+                      *ngIf="item.queryAnswer.id != 10"
+                    >
                       <i class="fa fa-thumbs-o-up"></i>
                       satisfied?
                     </button>
-                    <button class="btn lead disabled" style="color:green;" *ngIf="item.queryAnswer.id===10">satisfied<i
-                      class="fa fa-check"></i>
+                    <button
+                      class="btn lead disabled"
+                      style="color:green;"
+                      *ngIf="item.queryAnswer.id === 10"
+                    >
+                      satisfied<i class="fa fa-check"></i>
                     </button>
                   </div>
-
                 </div>
               </div>
               <p
@@ -62,12 +77,10 @@
                 *ngIf="suggested"
                 style="padding:.8rem 1.1rem;margin-left:10%;  border-radius:10%;width: 80%; position: relative; background-color: #8B8982"
               >
-                Your search "{{latestQuestion}}" did not match any document.
+                Your search "{{ latestQuestion }}" did not match any document.
                 but Oracle IT service will provide solution later.
-
               </p>
               <div class="container mt-3">
-
                 <mat-accordion *ngIf="suggested">
                   <mat-expansion-panel [disabled]="true">
                     <mat-expansion-panel-header>
@@ -76,26 +89,26 @@
                   </mat-expansion-panel>
                   <div *ngFor="let item of suggestionList">
                     <mat-expansion-panel class="card m-0">
-                      <mat-expansion-panel-header
-                        class="card-header">
+                      <mat-expansion-panel-header class="card-header">
                         <div class="card-title">
-                          {{item.queryAnswer.question}}
+                          {{ item.queryAnswer.question }}
                         </div>
                       </mat-expansion-panel-header>
                       <div class="card-body">
-                        <div class="card-text">{{item.queryAnswer.answer}}</div>
+                        <div class="card-text">
+                          {{ item.queryAnswer.answer }}
+                        </div>
                       </div>
                     </mat-expansion-panel>
                   </div>
                 </mat-accordion>
               </div>
             </div>
-
           </div>
           <form
             class="form-inline d-flex my-1"
             #chatForm="ngForm"
-            (ngSubmit)="onSubmit(chatForm,scrollMe);"
+            (ngSubmit)="onSubmit(chatForm, scrollMe)"
           >
             <input
               type="text"
@@ -124,8 +137,8 @@
           mat-button
           (click)="drawer.toggle()"
           class="btn lead"
-
-        ><i class="fas fa-stream"></i>
+        >
+          <i class="fas fa-stream"></i>
         </button>
       </div>
     </mat-drawer-content>
@@ -144,17 +157,19 @@
         #botItems1="cdkDropList"
         (cdkDropListDropped)="drop($event)"
       >
-        <div class="d-flex flex-column justify-content-around align-items-center">
+        <div
+          class="d-flex flex-column justify-content-around align-items-center"
+        >
           <button
             *ngFor="let item of botItems"
             class="btn btn-outline-light"
             cdkDrag
             style="width: 100%"
           >
-          <span
-          ><i class="{{ item.icon }}" style="font-size: 5rem;"></i>
-            <p>{{ item.name }}</p>
-          </span>
+            <span
+              ><i class="{{ item.icon }}" style="font-size: 5rem;"></i>
+              <p>{{ item.name }}</p>
+            </span>
           </button>
         </div>
       </div>
@@ -162,6 +177,7 @@
   </mat-drawer-container>
   <div class="container-fluid" id="second-section">
     <p class="lead text-light text-center font-weight-bolder pt-3">Other helping bot</p>
+
     <mat-divider></mat-divider>
     <div
       class="container-fluid d-flex flex-wrap justify-content-center align-items-center"
@@ -172,14 +188,17 @@
       (cdkDropListDropped)="drop($event)"
       style="height:10rem;"
     >
-
-      <button *ngFor="let item of botBasket" class="btn btn-outline-light" cdkDrag routerLink="{{item.rvalue}}"
-              style="">
-    <span
-    ><i class="{{ item.icon }}" style="font-size: 5rem;"></i>
-      <p>{{ item.name }}</p>
-      
-    </span>
+      <button
+        *ngFor="let item of botBasket"
+        class="btn btn-outline-light"
+        cdkDrag
+        routerLink="{{ item.rvalue }}"
+        style=""
+      >
+        <span
+          ><i class="{{ item.icon }}" style="font-size: 5rem;"></i>
+          <p>{{ item.name }}</p>
+        </span>
       </button>
     </div>
   </div>

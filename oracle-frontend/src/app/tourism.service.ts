@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { environment } from "../environments/environment";
 import { ApiAiClient } from "api-ai-javascript/es6/ApiAiClient";
-import { BehaviorSubject, Subject } from "rxjs";
+import { Subject } from "rxjs";
+import { HttpClient } from "@angular/common/http";
 
 // Message class for displaying messages in the component
 export class Message {
@@ -14,8 +15,8 @@ export class TourismService {
   readonly token = environment.dialogflow.angularBot;
   readonly client = new ApiAiClient({ accessToken: this.token });
   messages = new Subject();
-
-  constructor() {}
+  messages2: any = [];
+  constructor(private http: HttpClient) {}
 
   /* Sends and receives messages via DialogFlow,
   the converse method adds a user message to the array, 
@@ -27,6 +28,11 @@ export class TourismService {
         this.messages.next(e);
       });
       console.log(res, "data");
+    });
+  }
+  addDataToMyServer(messages2) {
+    return this.http.post("http://localhost:3000/posts", {
+      message: messages2
     });
   }
 }

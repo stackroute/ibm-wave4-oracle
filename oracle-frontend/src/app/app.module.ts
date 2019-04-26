@@ -51,7 +51,7 @@ import { ChatHistoryComponent } from './chat-history/chat-history.component';
     TourismBotComponent,
     RecastMovieComponent,
     ManualAnswerComponent,
-    ChatHistoryComponent
+    ChatHistoryComponent,
   ],
 
   imports: [
