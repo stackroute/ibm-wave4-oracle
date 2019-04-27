@@ -140,7 +140,7 @@ services:
     hostname: localhost
     ports:
       - 8091:8091
-    mem_limit: 300m
+
 
   user-service:
     build: user-service/
@@ -150,7 +150,7 @@ services:
     hostname: localhost
     ports:
       - 8081:8081
-    mem_limit: 300m
+
 
   oraclefrontend:
     image: oracle-frontend
@@ -167,7 +167,7 @@ services:
     hostname: localhost
     ports:
       - 8090:8090
-    mem_limit: 300m
+
 
 
   queryautocorrector-service:
@@ -177,7 +177,7 @@ services:
     hostname: localhost
     ports:
       - 8595:8595
-    mem_limit: 300m
+
 
   graph-query-service:
     build: graph-query-service/
@@ -187,7 +187,7 @@ services:
     hostname: localhost
     ports:
       - 8082:8082
-    mem_limit: 300m
+
 
   extract-intent-service:
     build: extract-intent-service/
@@ -205,7 +205,7 @@ services:
     hostname: localhost
     ports:
       - 9000:9000
-    mem_limit: 300m
+
 
   prometheus:
     image: prom/prometheus:v2.9.1

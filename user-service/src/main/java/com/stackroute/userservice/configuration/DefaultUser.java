@@ -4,21 +4,22 @@ import com.stackroute.userservice.domain.User;
 import com.stackroute.userservice.service.PasswordUtil;
 import com.stackroute.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DefaultUser implements ApplicationListener<ContextClosedEvent> {
+public class DefaultUser implements CommandLineRunner {
 
     @Autowired
     private UserService userService;
 
     @Override
-    public void onApplicationEvent(ContextClosedEvent contextClosedEvent) {
-       User u = new User(1,"admin","admin","admin@mail.com", PasswordUtil.getPasswordHash("Admin@123"), "Admin@123", true,"ADMIN",null);
+    public void run(String... args) throws Exception {
+        User u = new User(1,"admin","admin","admin@mail.com", PasswordUtil.getPasswordHash("Admin@123"), "Admin@123", true,"ADMIN",null);
         User u2 = new User(1,"user","user","user@mail.com", "User@123", "User@123", true,"USER",null);
 
-       userService.save(u);
+        userService.save(u);
     }
 }
