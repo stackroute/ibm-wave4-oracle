@@ -1,4 +1,3 @@
-
 <div class="container-fluid m-0 p-0">
   <mat-drawer-container class="d-flex main flex-wrap container-fluid" id="main">
     <mat-drawer-content class="w-100">
@@ -169,7 +168,9 @@
     </mat-drawer>
   </mat-drawer-container>
   <div class="container-fluid" id="second-section">
-    <p class="lead text-light text-center font-weight-bolder pt-3">Other helping bot</p>
+    <p class="lead text-light text-center font-weight-bolder pt-3">
+      Other helping bot
+    </p>
 
     <mat-divider></mat-divider>
     <div
@@ -181,11 +182,6 @@
       (cdkDropListDropped)="drop($event)"
       style="height:10rem;"
     >
-    <!-- <span *ngIf="item.rvalue === '/recast'">
-
-    </span> -->
-      <!-- <span ng-toggle="item.rvalue === /recast"> </span> -->
-
       <div ng-if="/recast">
         <button
           *ngFor="let item of botBasket"
@@ -201,38 +197,6 @@
           </span>
         </button>
       </div>
-      <!-- 
-      <div ng-else>
-        <button
-          *ngFor="let item of botBasket"
-          class="btn btn-outline-light"
-          cdkDrag
-          routerLink="{{ item.rvalue }}"
-          style=""
-          data-toggle="modal"
-          data-target="#exampleModalCenter"
-        >
-          <span
-            ><i class="{{ item.icon }}" style="font-size: 5rem;"></i>
-            <p>{{ item.name }}</p>
-          </span>
-        </button>
-      </div> -->
-
-      <!-- <button
-        *ngFor="let item of botBasket"
-        class="btn btn-outline-light"
-        cdkDrag
-        routerLink="{{ item.rvalue }}"
-        style=""
-        data-toggle="modal"
-        data-target="#exampleModalCenter"
-      >
-        <span
-          ><i class="{{ item.icon }}" style="font-size: 5rem;"></i>
-          <p>{{ item.name }}</p>
-        </span>
-      </button> -->
     </div>
   </div>
 </div>
