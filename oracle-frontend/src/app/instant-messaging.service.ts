@@ -39,4 +39,8 @@ export class InstantMessagingService {
     let info = JSON.parse(localStorage.getItem("currentUser"));
     this.stompClient.send("/app/message", { "userName": info.user.email }, query);
   }
+
+  closeConnection(){
+    this.stompClient.close();
+  }
 }

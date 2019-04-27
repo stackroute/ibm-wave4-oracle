@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
       if (response) {
         localStorage.setItem("currentUser", JSON.stringify(response));
         this.authService.isLoggedIn();
-        this.webSocket.initializeWebSocketConnection();
         this.msg=null;
         this.router.navigateByUrl("/profile");
       

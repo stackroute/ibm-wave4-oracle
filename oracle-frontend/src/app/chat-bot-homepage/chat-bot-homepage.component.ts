@@ -1,4 +1,4 @@
-import { Component,  OnInit } from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import { ItChatServiceService } from "../it-chat-service.service";
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { InstantMessagingService } from '../instant-messaging.service';
@@ -23,7 +23,7 @@ interface UserQuery {
   templateUrl: "./chat-bot-homepage.component.html",
   styleUrls: ["./chat-bot-homepage.component.css"]
 })
-export class ChatBotHomepageComponent implements OnInit {
+export class ChatBotHomepageComponent implements OnInit,OnDestroy {
   stompClient: any;
   constructor(private chatService: ItChatServiceService, private im: InstantMessagingService) {
   }
@@ -77,6 +77,9 @@ export class ChatBotHomepageComponent implements OnInit {
       }
     });
 
+  }
+  ngOnDestroy(): void {
+    this.im.closeConnection();
   }
 
 
