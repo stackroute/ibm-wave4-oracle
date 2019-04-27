@@ -23,6 +23,8 @@ services:
     container_name: mysql
     network_mode: host
     hostname: 0.0.0.0
+    volumes:
+      - /DB/mysql:/var/lib/mysql
 #
 #  mysql:
 #    image: mysql:5.7

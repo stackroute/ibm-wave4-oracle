@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
-import { Observable, Subject } from 'rxjs';
+import {  Subject } from 'rxjs';
 import {environment} from "../environments/environment";
 
 
@@ -23,10 +23,6 @@ export class InstantMessagingService {
 
   initializeWebSocketConnection() {
     var info = JSON.parse(localStorage.getItem("currentUser"));
-    if(!info){
-      info={user:{email:"guest"}};
-
-    }
     let ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
     let that = this;
