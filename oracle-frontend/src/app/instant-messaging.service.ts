@@ -41,6 +41,6 @@ export class InstantMessagingService {
   }
 
   closeConnection(){
-    this.stompClient.close();
+    // this.stompClient.close();
   }
 }
