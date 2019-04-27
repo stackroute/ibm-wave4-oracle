@@ -66,7 +66,7 @@ public class QueryServiceImpl implements QueryService {
         String answer = null;
         // initialize answer if and only if the distance is less than 2
         if (!distanceWithAnswerMap.isEmpty()){
-            if (distanceWithAnswerMap.firstKey() <= 2 ) {
+            if (distanceWithAnswerMap.firstKey() <= 5 ) {
                 answer = distanceWithAnswerMap.get(distanceWithAnswerMap.firstKey());
             }
         }
