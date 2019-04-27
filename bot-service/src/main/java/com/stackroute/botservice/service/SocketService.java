@@ -79,6 +79,12 @@ public class SocketService {
             for (QueryAnswer qa : queryAnswer) {
                 response.add(new SendQuery(qa, new Status(false, false,true)));
             }
+
+            // sending to manual answer service
+            QuestionDTO questionDTO = new QuestionDTO();
+            questionDTO.setConcept(concept);
+            questionDTO.setQuestion(correctedQuery);
+            kafkaTemplate.send("new_query", questionDTO);
         }
         /* Default answer to client if concept is not found.*/
         if(response.isEmpty()){
