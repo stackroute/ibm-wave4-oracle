@@ -1,5 +1,8 @@
+
+.mainSlides{
+  height:500px;
+}
 .botBody{
-  border:1px solid black;
   height:630px;
   width:500px;
   background: linear-gradient(to top left, #2e2e3c 27%, #991a2f 74%);
@@ -62,4 +65,11 @@
 }
 .footer{
   height:4rem;
+}
+.form{
+  margin:0.5rem 0rem 0rem 2rem;
+}
+.quote{
+  font-size: 2rem;
+  font-family: italic;
 }

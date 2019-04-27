@@ -182,18 +182,11 @@
       (cdkDropListDropped)="drop($event)"
       style="height:10rem;"
     >
-      <!-- <span *ngIf="item.rvalue === '/recast'">
-
-    </span> -->
-      <!-- <span ng-toggle="item.rvalue === /recast"> </span> -->
-      <!--    routerLink="{{ item.rvalue }}" -->
-      <!-- *ngFor="let item of botBasket" -->
       <div ng-if="/recast">
         <button
           class="btn btn-outline-light"
           cdkDrag
           routerLink="/recast"
-          style=""
           data-toggle="modal"
           data-target="#exampleModalCenter"
         >
@@ -219,38 +212,6 @@
           </span>
         </button>
       </div>
-      <!-- 
-      <div ng-else>
-        <button
-          *ngFor="let item of botBasket"
-          class="btn btn-outline-light"
-          cdkDrag
-          routerLink="{{ item.rvalue }}"
-          style=""
-          data-toggle="modal"
-          data-target="#exampleModalCenter"
-        >
-          <span
-            ><i class="{{ item.icon }}" style="font-size: 5rem;"></i>
-            <p>{{ item.name }}</p>
-          </span>
-        </button>
-      </div> -->
-
-      <!-- <button
-        *ngFor="let item of botBasket"
-        class="btn btn-outline-light"
-        cdkDrag
-        routerLink="{{ item.rvalue }}"
-        style=""
-        data-toggle="modal"
-        data-target="#exampleModalCenter"
-      >
-        <span
-          ><i class="{{ item.icon }}" style="font-size: 5rem;"></i>
-          <p>{{ item.name }}</p>
-        </span>
-      </button> -->
     </div>
   </div>
 </div>

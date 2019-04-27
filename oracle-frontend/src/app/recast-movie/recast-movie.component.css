@@ -12,6 +12,9 @@ body {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
   -webkit-font-smoothing: antialiased;
 }
+.quote{
+  font-size: 2rem;
+}
 
 #frame {
   height: 700px;

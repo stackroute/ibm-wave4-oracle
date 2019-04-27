@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import { ItChatServiceService } from "../it-chat-service.service";
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { InstantMessagingService } from '../instant-messaging.service';
@@ -23,7 +23,7 @@ interface UserQuery {
   templateUrl: "./chat-bot-homepage.component.html",
   styleUrls: ["./chat-bot-homepage.component.css"]
 })
-export class ChatBotHomepageComponent implements OnInit {
+export class ChatBotHomepageComponent implements OnInit,OnDestroy {
   stompClient: any;
   constructor(private chatService: ItChatServiceService, private im: InstantMessagingService) {
   }
@@ -78,29 +78,22 @@ export class ChatBotHomepageComponent implements OnInit {
     });
 
   }
-
-  sendMessage(query) {
-    // console.log("sending messages to websocket service");
-    // console.log(queryAnswer);
-    // this.stompClient.send("/app/message",{},queryAnswer);
-    // console.log("messages sent to websocket service");
-    this.im.sendMessage(JSON.stringify(query));
+  ngOnDestroy(): void {
+    this.im.closeConnection();
   }
+
 
   // chat sending and receiving
   onSubmit(value, scrollItem) {
-    this.sendMessage({ queryAnswer: this.queryAnswer, status: this.status });
-    // console.log("sending messages to bot service");
+
     let jsonQuery = JSON.stringify({ queryAnswer: this.queryAnswer, status: this.status });
-    // console.log(jsonQuery);
+    this.im.sendMessage(jsonQuery);
+
     this.latestQuestion = this.queryAnswer.question;
     this.scrollableH = scrollItem.scrollHeight;
-    // console.log("submitted" + jsonQuery);
+
     this.queryList.push(JSON.parse(jsonQuery));
 
-
-    console.log(this.queryList);
-    console.log(this.suggestionList);
     value.reset();
   }
 
