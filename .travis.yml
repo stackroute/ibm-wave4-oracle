@@ -3,15 +3,13 @@ jdk: openjdk12
   
 cache:
   directories:
-    - "$HOME/travis/.m2/repository"
+    - "$HOME/.m2/repository"
 services:
   - docker
 
 before_script:
   - docker-compose -f common-service.yml up --build -d kafka mongo mysql
   - docker ps -a
-
-
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
