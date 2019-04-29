@@ -71,7 +71,7 @@ services:
     network_mode: "host"
     hostname: localhost
     ports:
-      - 8080:8080
+      - 8081:8081
 
   zookeeper:
     container_name: zookeeper
@@ -159,6 +159,7 @@ services:
     network_mode: "host"
     hostname: localhost
     restart: always
+
 
   bot-service:
     build: bot-service/
