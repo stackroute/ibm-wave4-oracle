@@ -169,7 +169,8 @@
   </mat-drawer-container>
   <div class="container-fluid" id="second-section">
     <p class="lead text-light text-center font-weight-bolder pt-3">
-      Other helping bot
+
+      Other helping bots
     </p>
 
     <mat-divider></mat-divider>
@@ -184,16 +185,30 @@
     >
       <div ng-if="/recast">
         <button
-          *ngFor="let item of botBasket"
           class="btn btn-outline-light"
           cdkDrag
-          routerLink="{{ item.rvalue }}"
+          routerLink="/recast"
           data-toggle="modal"
           data-target="#exampleModalCenter"
         >
-          <span
-            ><i class="{{ item.icon }}" style="font-size: 5rem;"></i>
-            <p>{{ item.name }}</p>
+          <span>
+            <i class="fas fa-film" style="font-size: 5rem;"></i>
+            <p>Movie</p>
+          </span>
+        </button>
+      </div>
+
+      <div ng-if="/tourism-bot">
+        <button
+          class="btn btn-outline-light"
+          cdkDrag
+          routerLink="/tourism-bot"
+          data-toggle="modal"
+          data-target="#botModal"
+        >
+          <span>
+            <i class="fas fa-globe-africa" style="font-size: 5rem;"></i>
+            <p>Tourism</p>
           </span>
         </button>
       </div>
