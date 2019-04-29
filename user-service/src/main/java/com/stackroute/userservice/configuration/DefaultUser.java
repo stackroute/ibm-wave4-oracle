@@ -17,8 +17,8 @@ public class DefaultUser implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        User u = new User(1,"admin","admin","admin@mail.com", PasswordUtil.getPasswordHash("Admin@123"), "Admin@123", true,"ADMIN",null);
-        User u2 = new User(1,"user","user","user@mail.com", "User@123", "User@123", true,"USER",null);
+        User u = new User(1,"admin","admin","admin@mail.com",
+                "Admin@123", "Admin@123", true,"ADMIN",null);
 
         userService.save(u);
     }
