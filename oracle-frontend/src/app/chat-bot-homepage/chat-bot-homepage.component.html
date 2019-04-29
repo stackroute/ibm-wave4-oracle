@@ -103,25 +103,27 @@
             #chatForm="ngForm"
             (ngSubmit)="onSubmit(chatForm, scrollMe)"
           >
+            <div class="input-group w-100">
             <input
               type="text"
               class="form-control"
               placeholder="You have any query?"
-              style="width: 90%;"
               #text="ngModel"
               [(ngModel)]="queryAnswer.question"
               name="queryAnswer"
               required
-            />
+            /><div class="input-group-append">
             <button
-              class="btn btn-outline-secondary ml-1"
+              class="btn bg-light border-0"
               [disabled]="!chatForm.form.valid"
               type="submit"
               id="submitbutton"
               #button
             >
-              <i class="fas fa-angle-double-right"></i>
+              <i class="fas fa-paper-plane"></i>
             </button>
+              </div>
+            </div>
           </form>
         </div>
 
