@@ -1,0 +1,8 @@
+identity,name,parentid,type,parentnodetype
+spring:1,intent,spring:0,level,intent
+spring:2,knowledge,spring:1,level,intent
+spring:3,comprehension,spring:1,level,intent
+spring:4,application,spring:1,level,intent
+spring:5,analysis,spring:1,level,intent
+spring:6,synthesis,spring:1,level,intent
+spring:7,evaluation,spring:1,level,intent

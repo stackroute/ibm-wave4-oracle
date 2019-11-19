@@ -44,19 +44,13 @@
 //        userQuery = new QueryAnsListWithConcept();
 //        QueryAnswer queryAnswer = new QueryAnswer();
 //        queryAnswer.setQuestion("this is my question");
-////        queryAnswer.setAnswer("this is my answer");
-////        Status status = new Status();
-////        status.setAnswered(true);
-////        status.setAccepted(true);
-////        userQuery.setQueryAnswer(queryAnswer);
-////        userQuery.setStatus(status);
 //
 //    }
 //
 //    @Test
 //    public void sendNewQueryTest() throws Exception {
 //        when(queryService.saveQuery(any())).thenReturn(userQuery);
-//        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/send/queryAnswer")
+//        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/send/getanswer")
 //                .contentType(MediaType.APPLICATION_JSON).content(asJsonString(userQuery)))
 //                .andExpect(MockMvcResultMatchers.status().isCreated())
 //                .andDo(MockMvcResultHandlers.print());

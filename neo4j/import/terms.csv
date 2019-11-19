@@ -1,0 +1,207 @@
+identity,name,parentid,type,parentnodetype,weight,parentrelation
+spring:8,list,spring:2,term,knowledge,8,indicatorof
+spring:9,name,spring:2,term,knowledge,7,indicatorof
+spring:10,recall,spring:2,term,knowledge,6,indicatorof
+spring:11,record,spring:2,term,knowledge,7,indicatorof
+spring:12,manage,spring:2,term,knowledge,2,counterindicatorof
+spring:13,repeat,spring:2,term,knowledge,7,indicatorof
+spring:14,state,spring:2,term,knowledge,9,indicatorof
+spring:15,tell,spring:2,term,knowledge,8,indicatorof
+spring:16,define,spring:2,term,knowledge,9,indicatorof
+spring:17,duplicate,spring:2,term,knowledge,5,indicatorof
+spring:18,label,spring:2,term,knowledge,7,indicatorof
+spring:19,reply,spring:2,term,knowledge,5,indicatorof
+spring:20,match,spring:2,term,knowledge,6,indicatorof
+spring:21,memorize,spring:2,term,knowledge,7,indicatorof
+spring:22,fundamental,spring:2,term,knowledge,6,indicatorof
+spring:23,order,spring:2,term,knowledge,8,indicatorof
+spring:24,outline,spring:2,term,knowledge,8,indicatorof
+spring:25,recognize,spring:2,term,knowledge,3,counterindicatorof
+spring:26,count,spring:2,term,knowledge,8,indicatorof
+spring:27,describe,spring:2,term,knowledge,9,indicatorof
+spring:28,enumerate,spring:2,term,knowledge,9,indicatorof
+spring:29,find,spring:2,term,knowledge,9,indicatorof
+spring:30,quote,spring:2,term,knowledge,9,indicatorof
+spring:31,read,spring:2,term,knowledge,8,indicatorof
+spring:32,select,spring:2,term,knowledge,5,counterindicatorof
+spring:33,recite,spring:2,term,knowledge,8,indicatorof
+spring:34,reproduce,spring:2,term,knowledge,7,indicatorof
+spring:35,sequence,spring:2,term,knowledge,6,indicatorof
+spring:36,state,spring:2,term,knowledge,9,indicatorof
+spring:37,view,spring:2,term,knowledge,8,indicatorof
+spring:38,write,spring:2,term,knowledge,5,counterindicatorof
+spring:39,locate,spring:2,term,knowledge,6,indicatorof
+spring:40,identify,spring:2,term,knowledge,3,counterindicatorof
+spring:41,tell,spring:2,term,knowledge,5,counterindicatorof
+spring:42,compare,spring:3,term,comprehension,8,indicatorof
+spring:43,describe,spring:3,term,comprehension,5,counterindicatorof
+spring:44,discuss,spring:3,term,comprehension,7,indicatorof
+spring:45,explain,spring:3,term,comprehension,8,indicatorof
+spring:46,express,spring:3,term,comprehension,8,indicatorof
+spring:47,identify,spring:3,term,comprehension,7,indicatorof
+spring:48,reconize,spring:3,term,comprehension,8,indicatorof
+spring:49,restate,spring:3,term,comprehension,9,indicatorof
+spring:50,tell,spring:3,term,comprehension,8,indicatorof
+spring:51,translate,spring:3,term,comprehension,8,indicatorof
+spring:52,classify,spring:3,term,comprehension,9,indicatorof
+spring:53,convert,spring:3,term,comprehension,8,indicatorof
+spring:54,defend,spring:3,term,comprehension,9,indicatorof
+spring:55,generalized,spring:3,term,comprehension,8,indicatorof
+spring:54,example,spring:3,term,comprehension,9,indicatorof
+spring:55,indicate,spring:3,term,comprehension,7,indicatorof
+spring:56,paraphrase,spring:3,term,comprehension,9,indicatorof
+spring:57,predict,spring:3,term,comprehension,8,indicatorof
+spring:58,rewrite,spring:3,term,comprehension,8,indicatorof
+spring:59,review,spring:3,term,comprehension,8,indicatorof
+spring:60,summarize,spring:3,term,comprehension,9,indicatorof
+spring:61,tell,spring:3,term,comprehension,4,counterindicatorof
+spring:62,outline,spring:3,term,comprehension,5,counterindicatorof
+spring:63,recognize,spring:3,term,comprehension,9,indicatorof
+spring:64,describe,spring:3,term,comprehension,4,counterindicatorof
+spring:65,select,spring:3,term,comprehension,4,counterindicatorof
+spring:66,infer,spring:3,term,comprehension,5,counterindicatorof
+spring:67,rewrite,spring:3,term,comprehension,6,counterindicatorof
+spring:68,apply,spring:4,term,application,9,indicatorof
+spring:69,complete,spring:4,term,application,7,indicatorof
+spring:70,construct ,spring:4,term,application,8,indicatorof
+spring:71,demonstrate,spring:4,term,application,8,indicatorof
+spring:72,dramatize,spring:4,term,application,7,indicatorof
+spring:73,employ,spring:4,term,application,6,indicatorof
+spring:74,illustrate,spring:4,term,application,8,indicatorof
+spring:75,interpret,spring:4,term,application,9,indicatorof
+spring:76,operate,spring:4,term,application,7,indicatorof
+spring:77,practice,spring:4,term,application,8,indicatorof
+spring:78,schedule,spring:4,term,application,8,indicatorof
+spring:79,sketch,spring:4,term,application,7,indicatorof
+spring:80,use,spring:4,term,application,6,indicatorof
+spring:81,change,spring:4,term,application,8,indicatorof
+spring:82,compute,spring:4,term,application,9,indicatorof
+spring:83,discover,spring:4,term,application,8,indicatorof
+spring:84,manipulate,spring:4,term,application,9,indicatorof
+spring:85,modify,spring:4,term,application,7,indicatorof
+spring:86,show,spring:4,term,application,7,indicatorof
+spring:87,list,spring:4,term,application,2,counterindicatorof
+spring:88,write,spring:4,term,application,8,indicatorof
+spring:89,classify,spring:4,term,application,5,counterindicatorof
+spring:90,analyze,spring:5,term,analysis,9,indicatorof
+spring:91,appraise,spring:5,term,analysis,8,indicatorof
+spring:92,categorize,spring:5,term,analysis,8,indicatorof
+spring:93,compare,spring:5,term,analysis,6,indicatorof
+spring:94,contrast,spring:5,term,analysis,7,indicatorof
+spring:95,debate,spring:5,term,analysis,6,indicatorof
+spring:96,diagram,spring:5,term,analysis,7,indicatorof
+spring:97,differentiate,spring:5,term,analysis,8,indicatorof
+spring:98,distinguish,spring:5,term,analysis,9,indicatorof
+spring:99,examine,spring:5,term,analysis,8,indicatorof
+spring:100,experiment,spring:5,term,analysis,9,indicatorof
+spring:101,inspect,spring:5,term,analysis,8,indicatorof
+spring:102,inventory,spring:5,term,analysis,7,indicatorof
+spring:103,question,spring:5,term,analysis,7,indicatorof
+spring:104,test,spring:5,term,analysis,8,indicatorof
+spring:105,calculate,spring:5,term,analysis,7,indicatorof
+spring:106,discriminate,spring:5,term,analysis,6,indicatorof
+spring:107,point out,spring:5,term,analysis,8,indicatorof
+spring:108,separate,spring:5,term,analysis,9,indicatorof
+spring:109,subdivide,spring:5,term,analysis,7,indicatorof
+spring:110,test,spring:5,term,analysis,8,indicatorof
+spring:111,outline,spring:5,term,analysis,3,counterindicatorof
+spring:112,recognize,spring:5,term,analysis,5,counterindicatorof
+spring:113,select,spring:5,term,analysis,7,indicatorof
+spring:114,explain,spring:5,term,analysis,3,counterindicatorof
+spring:115,identify,spring:5,term,analysis,4,counterindicatorof
+spring:116,classify,spring:5,term,analysis,5,counterindicatorof
+spring:117,infer,spring:5,term,analysis,8,indicatorof
+spring:118,illustrate,spring:5,term,analysis,4,indicatorof
+spring:119,arrange,spring:6,term,synthesis,7,indicatorof
+spring:120,assemble ,spring:6,term,synthesis,8,indicatorof
+spring:121,collect,spring:6,term,synthesis,9,indicatorof
+spring:122,combine,spring:6,term,synthesis,8,indicatorof
+spring:123,comply,spring:6,term,synthesis,9,indicatorof
+spring:124,compose,spring:6,term,synthesis,9,indicatorof
+spring:125,construct,spring:6,term,synthesis,8,indicatorof
+spring:126,create,spring:6,term,synthesis,7,indicatorof
+spring:127,design,spring:6,term,synthesis,6,indicatorof
+spring:128,devise,spring:6,term,synthesis,7,indicatorof
+spring:129,formulate,spring:6,term,synthesis,8,indicatorof
+spring:130,manage,spring:6,term,synthesis,7,indicatorof
+spring:131,organize,spring:6,term,synthesis,9,indicatorof
+spring:132,plan,spring:6,term,synthesis,8,indicatorof
+spring:133,prepare,spring:6,term,synthesis,7,indicatorof
+spring:134,propose,spring:6,term,synthesis,7,indicatorof
+spring:135,setup,spring:6,term,synthesis,8,indicatorof
+spring:136,generate,spring:6,term,synthesis,9,indicatorof
+spring:137,rearrange,spring:6,term,synthesis,9,indicatorof
+spring:138,reconstruct,spring:6,term,synthesis,7,indicatorof
+spring:139,reorganize,spring:6,term,synthesis,8,indicatorof
+spring:140,synthesize,spring:6,term,synthesis,7,indicatorof
+spring:141,manage,spring:6,term,synthesis,6,indicatorof
+spring:142,tell,spring:6,term,synthesis,3,counterindicatorof
+spring:143,write,spring:6,term,synthesis,4,counterindicatorof
+spring:144,express,spring:6,term,synthesis,5,counterindicatorof
+spring:145,tell,spring:6,term,synthesis,4,counterindicatorof
+spring:146,rewrite,spring:6,term,synthesis,5,counterindicatorof
+spring:147,summarize,spring:6,term,synthesis,4,counterindicatorof
+spring:148,construct ,spring:6,term,synthesis,5,counterindicatorof
+spring:149,appraise ,spring:7,term,evaluation,9,indicatorof
+spring:150,argue,spring:7,term,evaluation,8,indicatorof
+spring:151,assess,spring:7,term,evaluation,7,indicatorof
+spring:152,choose,spring:7,term,evaluation,6,indicatorof
+spring:153,compare,spring:7,term,evaluation,8,indicatorof
+spring:154,conclude,spring:7,term,evaluation,6,indicatorof
+spring:155,estimate,spring:7,term,evaluation,7,indicatorof
+spring:156,evaluate,spring:7,term,evaluation,5,indicatorof
+spring:157,interpret,spring:7,term,evaluation,7,indicatorof
+spring:158,judge,spring:7,term,evaluation,9,indicatorof
+spring:159,justify,spring:7,term,evaluation,8,indicatorof
+spring:160,measure,spring:7,term,evaluation,6,indicatorof
+spring:161,rate,spring:7,term,evaluation,6,indicatorof
+spring:162,revise,spring:7,term,evaluation,5,indicatorof
+spring:163,score,spring:7,term,evaluation,8,indicatorof
+spring:164,select,spring:7,term,evaluation,6,counterindicatorof
+spring:165,support,spring:7,term,evaluation,7,indicatorof
+spring:166,value,spring:7,term,evaluation,6,indicatorof
+spring:166,attach,spring:7,term,evaluation,7,indicatorof
+spring:167,defend,spring:7,term,evaluation,3,counterindicatorof
+spring:168,summarize,spring:7,term,evaluation,3,counterindicatorof
+spring:169,interpret,spring:7,term,evaluation,4,counterindicatorof
+spring:170,how to,spring:4,term,application,5,indicatorof
+spring:171,how can i,spring:4,term,application,3,indicatorof
+spring:172,how do i,spring:4,term,application,6,indicatorof
+spring:173,how do i fix,spring:4,term,application,3,indicatorof
+spring:174,how do i resolve,spring:4,term,application,4,indicatorof
+spring:175,how do i solve,spring:4,term,application,3,indicatorof
+spring:176,how do i rectify,spring:4,term,application,5,indicatorof
+spring:177,troubleshoot,spring:4,term,application,2,indicatorof
+spring:178,tell me how,spring:4,term,application,4,indicatorof
+spring:179,how to know,spring:4,term,application,6,indicatorof
+spring:180,debug message,spring:5,term,analysis,3,indicatorof
+spring:181,log message,spring:5,term,analysis,1,indicatorof
+spring:182,error,spring:5,term,analysis,5,indicatorof
+spring:183,not working,spring:5,term,analysis,2,indicatorof
+spring:184,throwing error,spring:5,term,analysis,5,indicatorof
+spring:185,why,spring:5,term,analysis,7,indicatorof
+spring:186,stops,spring:5,term,analysis,8,indicatorof
+spring:187,exists,spring:5,term,analysis,3,indicatorof
+spring:188,terminates,spring:5,term,analysis,8,indicatorof
+spring:189,reporting error,spring:5,term,analysis,7,indicatorof
+spring:190,crash,spring:5,term,analysis,6,indicatorof
+spring:191,exists code,spring:5,term,analysis,6,indicatorof
+spring:192,fix,spring:5,term,analysis,5,indicatorof
+spring:193,won’t start,spring:5,term,analysis,5,indicatorof
+spring:194,dosen’t start,spring:5,term,analysis,3,indicatorof
+spring:195,not starting ,spring:5,term,analysis,4,indicatorof
+spring:196,problems,spring:5,term,analysis,2,indicatorof
+spring:197,analyse,spring:5,term,analysis,9,indicatorof
+Spring:198,dosen’t start,spring:5,term,analysis,8,indicatorof
+spring:199,does not exists,spring:5,term,analysis,7,indicatorof
+spring:200,cannot resolve symbol,spring:5,term,analysis,6,indicatorof
+spring:201,cannot run,spring:5,term,analysis,5,indicatorof
+spring:202,can’t run,spring:5,term,analysis,4,indicatorof
+spring:203,resolve,spring:5,term,analysis,3,indicatorof
+spring:204,solve,spring:5,term,analysis,2,indicatorof
+spring:205,rectify,spring:5,term,analysis,1,indicatorof
+spring:206,where,spring:3,term,comprehension,5,indicatorof
+spring:207,what,spring:4,term,application,4,indicatorof
+spring:208,when ,spring:3,term,comprehension,3,indicatorof
+spring:209,is,spring:2,term,knowledge,2,indicatorof
+Spring:210,do,spring:2,term,knowledge,2,indicatorof

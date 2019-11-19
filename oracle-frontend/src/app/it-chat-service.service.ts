@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { HttpHeaders, HttpClient } from "@angular/common/http";
+import {environment} from "../environments/environment";
 
 @Injectable({
   providedIn: "root"
@@ -13,11 +14,13 @@ export class ItChatServiceService {
       .set("Content-Type", "application/json")
       .append("Access-Control-Allow-Origin", "*")
   };
-  savedQuery(queryAnswer) {
+
+  saveQuery(queryAnswer) {
     return this.http.post(
-      "http://localhost:8090/api/v1/send",
+      `${environment.botService}/saveanswer`,
       queryAnswer,
       this.options
     );
   }
+
 }

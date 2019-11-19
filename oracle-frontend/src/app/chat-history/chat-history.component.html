@@ -1,0 +1,60 @@
+<div class="container-fluid d-flex flex-column align-items-center">
+
+  <div class="container">
+    <form #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm.value)"
+          class="form-inline border d-flex flex-wrap justify-content-around align-items-center w-100 p-3">
+      <mat-form-field class="mr-2">
+        <mat-label>pick start date</mat-label>
+        <input matInput ngModel name="fromDate" type="date" class="form-control" required #start="ngModel">
+      </mat-form-field>
+      <mat-form-field class="mr-2">
+        <mat-label>pick end date</mat-label>
+        <input matInput type="date" ngModel name="toDate" class="form-control" required #end="ngModel">
+      </mat-form-field>
+      <mat-form-field class="mr-2">
+        <mat-label>user id</mat-label>
+        <input matInput type="text" ngModel name="userName" class="form-control" required #user="ngModel">
+      </mat-form-field>
+      <button class="btn-outline-success ml-2" mat-raised-button [disabled]="!searchForm.form.valid">
+        <i class="fas fa-search"></i>
+      </button>
+    </form>
+  </div>
+  <div class="container mt-3" *ngIf="historyList.length>0">
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col" class="">
+          User Id
+        </th>
+        <th scope="col" class="">
+          Timestamp
+        </th>
+        <th scope="col" class="">
+          user query
+        </th>
+        <th scope="col" class="">
+          bot response
+        </th>
+      </tr>
+      </thead>
+      <tbody class="w-100">
+      <tr class="" *ngFor="let item of historyList">
+        <td class="">
+          {{item.userName}}
+        </td>
+        <td class="">
+          {{item.time}}
+        </td>
+        <td class="">
+          {{item.user}}
+        </td>
+        <td class="">
+          {{item.bot}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

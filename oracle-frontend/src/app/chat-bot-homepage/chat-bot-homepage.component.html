@@ -1,142 +1,219 @@
-<mat-drawer-container class="d-flex main flex-wrap container-fluid" id="main">
-  <mat-drawer-content class="w-100">
-    <div
-      class="mt-1 d-flex justify-content-between flex-wrap"
-      style="min-height: 37rem;"
-    >
+<div class="container-fluid m-0 p-0">
+  <mat-drawer-container class="d-flex main flex-wrap container-fluid" id="main">
+    <mat-drawer-content class="w-100">
       <div
-        cdkDrag
-        cdkDragBoundary=".main"
-        class="card bg-light shadow border-3 border-primary "
-        style="width:30rem; height: 33rem; padding:10px; border-radius:40px"
+        class="d-flex justify-content-between flex-wrap"
+        style="min-height: 40rem;"
       >
-        <div class="card-header shadow">
-          <span class="text-center text-justify ">IT HelpDesk</span>
-        </div>
         <div
-          class="card-body d-flex flex-column justify-content-end align-items-end text-light text-justify
-     border border-primary m-0 p-0 chat-area"
-          style="height: 22rem; background-color: #f6e8eb"
+          class="container card text-light shadow mt-3"
+          style="width:40rem;  height: 38rem; padding:10px; border-radius:20px;background-color: #1B1B25;"
         >
+          <div class="card-header shadow">
+            <span class="text-center text-justify ">IT HelpDesk</span>
+          </div>
           <div
-            class="overflow-auto w-100 chat m-0"
-            #scrollMe
-            [scrollTop]="scrollMe.scrollHeight"
+            class="card-body d-flex flex-column justify-content-end align-items-end text-light text-justify
+      m-0 p-0 chat-area"
+            style="height: 22rem; background-color: #f6e8eb;border-radius: 20px;"
           >
             <div
-              class="d-flex flex-column justify-content-end align-items-end w-100"
+              class="overflow-auto w-100 chat m-0"
+              #scrollMe
+              [scrollTop]="scrollableH"
             >
               <div
-                *ngFor="let item of queryList"
-                class="d-flex speech-bubble mt-1"
+                class="d-flex flex-column justify-content-end align-items-end w-100"
               >
-                <p
-                  class="card-body m-0 text-justify text-center blockquote overflow-auto bg-dark"
-                  *ngIf="!item.status.answered"
-                  style="padding:.8rem 1.1rem; border-radius:9.1rem; min-width:70px;"
+                <div
+                  *ngFor="let item of queryList"
+                  class="d-flex speech-bubble mt-1"
                 >
-                  {{ item.queryAnswer.question }}
-                </p>
-
-                <p
-                  class="card-body m-0 text-justify text-center blockquote overflow-auto bg-info"
-                  *ngIf="item.status.answered"
-                  style="padding:.8rem 1.1rem; border-radius:10%;right: 25%; position: relative;"
-                >
-                  {{ item.queryAnswer.answer }}
-
-                  <button class="btn " (click)="submitAccepted(item)" [ngClass]="item.queryAnswer.id===10?'btn-primary':''"><i class="fa fa-thumbs-o-up" ></i></button>
-                  <button class="btn"><i class="fa fa-thumbs-o-down" ></i></button>
-
-                </p>
-
-
+                  <p
+                    class="card-body m-0 text-justify text-center blockquote overflow-auto"
+                    *ngIf="!item.status.answered"
+                    style="padding:.8rem 1.1rem; border-radius:9.1rem; min-width:70px; background-color: #1B1B25"
+                  >
+                    {{ item.queryAnswer.question }}
+                  </p>
+                  <div
+                    class="card-body m-0 bg-info"
+                    *ngIf="item.status.answered"
+                    style="padding:.8rem 1.1rem; border-radius:10%;right: 25%; position: relative;"
+                  >
+                    <p
+                      class="card-text text-justify text-center blockquote overflow-auto"
+                    >
+                      {{ item.queryAnswer.answer }}
+                    </p>
+                    <button
+                      class="btn btn-outline-dark"
+                      (click)="submitAccepted(item)"
+                      *ngIf="item.queryAnswer.id != 10"
+                    >
+                      <i class="fa fa-thumbs-o-up"></i>
+                      satisfied?
+                    </button>
+                    <button
+                      class="btn lead disabled"
+                      style="color:green;"
+                      *ngIf="item.queryAnswer.id === 10"
+                    >
+                      satisfied<i class="fa fa-check"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <p
+                class="card-body text-justify text-center  mt-3 row bg-light text-muted"
+                *ngIf="suggested"
+                style="padding:.8rem 1.1rem;margin-left:10%;  border-radius:10%;width: 80%; position: relative; background-color: #8B8982"
+              >
+                Your search "{{ latestQuestion }}" did not match any document.
+                but Oracle IT service will provide solution later.
+              </p>
+              <div class="container mt-3">
+                <mat-accordion *ngIf="suggested">
+                  <mat-expansion-panel [disabled]="true">
+                    <mat-expansion-panel-header>
+                      People also ask
+                    </mat-expansion-panel-header>
+                  </mat-expansion-panel>
+                  <div *ngFor="let item of suggestionList">
+                    <mat-expansion-panel class="card m-0">
+                      <mat-expansion-panel-header class="card-header">
+                        <div class="card-title">
+                          {{ item.queryAnswer.question }}
+                        </div>
+                      </mat-expansion-panel-header>
+                      <div class="card-body">
+                        <div class="card-text">
+                          {{ item.queryAnswer.answer }}
+                        </div>
+                      </div>
+                    </mat-expansion-panel>
+                  </div>
+                </mat-accordion>
               </div>
             </div>
           </div>
-        </div>
-        <form
-          class="container-fluid form-inline d-flex my-1"
-          #chatForm="ngForm"
-          (ngSubmit)="onSubmit(chatForm)"
-        >
-          <input
-            type="text"
-            class="form-control"
-            placeholder="any queryAnswer ?"
-            style="width: 86%;"
-            #text="ngModel"
-            [(ngModel)]="queryAnswer.question"
-            name="queryAnswer"
-            required
-          />
-          <button
-            class="btn btn-outline-secondary ml-1"
-            [disabled]="!chatForm.form.valid"
-            type="submit"
-            id="submitbutton"
-            #button
+          <form
+            class="form-inline d-flex my-1"
+            #chatForm="ngForm"
+            (ngSubmit)="onSubmit(chatForm, scrollMe)"
           >
-            <i class="fas fa-angle-double-right"></i>
-          </button>
-        </form>
-      </div>
+            <div class="input-group w-100">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="You have any query?"
+              #text="ngModel"
+              [(ngModel)]="queryAnswer.question"
+              name="queryAnswer"
+              required
+            /><div class="input-group-append">
+            <button
+              class="btn bg-light border-0"
+              [disabled]="!chatForm.form.valid"
+              type="submit"
+              id="submitbutton"
+              #button
+            >
+              <i class="fas fa-paper-plane"></i>
+            </button>
+              </div>
+            </div>
+          </form>
+        </div>
 
-      <button
-        type="button"
-        mat-button
-        (click)="drawer.toggle()"
-        class="btn  btn-toolbar"
-      >
-        >>
-      </button>
-    </div>
-  </mat-drawer-content>
-  <mat-drawer
-    #drawer
-    mode="side"
-    position="end"
-    class="m-0 col-sm-12 col-md-3 col-lg-2"
-    style="height:100%; background-color:rgb(16, 76, 96);"
-  >
-    <div
-      class=" d-flex flex-column  justify-content-center align-items-center h-100 w-100"
-      cdkDropList
-      [cdkDropListData]="botItems"
-      [cdkDropListConnectedTo]="botBasket1"
-      #botItems1="cdkDropList"
-      (cdkDropListDropped)="drop($event)"
-    >
-      <div class="d-flex flex-column justify-content-around align-items-center">
         <button
-          *ngFor="let item of botItems"
+          type="button"
+          mat-button
+          (click)="drawer.toggle()"
+          class="btn lead"
+        >
+          <i class="fas fa-stream"></i>
+        </button>
+      </div>
+    </mat-drawer-content>
+    <mat-drawer
+      #drawer
+      mode="side"
+      position="end"
+      class="m-0 col-sm-12 col-md-3 col-lg-2 shadow"
+      style="height:100%; background-color: #333844"
+    >
+      <div
+        class=" d-flex flex-column  justify-content-center align-items-center h-100 w-100"
+        cdkDropList
+        [cdkDropListData]="botItems"
+        [cdkDropListConnectedTo]="botBasket1"
+        #botItems1="cdkDropList"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div
+          class="d-flex flex-column justify-content-around align-items-center"
+        >
+          <button
+            *ngFor="let item of botItems"
+            class="btn btn-outline-light"
+            cdkDrag
+            style="width: 100%"
+          >
+            <span
+              ><i class="{{ item.icon }}" style="font-size: 5rem;"></i>
+              <p>{{ item.name }}</p>
+            </span>
+          </button>
+        </div>
+      </div>
+    </mat-drawer>
+  </mat-drawer-container>
+  <div class="container-fluid" id="second-section">
+    <p class="lead text-light text-center font-weight-bolder pt-3">
+
+      Other helping bots
+    </p>
+
+    <mat-divider></mat-divider>
+    <div
+      class="container-fluid d-flex flex-wrap justify-content-center align-items-center"
+      cdkDropList
+      [cdkDropListData]="botBasket"
+      #botBasket1="cdkDropList"
+      [cdkDropListConnectedTo]="botItems1"
+      (cdkDropListDropped)="drop($event)"
+      style="height:10rem;"
+    >
+      <div ng-if="/recast">
+        <button
           class="btn btn-outline-light"
           cdkDrag
-          style="width: 100%"
+          routerLink="/recast"
+          data-toggle="modal"
+          data-target="#exampleModalCenter"
         >
-          <span
-          ><i class="{{ item.icon }}" style="font-size: 5rem;"></i>
-            <p>{{ item.name }}</p>
+          <span>
+            <i class="fas fa-film" style="font-size: 5rem;"></i>
+            <p>Movie</p>
+          </span>
+        </button>
+      </div>
+
+      <div ng-if="/tourism-bot">
+        <button
+          class="btn btn-outline-light"
+          cdkDrag
+          routerLink="/tourism-bot"
+          data-toggle="modal"
+          data-target="#botModal"
+        >
+          <span>
+            <i class="fas fa-globe-africa" style="font-size: 5rem;"></i>
+            <p>Tourism</p>
           </span>
         </button>
       </div>
     </div>
-  </mat-drawer>
-</mat-drawer-container>
-
-<div
-  class="container d-flex flex-wrap justify-content-around"
-  cdkDropList
-  [cdkDropListData]="botBasket"
-  #botBasket1="cdkDropList"
-  [cdkDropListConnectedTo]="botItems1"
-  (cdkDropListDropped)="drop($event)"
-  style="background-color: darkolivegreen"
->
-  <button class="btn btn-outline-light" cdkDrag *ngFor="let item of botBasket">
-    <span
-    ><i class="{{ item.icon }}" style="font-size: 5rem;"></i>
-      <p>{{ item.name }}</p>
-    </span>
-  </button>
+  </div>
 </div>

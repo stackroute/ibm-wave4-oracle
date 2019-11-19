@@ -1,12 +1,13 @@
 package com.stackroute.graphqueryservice.domain;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.neo4j.ogm.annotation.GeneratedValue;
+import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
-import org.springframework.data.neo4j.annotation.QueryResult;
+import org.neo4j.ogm.annotation.Relationship;
+
+import java.util.List;
 
 
 @NodeEntity(label = "Questions") //This annotation creates the node with label name as Questions
@@ -14,7 +15,14 @@ import org.springframework.data.neo4j.annotation.QueryResult;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Questions {
+
+    @Id
+    @GeneratedValue
+    private Long id;
     private String name;
+    private String concept;
+    private String intent;
+
 
     /*
         This annotation creates the relationship as ANSWER_OF
@@ -22,7 +30,7 @@ public class Questions {
         the direction of relationship as INCOMING
 
      */
-  /*  @Relationship(type = "ANSWER_OF", direction = "INCOMING")
-    private List<Answer> answerList;*/
+    @Relationship(type = "ANSWER_OF", direction = "INCOMING")
+    private List<Answer> answerList;
 
 }

@@ -3,6 +3,8 @@ package com.stackroute.botservice.config;
 import com.stackroute.botservice.domain.QueryAnsListWithConcept;
 import com.stackroute.botservice.domain.QueryAnswer;
 import com.stackroute.botservice.service.QueryServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -16,7 +18,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /* Created on : 03/04/2019 by Subhajit Pal (@rahzex) */
 
@@ -24,6 +25,9 @@ import java.util.Scanner;
 
 @Component
 class StartupSeedData implements ApplicationListener<ContextRefreshedEvent> {
+
+    //logging
+    private Logger logger= LoggerFactory.getLogger(StartupSeedData.class);
 
     private QueryServiceImpl queryServiceImpl;
 
@@ -55,34 +59,37 @@ class StartupSeedData implements ApplicationListener<ContextRefreshedEvent> {
                 // getting all concepts with question/answer set
                 queryAnsListWithConceptList = queryServiceImpl.getAll();
 
-                for (QueryAnsListWithConcept q : queryAnsListWithConceptList) {
-                    // searching for same concept as the current one
-                    if (q.getConcept().equals(quesAndAns[1])) {
-                        List<QueryAnswer> queryAnswerList = q.getQueryAnswer();
+                if (!queryAnsListWithConceptList.isEmpty()){
+                    for (QueryAnsListWithConcept q : queryAnsListWithConceptList) {
+                        // searching for same concept as the current one
+                        if (q.getConcept().equals(quesAndAns[1])) {
+                            List<QueryAnswer> queryAnswerList = q.getQueryAnswer();
 
-                        // setting data in "QueryAnswer" object
-                        queryAnswer.setId(quesAndAns[0]);
-                        queryAnswer.setQuestion(quesAndAns[2]);
+                            // setting data in "QueryAnswer" object
+                            queryAnswer.setId(quesAndAns[0]);
+                            queryAnswer.setQuestion(quesAndAns[2]);
 
-                        // setting answer
-                        StringBuilder answer = new StringBuilder();
-                        for (int i = 3; i < quesAndAns.length; i++) {
-                            answer.append(quesAndAns[i]);
+                            // setting answer
+                            StringBuilder answer = new StringBuilder();
+                            for (int i = 3; i < quesAndAns.length; i++) {
+                                answer.append(quesAndAns[i]);
+                            }
+                            queryAnswer.setAnswer(answer.toString());
+
+                            // updating the list of question and answer
+                            queryAnswerList.add(queryAnswer);
+
+                            // setting data in "QueryAnsListWithConcept" object
+                            queryAnsListWithConcept.setId(q.getId());
+                            queryAnsListWithConcept.setConcept(q.getConcept());
+                            queryAnsListWithConcept.setQueryAnswer(queryAnswerList);
+
+                            foundConcept = true;
                         }
-                        queryAnswer.setAnswer(answer.toString());
-
-                        // updating the list of question and answer
-                        queryAnswerList.add(queryAnswer);
-
-                        // setting data in "QueryAnsListWithConcept" object
-                        queryAnsListWithConcept.setId(q.getId());
-                        queryAnsListWithConcept.setConcept(q.getConcept());
-                        queryAnsListWithConcept.setQueryAnswer(queryAnswerList);
-
-                        foundConcept = true;
                     }
                 }
-                if (foundConcept == false || queryAnsListWithConceptList.isEmpty()) {
+
+                if (!foundConcept || queryAnsListWithConceptList.isEmpty()) {
                     // creating new instance of QueryAnsListWithConcept
                     queryAnsListWithConcept = new QueryAnsListWithConcept();
 
@@ -113,7 +120,7 @@ class StartupSeedData implements ApplicationListener<ContextRefreshedEvent> {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
     }
 }

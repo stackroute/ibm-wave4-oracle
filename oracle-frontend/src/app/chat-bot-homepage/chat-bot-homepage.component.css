@@ -1,9 +1,13 @@
-/* #submitbutton:hover {
-  color: blueviolet;
-  background-color: whitesmoke;
-} */
+
 #main {
-  background-image: url(../../assets/federico-beccari-62960-unsplash.jpg );
+  background-image: url(../../assets/back.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#second-section{
+
+  background-image: url(../../assets/Ss.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -34,8 +38,8 @@
   -ms-overflow-style: none;
 }
 .chat-area{
-  background-image: url(../../assets/pawel-czerwinski-1373016-unsplash.jpg);
-
+  /*background-image: url(../../assets/pawel-czerwinski-1373016-unsplash.jpg);*/
+  background: linear-gradient(to top left, #991a2f 27%, #2e2e3c 74%);
 
   /* Center and scale the image nicely */
   background-position: center;

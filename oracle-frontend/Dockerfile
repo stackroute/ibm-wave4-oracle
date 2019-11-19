@@ -1,9 +1,15 @@
-FROM node:latest
-RUN mkdir -p /src
-WORKDIR /src
-COPY package.json /src/
+FROM node:carbon
+
+WORKDIR /app
+
+COPY . .
+
 RUN npm install
-RUN npm cache verify
-COPY . /src
-EXPOSE 4200
-CMD ["npm","start"]
+
+RUN npm install http-server -g
+
+RUN npm run build --prod
+
+WORKDIR /app/dist/oracle-frontend
+
+CMD ["http-server", "-c1", "-p", "80"]

@@ -6,7 +6,7 @@ import { environment } from '../environments/environment';
   providedIn: "root"
 })
 export class UserService {
-  savedLink=environment.savedData;
+  savedLink:string=environment.savedData;
   loginLink=environment.loginData;
   allUserLink=environment.allUserData;
   singleUserLink=environment.singleUserData;
@@ -27,6 +27,7 @@ export class UserService {
     return this.http.post(this.loginLink, user, {
       headers: headers
     });
+     
   }
   getAllUsers(token: any): Observable<any> {
     const headers = new HttpHeaders({ Authorization: "Bearer " + token });

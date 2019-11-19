@@ -14,9 +14,10 @@ import { UserService } from "./user.service";
 import { AuthGuard } from "./auth.guard";
 import { ChatBotHomepageComponent } from "./chat-bot-homepage/chat-bot-homepage.component";
 import {
-  MatButtonModule, MatButtonToggleModule,
+  MatButtonModule,
+  MatButtonToggleModule,
   MatDatepickerModule,
-  MatDividerModule,
+  MatDividerModule, MatExpansionModule,
   MatInputModule,
   MatSidenavModule,
   MatTabsModule
@@ -25,7 +26,13 @@ import { UserdashboardComponent } from "./userdashboard/userdashboard.component"
 import { AdmindashboardComponent } from "./admindashboard/admindashboard.component";
 import { ProfileComponent } from './profile/profile.component';
 import { AllUsersProfileComponent } from './all-users-profile/all-users-profile.component';
+import { RecastMovieComponent } from './recast-movie/recast-movie.component';
 import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
+import { TourismBotComponent } from './tourism-bot/tourism-bot.component';
+import { CommonModule } from "@angular/common";
+import { TourismService } from "./tourism.service";
+import { InstantMessagingService } from './instant-messaging.service'
+import { ChatHistoryComponent } from './chat-history/chat-history.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +46,12 @@ import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
     AdmindashboardComponent,
     ProfileComponent,
     AllUsersProfileComponent,
-    ManualAnswerComponent
+    RecastMovieComponent,
+    ManualAnswerComponent,
+    TourismBotComponent,
+    RecastMovieComponent,
+    ManualAnswerComponent,
+    ChatHistoryComponent,
   ],
 
   imports: [
@@ -55,9 +67,12 @@ import { ManualAnswerComponent } from './manual-answer/manual-answer.component';
     MatTabsModule,
     MatInputModule,
     MatDatepickerModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatExpansionModule,
+    CommonModule
   ],
-  providers: [UserService, AuthGuard],
+  exports: [TourismBotComponent],
+  providers: [UserService, AuthGuard,TourismService, InstantMessagingService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

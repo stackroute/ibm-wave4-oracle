@@ -1,7 +1,6 @@
 package com.stackroute.graphqueryservice.repository;
 
 import com.stackroute.graphqueryservice.domain.Questions;
-import com.stackroute.graphqueryservice.domain.Response;
 import com.stackroute.graphqueryservice.domain.ResponseDTO;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
@@ -16,8 +15,8 @@ public interface QueryRepository extends Neo4jRepository<Questions, Long> {
     /*
      Displays the set of questions and corresponding answers for that questions
      */
-    @Query("MATCH (concept:Concept{name:({concept})})<-[:QUESTION_OF]-(question:Questions)<-[:ANSWER_OF]-(answer:Answer) RETURN collect(({question:question.name,answer:answer.answer})) as responses")
-    ResponseDTO findByConcept(String concept);
+    @Query("MATCH (concept:Concept{name:({concept})})<-[:QUESTION_OF]-(question:Questions{intents:({intent})})<-[:ANSWER_OF]-(answer:Answer) RETURN collect(({question:question.name,answer:answer.answer})) as responses")
+    ResponseDTO findByConceptAndIntent(String concept,String intent);
 
     /*
         creates nodes for question and answer and also creates relationships

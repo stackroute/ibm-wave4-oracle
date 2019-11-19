@@ -66,7 +66,7 @@ public class QueryServiceImpl implements QueryService {
         String answer = null;
         // initialize answer if and only if the distance is less than 2
         if (!distanceWithAnswerMap.isEmpty()){
-            if (distanceWithAnswerMap.firstKey() <= 2 ) {
+            if (distanceWithAnswerMap.firstKey() <= 5 ) {
                 answer = distanceWithAnswerMap.get(distanceWithAnswerMap.firstKey());
             }
         }
@@ -75,12 +75,14 @@ public class QueryServiceImpl implements QueryService {
         return answer;
 
     }
+
+    /* This method adds new question with answer to respective concept object*/
+
     @Override
     public QueryAnsListWithConcept updateQueryAnswer(String concept,String question,String answer) {
         QueryAnsListWithConcept queryAnsListWithConcept = new QueryAnsListWithConcept();
         // getting all concepts with question/answer set
         List<QueryAnsListWithConcept> queryAnsListWithConceptList = queryRespository.findAll();
-
         for (QueryAnsListWithConcept q : queryAnsListWithConceptList) {
             // searching for same concept as the current one
             if (q.getConcept().equals(concept)) {
@@ -89,12 +91,19 @@ public class QueryServiceImpl implements QueryService {
                 qa.setQuestion(question);
                 qa.setAnswer(answer);
 
+                // setting id of newly added question
+                String lastId = queryAnswerList.get(queryAnswerList.size()-1).getId();
+                int id = Integer.parseInt(lastId);
+                id++;
+                qa.setId(String.valueOf(id));
+
                 queryAnswerList.add(qa);
 
                 // setting data in "QueryAnsListWithConcept" object
                 queryAnsListWithConcept.setId(q.getId());
                 queryAnsListWithConcept.setConcept(q.getConcept());
                 queryAnsListWithConcept.setQueryAnswer(queryAnswerList);
+                break;
             }
         }
 

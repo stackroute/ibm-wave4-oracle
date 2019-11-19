@@ -13,9 +13,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 @Component
 public class JwtTokenUtil implements Serializable {
+
 
     private static final long serialVersionUID=-13l;
 
@@ -86,7 +88,7 @@ public class JwtTokenUtil implements Serializable {
     }
 
     public String generateToken(JwtUser userDetails) {
-        Map<String, Object> claims= new HashMap<String , Object>();
+        Map<String, Object> claims= new HashMap<>();
         claims.put(CLAM_KEY_USERNAME, userDetails.getUsername());
         claims.put(CLAM_KEY_CREATED, new Date());
         return generateToken(claims);

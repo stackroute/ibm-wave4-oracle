@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -7,15 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
-  admin:boolean=false;
+  user: any;
+
+  message = "Query";
+
+ constructor(){
+ }
+
+
+
+  admin: boolean = false;
 
   ngOnInit() {
-      let data=JSON.parse(localStorage.getItem("currentUser"));
+
+    //console.log(localStorage.getItem("currentUser"), )
+    let data = JSON.parse(localStorage.getItem("currentUser"));
     if (data.user.role === "ADMIN") {
-      this.admin=true;
+      this.admin = true;
     } else {
-      this.admin=false;
+      this.admin = false;
     }
   }
 

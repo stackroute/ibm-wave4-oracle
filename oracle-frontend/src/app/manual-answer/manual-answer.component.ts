@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{questions} from 'src/questions'
 import{userQuery} from 'src/userQuery'
-import { from } from 'rxjs';
 import { ManaualApiService } from '../manaual-api.service'
 
 @Component({
@@ -12,41 +11,58 @@ import { ManaualApiService } from '../manaual-api.service'
 export class ManualAnswerComponent implements OnInit {
 
 
-  question:questions[]
+  question:questions[] = []
   userQuery:userQuery[] = []
 
   constructor(private manual_api:ManaualApiService) { }
-
   ngOnInit() {
-
-    this.manual_api.getAllQuestions().subscribe(data => {
-
-      console.log(data);
-
-     this.question = [];
-    let userQuery:[userQuery] = data;
-
-    for(var i = 0;i <userQuery.length;i++){
-
-    let questionList:[questions] =  data[i].query;
-    for(var j = 0;j<questionList.length;j++){
-      questionList[j].concept = userQuery[i].concept;
-      this.question.push(questionList[j]);
-    }
-    }
-    console.log(questions)
-
-  })
+   this.getAllQuestions()
   }
+
+
+//Get All the Questions
+
+getAllQuestions(){
+
+  this.manual_api.getAllQuestions().subscribe(data => {
+
+    console.log(data);
+
+   this.question = [];
+  let userQuery:[userQuery] = data;
+
+  for(var i = 0;i <userQuery.length;i++){
+
+  let questionList:[questions] =  data[i].query;
+  for(var j = 0;j<questionList.length;j++){
+    questionList[j].concept = userQuery[i].concept;
+    this.question.push(questionList[j]);
+  }
+  }
+  console.log(questions)
+
+})
+}
+
 
    // Search the Unanswered question by topic name 
 
 searchByTopic(topic:string){
   console.log(topic);
   this.manual_api.getQuestionByTopic(topic).subscribe(data => {
+    console.log(data);
+    let userQuery:userQuery = data;
     console.log(data.query);
     let questionList:questions[] = data.query;
-    this.question = questionList;
+    this.question = [];
+    
+    for(var j = 0;j<questionList.length;j++){
+      questionList[j].concept = userQuery.concept;
+      this.question.push(questionList[j]);
+    }
+
+    
+    // this.question = questionList;
     console.log(data);
  })
 }

@@ -1,0 +1,75 @@
+
+.mainSlides {
+  height: 500px;
+}
+.botBody {
+  height: 630px;
+  width: 500px;
+  background: linear-gradient(to top left, #2e2e3c 27%, #991a2f 74%);
+  overflow: auto;
+}
+.header {
+  background: #2e2e3c;
+}
+.content {
+  margin: 0;
+  height: 550px;
+}
+.fa-robot {
+  font-size: 2rem;
+  color: lightgray;
+  padding: 0.5rem 0rem 0rem 0rem;
+}
+.data {
+  border: 1px solid lightgray;
+  border-radius: 0.75rem;
+  height: 4rem;
+  color: lightgray;
+  padding: 0.5rem 0rem 0rem 1rem;
+}
+.default {
+  height: 4.5rem;
+  margin: 1rem 0.25rem 0rem 0.25rem;
+}
+.chatData {
+  height: auto;
+  width: 400px;
+  margin-bottom: 10%;
+}
+.ourtext {
+  float: right;
+  color: lightgray;
+  border: 1px solid lightgray;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  margin: 0rem -3rem 0rem 0rem;
+  border-radius: 0.75rem;
+}
+.bottext {
+  margin: 0rem 0rem 0rem 1rem;
+  color: lightgray;
+  display: inline;
+}
+.suggestion {
+  height: auto;
+  color: lightgray;
+  margin: 0rem 0rem -2rem 1rem;
+}
+.form {
+  margin: 1rem 0rem 0rem 0rem;
+}
+.send {
+  background-color: #2e2e3c;
+}
+.fa-paper-plane {
+  color: white;
+}
+.footer {
+  height: 4rem;
+}
+.form {
+  margin: 0.5rem 0rem 0rem 2rem;
+}
+.quote {
+  font-size: 2rem;
+  font-family: italic;
+}

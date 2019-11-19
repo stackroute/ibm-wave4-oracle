@@ -8,12 +8,13 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "user")
-public class User implements Serializable {
+public class User implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,4 +36,6 @@ public class User implements Serializable {
     private String role;
     @Column(name = "date")
     private Date date;
+
+
 }
